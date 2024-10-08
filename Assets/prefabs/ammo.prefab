@@ -153,4 +153,4 @@ MonoBehaviour:
   Dir: {x: 0, y: 0, z: 1}
   Speed: 0.1
   Acc: 0.01
-  Duration: 3
+  Duration: 6

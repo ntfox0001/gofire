@@ -494,7 +494,7 @@ MonoBehaviour:
   Ammo: {fileID: 5905726054650385960, guid: 622c040632cced94ab4373894aca9dec, type: 3}
   HP: 100
   Gun: {fileID: 32780135}
-  AutoFire: 0.5
+  AutoFire: 0.7
 --- !u!65 &1081263314
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -795,6 +795,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1634097847}
+  - component: {fileID: 1634097848}
   m_Layer: 0
   m_Name: root
   m_TagString: Untagged
@@ -821,6 +822,18 @@ Transform:
   - {fileID: 1081263312}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1634097848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634097846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d94d524cd54f8a640af3712ae3b0d6cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1730911508
 GameObject:
   m_ObjectHideFlags: 0
@@ -946,6 +959,9 @@ MonoBehaviour:
   HP: 100
   Ammo: {fileID: 5905726054650385960, guid: 622c040632cced94ab4373894aca9dec, type: 3}
   Gun: {fileID: 38079885}
+  MoveSpeed: 3
+  MinFireSpeed: 0.3
+  UseMouse: 0
 --- !u!54 &1730911514
 Rigidbody:
   m_ObjectHideFlags: 0

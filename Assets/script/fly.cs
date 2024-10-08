@@ -21,7 +21,7 @@ public class Fly : MonoBehaviour
     void Update()
     {
         Speed += Acc;
-        var detlaDis = Dir * (Speed * Time.deltaTime);
+        var detlaDis = Dir * (Speed * Time.deltaTime * GlobalVar.GetSingleton().EnemySpeedDeltaTime);
         transform.localPosition += detlaDis;
         Duration -= Time.deltaTime;
         if (Duration < 0)

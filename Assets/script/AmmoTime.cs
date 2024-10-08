@@ -27,7 +27,7 @@ public class AmmoTime : MonoBehaviour
         }
 
         count++;
-        Time.timeScale = slow;
+        GlobalVar.GetSingleton().EnemySpeedDeltaTime = slow;
     }
 
     private void OnTriggerExit(Collider other)
@@ -41,7 +41,7 @@ public class AmmoTime : MonoBehaviour
         count--;
         if (count == 0)
         {
-            Time.timeScale = 1;
+            GlobalVar.GetSingleton().EnemySpeedDeltaTime = GameConst.EnemySpeedDefaultDeltaTime;
         }
     }
 
