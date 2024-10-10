@@ -5,11 +5,16 @@ using UnityEngine.Events;
 
 public interface IHit 
 {
-    void OnHit(string name, float dam);
+    void OnHit(GameConst.AmmoType at, float dam);
     
 }
 
 public interface IEnemyBody
 {
     
+}
+
+public interface IShooting
+{
+    void File(GameConst.AmmoType at);
 }

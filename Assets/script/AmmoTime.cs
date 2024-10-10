@@ -21,7 +21,7 @@ public class AmmoTime : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         var ammo = other.GetComponent<Fly>();
-        if (ammo == null || ammo.Name != GameConst.EnemyAmmo)
+        if (ammo == null || ammo.AmmoType != GameConst.AmmoType.Enemy)
         {
             return;
         }
@@ -33,7 +33,7 @@ public class AmmoTime : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         var ammo = other.GetComponent<Fly>();
-        if (ammo == null || ammo.Name != GameConst.EnemyAmmo)
+        if (ammo == null || ammo.AmmoType != GameConst.AmmoType.Enemy)
         {
             return;
         }

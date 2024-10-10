@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class Fly : MonoBehaviour
 {
-    public string Name;
+    public GameConst.AmmoType AmmoType;
     public float Damage = 10;
     public Vector3 Dir = GameConst.Up;
     public float Speed = 0.1f;
@@ -35,7 +35,7 @@ public class Fly : MonoBehaviour
         var hit = other.gameObject.GetComponent<IHit>();
         if (hit != null)
         {
-            hit.OnHit(Name, Damage);
+            hit.OnHit(AmmoType, Damage);
         }
     }
 

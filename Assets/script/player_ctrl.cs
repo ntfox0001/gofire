@@ -134,9 +134,9 @@ public class player_ctrl : MonoBehaviour, IHit
         return found1 && found2;
     }
 
-    public void OnHit(string name, float damage)
+    public void OnHit(GameConst.AmmoType at, float damage)
     {
-        if (name != GameConst.EnemyAmmo)
+        if (at != GameConst.AmmoType.Enemy)
         {
             return;
         }
@@ -167,7 +167,7 @@ public class player_ctrl : MonoBehaviour, IHit
         var ammo = GameObject.Instantiate<Fly>(Ammo);
         ammo.Dir = GameConst.Up;
         ammo.transform.position = Gun.position;
-        ammo.Name = GameConst.PlayerAmmo;
+        ammo.AmmoType = GameConst.AmmoType.Player;
     }
     public void Dead()
     {

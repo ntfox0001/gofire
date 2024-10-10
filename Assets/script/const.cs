@@ -18,4 +18,9 @@ public class GameConst
     public const string EnemyAmmo = "enemy_ammo";
 
     public const float EnemySpeedDefaultDeltaTime = 1;
+    public enum AmmoType
+    {
+        Player,
+        Enemy,
+    }
 }

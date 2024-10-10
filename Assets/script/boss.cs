@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class boss : MonoBehaviour, IHit, IEnemyBody
 {
-    public Fly Ammo;
+    public Gun Gun;
+    public Transform GunPosition;
     public float HP = 100;
-    public Transform Gun;
     public float AutoFire = 2.0f;
+
+    void Awake()
+    {
+        Gun = GameObject.Instantiate<Gun>(Gun);
+        Gun.transform.SetParent(GunPosition, false);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -30,9 +36,9 @@ public class boss : MonoBehaviour, IHit, IEnemyBody
         }
     }
 
-    public void OnHit(string name, float damage)
+    public void OnHit(GameConst.AmmoType at, float damage)
     {
-        if (name != GameConst.PlayerAmmo)
+        if (at != GameConst.AmmoType.Player)
         {
             return;
         }
@@ -52,10 +58,6 @@ public class boss : MonoBehaviour, IHit, IEnemyBody
 
     public void Fire()
     {
-        var ammo = GameObject.Instantiate<Fly>(Ammo);
-        ammo.Dir = GameConst.Down;
-        ammo.transform.position = Gun.position;
-        ammo.Name = GameConst.EnemyAmmo;
-        ammo.Damage = 200;
+        Gun.Fire(GameConst.AmmoType.Enemy);
     }
 }
