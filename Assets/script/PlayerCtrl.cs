@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 using UnityEditor;
 using UnityEngine;
 
-public class player_ctrl : MonoBehaviour, IHit
+public class PlayerCtrl : MonoBehaviour, IHit
 {
     public Camera MainCamera;
     public float HP = 100;

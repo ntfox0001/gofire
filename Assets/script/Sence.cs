@@ -1,0 +1,32 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+public class Sence : MonoBehaviour
+{
+    public PlayerCtrl Player;
+    EventBase[] events;
+    // Start is called before the first frame update
+    void Start()
+    {
+        events = GetComponentsInChildren<EventBase>();
+        Array.Sort(events, (EventBase a, EventBase b)=>
+        {
+            return (a.Time < b.Time) ? 1 : -1;
+        });
+
+        StartCoroutine(Run());
+
+        Player = GameObject.Instantiate<PlayerCtrl>(Player);
+    }
+
+    IEnumerator Run()
+    {
+        for (int i = 0; i < events.Length; i++)
+        {
+            yield return new WaitForSeconds(events[i].Time);
+            events[i].OnTouch(transform);
+        }
+    }
+
+}
