@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Sence : MonoBehaviour
 {
+    public Camera MainCamera;
     public PlayerCtrl Player;
     EventBase[] events;
     // Start is called before the first frame update
@@ -18,6 +19,7 @@ public class Sence : MonoBehaviour
         StartCoroutine(Run());
 
         Player = GameObject.Instantiate<PlayerCtrl>(Player);
+        Player.MainCamera = MainCamera;
     }
 
     IEnumerator Run()

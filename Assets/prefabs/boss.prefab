@@ -547,7 +547,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   method: 22
-  style: 0
+  style: 3
   animationCurve:
     serializedVersion: 2
     m_Curve:

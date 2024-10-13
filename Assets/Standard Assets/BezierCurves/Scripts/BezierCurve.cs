@@ -250,10 +250,15 @@ public class BezierCurve : MonoBehaviour {
 			p2 = points[0];
             curvePercent = 1.0f - totalPercent;
         }
+
+		if (p1 == null && p2 == null)
+		{
+			return points[points.Length - 1].position;
+		}
 		
-		t -= totalPercent;
+		var nextTotalPercent = t - totalPercent;
 		
-		return GetPoint(p1, p2, t / curvePercent);
+		return GetPoint(p1, p2, nextTotalPercent / curvePercent);
 	}
 
     /// <summary>
