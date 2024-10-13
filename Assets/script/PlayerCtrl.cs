@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 using UnityEditor;
 using UnityEngine;
 
-public class PlayerCtrl : MonoBehaviour, IHit
+public class PlayerCtrl : MonoBehaviour, IHitRoot, IBumpRoot
 {
     public Camera MainCamera;
     public float HP = 100;
@@ -134,13 +134,13 @@ public class PlayerCtrl : MonoBehaviour, IHit
         return found1 && found2;
     }
 
-    public void OnHit(GameConst.AmmoType at, float damage)
+    public void OnHit(GameConst.AmmoType at, AmmoInfo info)
     {
         if (at != GameConst.AmmoType.Enemy)
         {
             return;
         }
-        HP -= damage;
+        HP -= info.Damage;
 
         if (HP <= 0)
         {
@@ -148,7 +148,7 @@ public class PlayerCtrl : MonoBehaviour, IHit
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnBump(Collider other)
     {
         if (other.TryGetComponent<IEnemyBody>(out _))
         {

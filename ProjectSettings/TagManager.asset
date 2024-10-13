@@ -11,14 +11,14 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Enemy
+  - Player_Ammo1
+  - Player_Ammo2
+  - Player_Ammo3
+  - Enemy_Ammo1
+  - Enemy_Ammo2
+  - Enemy_Ammo3
   - 
   - 
   - 

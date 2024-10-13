@@ -1,15 +1,36 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public interface IHit 
+[Serializable]
+public struct AmmoInfo
 {
-    void OnHit(GameConst.AmmoType at, float dam);
-    
+    public float Damage;
 }
 
-public interface IEnemyBody
+public interface IHit 
+{
+    void OnHit(GameConst.AmmoType at, AmmoInfo info);
+}
+
+public interface IHitRoot
+{
+    void OnHit(GameConst.AmmoType at, AmmoInfo info);
+}
+
+public interface IBump
+{
+    void OnBump(Collider other);
+}
+
+public interface IBumpRoot
+{
+    void OnBump(Collider other);
+}
+
+public interface IEnemyBody 
 {
     
 }

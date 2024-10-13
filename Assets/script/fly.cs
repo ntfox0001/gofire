@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine.UIElements;
 public class Fly : MonoBehaviour
 {
     public GameConst.AmmoType AmmoType;
-    public float Damage = 10;
+    public AmmoInfo AmmoInfo;
     public Vector3 Dir = GameConst.Up;
     public float Speed = 0.1f;
     public float Acc = 0.01f;
@@ -32,10 +33,10 @@ public class Fly : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        var hit = other.gameObject.GetComponent<IHit>();
+        var hit = other.gameObject.GetComponentInParent<IHit>();
         if (hit != null)
         {
-            hit.OnHit(AmmoType, Damage);
+            hit.OnHit(AmmoType, AmmoInfo);
         }
     }
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class boss : MonoBehaviour, IHit, IEnemyBody
+public class boss : MonoBehaviour, IHitRoot, IEnemyBody
 {
     public Gun Gun;
     public Transform GunPosition;
@@ -21,33 +21,12 @@ public class boss : MonoBehaviour, IHit, IEnemyBody
         StartCoroutine(autoFire());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     IEnumerator autoFire()
     {
         while (true)
         {
             yield return new WaitForSeconds(AutoFire);
             Fire();
-        }
-    }
-
-    public void OnHit(GameConst.AmmoType at, float damage)
-    {
-        if (at != GameConst.AmmoType.Player)
-        {
-            return;
-        }
-
-        HP -= damage;
-        
-        if (HP <= 0)
-        {
-            Dead();
         }
     }
 
@@ -59,5 +38,20 @@ public class boss : MonoBehaviour, IHit, IEnemyBody
     public void Fire()
     {
         Gun.Fire(GameConst.AmmoType.Enemy);
+    }
+
+    public void OnHit(GameConst.AmmoType at, AmmoInfo info)
+    {
+        if (at != GameConst.AmmoType.Player)
+        {
+            return;
+        }
+
+        HP -= info.Damage;
+
+        if (HP <= 0)
+        {
+            Dead();
+        }
     }
 }

@@ -566,6 +566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6489ab15752a97a45a0bb7336b5903b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MainCamera: {fileID: 66113054}
   Player: {fileID: 8067836727740092697, guid: 7af28ddfeaa94a04387c070be4c1723f, type: 3}
 --- !u!114 &1634097850
 MonoBehaviour:
@@ -579,7 +580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bfb05eb1bc7907459987636722d6ad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Time: 0
+  Time: 3
   Create: {fileID: 3339733250242404741, guid: 3f8d34fb9bbc72546967d3c747a437a5, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
