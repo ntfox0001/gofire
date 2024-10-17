@@ -12,6 +12,9 @@ public class Fly : MonoBehaviour
     public float Speed = 0.1f;
     public float Acc = 0.01f;
     public float Duration = 20;
+
+    public Action OnDestory;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,8 +30,19 @@ public class Fly : MonoBehaviour
         Duration -= Time.deltaTime;
         if (Duration < 0)
         {
-            Destroy(gameObject);
+            Dead();
         }
+    }
+
+    void Dead()
+    {
+        OnDestory();
+        Destroy(gameObject);
+    }
+
+    private void OnBecameInvisible()
+    {
+        Dead();
     }
 
     private void OnTriggerEnter(Collider other)
