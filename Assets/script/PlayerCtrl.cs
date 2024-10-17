@@ -8,8 +8,8 @@ public class PlayerCtrl : MonoBehaviour, IHitRoot, IBumpRoot
 {
     public Camera MainCamera;
     public float HP = 100;
-    public Fly Ammo;
-    public Transform Gun;
+    public Gun Gun;
+    public Transform GunPosition;
     public float MoveSpeed = 1;
     public float MinFireSpeed = 0.1f;
     public bool UseMouse = false;
@@ -21,10 +21,14 @@ public class PlayerCtrl : MonoBehaviour, IHitRoot, IBumpRoot
     KeyCode[] left = { KeyCode.A, KeyCode.LeftArrow };
     KeyCode[] right = { KeyCode.D, KeyCode.RightArrow };
     KeyCode[] fire = { KeyCode.Space };
-    // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
+        Gun = GameObject.Instantiate<Gun>(Gun);
+        Gun.transform.SetParent(GunPosition, false);
     }
+
+
 
     // Update is called once per frame
     void Update()
@@ -164,10 +168,7 @@ public class PlayerCtrl : MonoBehaviour, IHitRoot, IBumpRoot
         }
         preFireTime = Time.time;
 
-        var ammo = GameObject.Instantiate<Fly>(Ammo);
-        ammo.Dir = GameConst.Up;
-        ammo.transform.position = Gun.position;
-        ammo.AmmoType = GameConst.AmmoType.Player;
+        Gun.Fire(GameConst.AmmoType.Player);
     }
     public void Dead()
     {
