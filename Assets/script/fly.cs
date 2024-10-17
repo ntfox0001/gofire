@@ -15,10 +15,12 @@ public class Fly : MonoBehaviour
 
     public Action OnDestory;
 
+    Bounds bounds;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        bounds = GetComponentInChildren<Collider>().bounds;
     }
 
     // Update is called once per frame
@@ -40,10 +42,10 @@ public class Fly : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnBecameInvisible()
-    {
-        Dead();
-    }
+    //private void OnBecameInvisible()
+    //{
+    //    Dead();
+    //}
 
     private void OnTriggerEnter(Collider other)
     {
@@ -54,5 +56,11 @@ public class Fly : MonoBehaviour
         }
     }
 
-
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<AmmoGround>() != null)
+        {
+            Dead();
+        }
+    }
 }
