@@ -2,48 +2,53 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AmmoTime : MonoBehaviour
+namespace GoFire
 {
-    int count = 0;
-    public float slow = 0.5f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
-    private void OnTriggerEnter(Collider other)
+    public class AmmoTime : MonoBehaviour
     {
-        var ammo = other.GetComponent<Fly>();
-        if (ammo == null || ammo.AmmoType != GameConst.AmmoType.Enemy)
+        int count = 0;
+        public float slow = 0.5f;
+        // Start is called before the first frame update
+        void Start()
         {
-            return;
+
         }
 
-        count++;
-        GlobalVar.GetSingleton().EnemySpeedDeltaTime = slow;
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        var ammo = other.GetComponent<Fly>();
-        if (ammo == null || ammo.AmmoType != GameConst.AmmoType.Enemy)
+        // Update is called once per frame
+        void Update()
         {
-            return;
+
         }
 
-        count--;
-        if (count == 0)
+        private void OnTriggerEnter(Collider other)
         {
-            GlobalVar.GetSingleton().EnemySpeedDeltaTime = GameConst.EnemySpeedDefaultDeltaTime;
+            var ammo = other.GetComponent<Fly>();
+            if (ammo == null || ammo.FlyType != GameConst.FlyType.Enemy)
+            {
+                return;
+            }
+
+            count++;
+            GlobalVar.GetSingleton().EnemySpeedDeltaTime = slow;
         }
+
+        private void OnTriggerExit(Collider other)
+        {
+            var ammo = other.GetComponent<Fly>();
+            if (ammo == null || ammo.FlyType != GameConst.FlyType.Enemy)
+            {
+                return;
+            }
+
+            count--;
+            if (count == 0)
+            {
+                GlobalVar.GetSingleton().EnemySpeedDeltaTime = GameConst.EnemySpeedDefaultDeltaTime;
+            }
+        }
+
+
     }
-
-
 }

@@ -1,33 +1,43 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
-[Serializable]
-public class Shooting : MonoBehaviour, IShooting
+namespace GoFire
 {
-    public Fly Ammo;
-    public int MaxCount;
-
-    int count;
-
-    public void File(GameConst.AmmoType at)
+    [Serializable]
+    public class Shooting : MonoBehaviour, IShooting
     {
-        if (MaxCount > 0 && count >= MaxCount)
+        public Fly Fly;
+        public int MaxCount;
+
+        int count;
+
+        Sence rootSence;
+
+        private void Start()
         {
-            return;
+            rootSence = GetComponentInParent<Sence>();
         }
 
-        var ammo = GameObject.Instantiate<Fly>(Ammo);
-        ammo.OnDestory += AmmoDestory;
-        ammo.Dir = transform.rotation * Vector3.forward;
-        ammo.transform.position = transform.position;
-        ammo.AmmoType = at;
+        public void Fire(GameConst.FlyType flyType, AmmoInfo ammoInfo)
+        {
+            if (MaxCount > 0 && count >= MaxCount)
+            {
+                return;
+            }
 
-        count++;
-    }
+            var fly = GameObject.Instantiate<Fly>(Fly);
+            fly.transform.SetParent(rootSence.transform, false);
+            fly.Initiall(transform.position, transform.rotation * Vector3.forward, flyType, AmmoDestory);
+            fly.AmmoInfo = ammoInfo;
 
-    void AmmoDestory()
-    {
-        count--;
+            count++;
+        }
+
+        void AmmoDestory()
+        {
+            count--;
+        }
     }
 }

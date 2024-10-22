@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85adffc45a22f9d4b87a8c68edd29035, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Ammo: {fileID: 5905726054650385960, guid: 622c040632cced94ab4373894aca9dec, type: 3}
+  Fly: {fileID: 5905726054650385960, guid: 622c040632cced94ab4373894aca9dec, type: 3}
   MaxCount: 0
 --- !u!1 &2583614287631484974
 GameObject:
@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85adffc45a22f9d4b87a8c68edd29035, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Ammo: {fileID: 5905726054650385960, guid: 622c040632cced94ab4373894aca9dec, type: 3}
+  Fly: {fileID: 5905726054650385960, guid: 622c040632cced94ab4373894aca9dec, type: 3}
   MaxCount: 0
 --- !u!1 &5291991707558612720
 GameObject:
@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 1123069073250890480}
   - component: {fileID: 9157226545906036634}
   m_Layer: 0
-  m_Name: enmy_gun
+  m_Name: enemy_gun_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -139,6 +139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d30c2ede652174aba872d374d3d81f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AmmoInfo:
+    Damage: 100
 --- !u!1 &7223388271274184729
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,5 +185,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85adffc45a22f9d4b87a8c68edd29035, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Ammo: {fileID: 5905726054650385960, guid: 622c040632cced94ab4373894aca9dec, type: 3}
+  Fly: {fileID: 5905726054650385960, guid: 622c040632cced94ab4373894aca9dec, type: 3}
   MaxCount: 0

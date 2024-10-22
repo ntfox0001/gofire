@@ -4,38 +4,49 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[Serializable]
-public struct AmmoInfo
+namespace GoFire
 {
-    public float Damage;
-}
 
-public interface IHit 
-{
-    void OnHit(GameConst.AmmoType at, AmmoInfo info);
-}
+    [Serializable]
+    public struct AmmoInfo
+    {
+        public float Damage;
+    }
 
-public interface IHitRoot
-{
-    void OnHit(GameConst.AmmoType at, AmmoInfo info);
-}
+    public interface IHit
+    {
+        void OnHit(GameConst.FlyType at, AmmoInfo info);
+    }
 
-public interface IBump
-{
-    void OnBump(Collider other);
-}
+    public interface IHitRoot
+    {
+        void OnHit(GameConst.FlyType at, AmmoInfo info);
+    }
 
-public interface IBumpRoot
-{
-    void OnBump(Collider other);
-}
+    public interface IBump
+    {
+        void OnBump(Collider other);
+    }
 
-public interface IEnemyBody 
-{
-    
-}
+    public interface IBumpRoot
+    {
+        void OnBump(Collider other);
+    }
 
-public interface IShooting
-{
-    void File(GameConst.AmmoType at);
+    public interface IBody
+    {
+        void Dead();
+        void RegisterOnDead(Action<IBody> onDead);
+    }
+
+    public interface IEnemyBody : IBody
+    {
+
+    }
+
+    public interface IShooting
+    {
+        void Fire(GameConst.FlyType flyType, AmmoInfo ammoInfo);
+    }
+
 }

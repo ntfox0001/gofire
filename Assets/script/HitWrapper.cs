@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HitWrapper : MonoBehaviour, IHit
+namespace GoFire
 {
-    IHitRoot rootHit;
-
-    private void Start()
+    public class HitWrapper : MonoBehaviour, IHit
     {
-        rootHit = GetComponentInParent<IHitRoot>();
-    }
+        IHitRoot rootHit;
 
-    public void OnHit(GameConst.AmmoType at, AmmoInfo info)
-    {
-        rootHit.OnHit(at, info);
+        private void Awake()
+        {
+            rootHit = GetComponentInParent<IHitRoot>();
+        }
+
+        public void OnHit(GameConst.FlyType at, AmmoInfo info)
+        {
+            rootHit.OnHit(at, info);
+        }
     }
 }

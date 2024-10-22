@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2222051672970659825}
   - component: {fileID: 5905726054650385960}
   m_Layer: 0
-  m_Name: ammo
+  m_Name: player_ammo_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,7 +105,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 3
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -148,10 +148,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 438745f55b0099d4b93eeb46965cfc0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AmmoType: 0
-  AmmoInfo:
-    Damage: 0
-  Dir: {x: 0, y: 0, z: 1}
-  Speed: 0.1
-  Acc: 0.01
-  Duration: 6
+  Speed: 20
+  Acc: 0
+  Duration: 3

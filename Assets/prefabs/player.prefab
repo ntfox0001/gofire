@@ -159,7 +159,7 @@ MonoBehaviour:
   Gun: {fileID: 9157226545906036634, guid: b72989a2ae1ed224bb51b7ce91e2d5e1, type: 3}
   GunPosition: {fileID: 1251105093811179231}
   MoveSpeed: 3
-  MinFireSpeed: 0.3
+  MinFireSpeed: 0.1
   UseMouse: 0
 --- !u!1001 &3930439292854795499
 PrefabInstance:

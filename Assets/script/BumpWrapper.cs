@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BumpWrapper : MonoBehaviour, IBump
+namespace GoFire
 {
-    IBumpRoot bumpRoot;
-    private void Start()
+    public class BumpWrapper : MonoBehaviour, IBump
     {
-        bumpRoot = GetComponentInParent<IBumpRoot>();
-    }
+        IBumpRoot bumpRoot;
+        private void Start()
+        {
+            bumpRoot = GetComponentInParent<IBumpRoot>();
+        }
 
-    public void OnBump(Collider other)
-    {
-        bumpRoot.OnBump(other);
+        public void OnBump(Collider other)
+        {
+            bumpRoot.OnBump(other);
+        }
     }
 }

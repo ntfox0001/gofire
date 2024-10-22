@@ -1,57 +1,63 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class boss : MonoBehaviour, IHitRoot, IEnemyBody
+namespace GoFire
 {
-    public Gun Gun;
-    public Transform GunPosition;
-    public float HP = 100;
-    public float AutoFire = 2.0f;
-
-    void Awake()
+    public class boss : BodyBase, IHitRoot, IEnemyBody
     {
-        Gun = GameObject.Instantiate<Gun>(Gun);
-        Gun.transform.SetParent(GunPosition, false);
-    }
+        public Gun Gun;
+        public Transform GunPosition;
+        public float HP = 100;
+        public float AutoFire = 2.0f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        StartCoroutine(autoFire());
-    }
-
-    IEnumerator autoFire()
-    {
-        while (true)
+        void Awake()
         {
-            yield return new WaitForSeconds(AutoFire);
-            Fire();
-        }
-    }
-
-    public void Dead()
-    {
-        Destroy(gameObject);
-    }
-
-    public void Fire()
-    {
-        Gun.Fire(GameConst.AmmoType.Enemy);
-    }
-
-    public void OnHit(GameConst.AmmoType at, AmmoInfo info)
-    {
-        if (at != GameConst.AmmoType.Player)
-        {
-            return;
+            Gun = GameObject.Instantiate<Gun>(Gun);
+            Gun.transform.SetParent(GunPosition, false);
         }
 
-        HP -= info.Damage;
-
-        if (HP <= 0)
+        // Start is called before the first frame update
+        void Start()
         {
-            Dead();
+            StartCoroutine(autoFire());
+        }
+
+        IEnumerator autoFire()
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(AutoFire);
+                Fire();
+            }
+        }
+
+        public override void Dead()
+        {
+            OnDead();
+            Destroy(gameObject);
+        }
+
+
+        public void Fire()
+        {
+            Gun.Fire(GameConst.FlyType.Enemy);
+        }
+
+        public void OnHit(GameConst.FlyType at, AmmoInfo info)
+        {
+            if (at != GameConst.FlyType.Player)
+            {
+                return;
+            }
+
+            HP -= info.Damage;
+
+            if (HP <= 0)
+            {
+                Dead();
+            }
         }
     }
 }

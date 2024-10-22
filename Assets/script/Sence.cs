@@ -2,33 +2,36 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class Sence : MonoBehaviour
+namespace GoFire
 {
-    public Camera MainCamera;
-    public PlayerCtrl Player;
-    EventBase[] events;
-    // Start is called before the first frame update
-    void Start()
+    public class Sence : MonoBehaviour
     {
-        events = GetComponentsInChildren<EventBase>();
-        Array.Sort(events, (EventBase a, EventBase b)=>
+        public Camera MainCamera;
+        public PlayerCtrl Player;
+        EventBase[] events;
+        // Start is called before the first frame update
+        void Start()
         {
-            return (a.Time < b.Time) ? 1 : -1;
-        });
+            events = GetComponentsInChildren<EventBase>();
+            Array.Sort(events, (EventBase a, EventBase b) =>
+            {
+                return (a.Time < b.Time) ? 1 : -1;
+            });
 
-        StartCoroutine(Run());
+            StartCoroutine(Run());
 
-        Player = GameObject.Instantiate<PlayerCtrl>(Player);
-        Player.MainCamera = MainCamera;
-    }
+            Player = GameObject.Instantiate<PlayerCtrl>(Player);
+            Player.transform.SetParent(transform, false);
+            Player.MainCamera = MainCamera;
+        }
 
-    IEnumerator Run()
-    {
-        for (int i = 0; i < events.Length; i++)
+        IEnumerator Run()
         {
-            yield return new WaitForSeconds(events[i].Time);
-            events[i].OnTouch(transform);
+            for (int i = 0; i < events.Length; i++)
+            {
+                yield return new WaitForSeconds(events[i].Time);
+                events[i].OnTouch(transform);
+            }
         }
     }
-
 }

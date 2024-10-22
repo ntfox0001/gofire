@@ -2,21 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gun : MonoBehaviour
+namespace GoFire
 {
-    Shooting[] Shootings;
-
-    private void Awake()
+    public class Gun : MonoBehaviour
     {
-        Shootings = GetComponentsInChildren<Shooting>();
-    }
+        public AmmoInfo AmmoInfo;
+        Shooting[] Shootings;
 
 
-    public void Fire(GameConst.AmmoType at)
-    {
-        foreach (Shooting s in Shootings)
+        private void Awake()
         {
-            s.File(at);
+            Shootings = GetComponentsInChildren<Shooting>();
+        }
+
+        public void Fire(GameConst.FlyType at)
+        {
+            foreach (Shooting s in Shootings)
+            {
+                s.Fire(at, AmmoInfo);
+            }
         }
     }
 }
