@@ -11,7 +11,6 @@ namespace GoFire
         public Camera MainCamera;
         public float HP = 100;
         public Gun Gun;
-        public Shooting DeadEffect;
         public Transform GunPosition;
         public float MoveSpeed = 1;
         public float MinFireSpeed = 0.1f;
@@ -181,7 +180,6 @@ namespace GoFire
         public override void Dead()
         {
             OnDead();
-            DeadEffect.Fire(GameConst.FlyType.None, new AmmoInfo());
             Destroy(gameObject);
         }
     }

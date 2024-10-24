@@ -38,11 +38,15 @@ public class BezierPoint : MonoBehaviour{
 	///		- Curve this point belongs to
 	/// 	- Changing this value will automatically remove this point from the current curve and add it to the new one
 	/// </summary>
-	[SerializeField]
 	private BezierCurve _curve;
 	public BezierCurve curve
 	{
-		get{return _curve;}
+		get{
+			if (_curve == null)
+			{
+				_curve = GetComponentInParent<BezierCurve>();
+			}
+			return _curve;}
 		set
 		{
 			if(_curve) _curve.RemovePoint(this);
@@ -96,7 +100,7 @@ public class BezierPoint : MonoBehaviour{
 			_handle1 = value;
 			if(handleStyle == HandleStyle.None) handleStyle = HandleStyle.Broken;
 			else if(handleStyle == HandleStyle.Connected) _handle2 = -value;
-			_curve.SetDirty();
+			curve.SetDirty();
 		}
 	}
     public Vector3 localHandle1
@@ -132,7 +136,7 @@ public class BezierPoint : MonoBehaviour{
 			_handle2 = value;
 			if(handleStyle == HandleStyle.None) handleStyle = HandleStyle.Broken;
 			else if(handleStyle == HandleStyle.Connected) _handle1 = -value;
-			_curve.SetDirty();
+			curve.SetDirty();
 		}		
 	}
 
@@ -160,16 +164,16 @@ public class BezierPoint : MonoBehaviour{
 	/// 	- Used to determine if this point has moved since the last frame
 	/// </summary>
 	private Vector3 lastPosition;
-	
-	#endregion
-	
-	#region MonoBehaviourFunctions
-	
-	void Update()
+
+    #endregion
+
+    #region MonoBehaviourFunctions
+
+    void Update()
 	{
-		if(!_curve.dirty && transform.position != lastPosition)
+		if(!curve.dirty && transform.position != lastPosition)
 		{
-			_curve.SetDirty();
+			curve.SetDirty();
 			lastPosition = transform.position;
 		}
 	}

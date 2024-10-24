@@ -308,10 +308,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f5ec27b85f7dd74d86c9cc3db0962ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DeadEffect: {fileID: 6641997048228348717}
   MainCamera: {fileID: 0}
   HP: 100
   Gun: {fileID: 9157226545906036634, guid: b72989a2ae1ed224bb51b7ce91e2d5e1, type: 3}
-  DeadEffect: {fileID: 6641997048228348717}
   GunPosition: {fileID: 1251105093811179231}
   MoveSpeed: 3
   MinFireSpeed: 0.1
@@ -635,7 +635,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4924116841630631289}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 458b4464a6ad21c419e9f2ac80db4465, type: 3}
   m_Name: 
