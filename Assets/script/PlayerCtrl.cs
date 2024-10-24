@@ -11,6 +11,7 @@ namespace GoFire
         public Camera MainCamera;
         public float HP = 100;
         public Gun Gun;
+        public Shooting DeadEffect;
         public Transform GunPosition;
         public float MoveSpeed = 1;
         public float MinFireSpeed = 0.1f;
@@ -138,11 +139,11 @@ namespace GoFire
             return found1 && found2;
         }
 
-        public void OnHit(GameConst.FlyType at, AmmoInfo info)
+        public bool OnHit(GameConst.FlyType at, AmmoInfo info)
         {
             if (at != GameConst.FlyType.Enemy)
             {
-                return;
+                return false;
             }
             HP -= info.Damage;
 
@@ -150,6 +151,8 @@ namespace GoFire
             {
                 Dead();
             }
+
+            return true;
         }
 
         public void OnBump(Collider other)
@@ -173,6 +176,7 @@ namespace GoFire
         public override void Dead()
         {
             OnDead();
+            DeadEffect.Fire(GameConst.FlyType.None, new AmmoInfo());
             Destroy(gameObject);
         }
 

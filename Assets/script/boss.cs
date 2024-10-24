@@ -45,11 +45,11 @@ namespace GoFire
             Gun.Fire(GameConst.FlyType.Enemy);
         }
 
-        public void OnHit(GameConst.FlyType at, AmmoInfo info)
+        public bool OnHit(GameConst.FlyType at, AmmoInfo info)
         {
             if (at != GameConst.FlyType.Player)
             {
-                return;
+                return false;
             }
 
             HP -= info.Damage;
@@ -58,6 +58,8 @@ namespace GoFire
             {
                 Dead();
             }
+
+            return true;
         }
     }
 }

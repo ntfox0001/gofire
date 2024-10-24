@@ -25,6 +25,7 @@ namespace GoFire
             Player,
             Enemy,
             Fall,
+            None,
         }
     }
 }

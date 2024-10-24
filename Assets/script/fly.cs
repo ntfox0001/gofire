@@ -11,13 +11,14 @@ namespace GoFire
         public float Speed = 0.1f;
         public float Acc = 0.01f;
         public float Duration = 20;
+        public bool HitToDestroy = false;
 
         public GameConst.FlyType FlyType { get; private set; }
         public AmmoInfo AmmoInfo { get; set; }
         Vector3 Dir;
         Action OnDestory;
 
-        Bounds bounds;
+
         public void Initiall(Vector3 pos, Vector3 dir, GameConst.FlyType flyType, Action onDestory = null)
         {
             OnDestory = onDestory;
@@ -28,7 +29,7 @@ namespace GoFire
         // Start is called before the first frame update
         void Start()
         {
-            bounds = GetComponentInChildren<Collider>().bounds;
+
         }
 
         // Update is called once per frame
@@ -62,15 +63,15 @@ namespace GoFire
         private void OnTriggerEnter(Collider other)
         {
             var hit = other.gameObject.GetComponentInParent<IHit>();
-            if (hit != null)
+            if (hit != null && hit.OnHit(FlyType, AmmoInfo))
             {
-                hit.OnHit(FlyType, AmmoInfo);
+                Dead();
             }
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.GetComponent<AmmoGround>() != null)
+            if (other.GetComponent<Ground>() != null)
             {
                 Dead();
             }

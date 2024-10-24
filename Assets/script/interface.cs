@@ -15,12 +15,12 @@ namespace GoFire
 
     public interface IHit
     {
-        void OnHit(GameConst.FlyType at, AmmoInfo info);
+        bool OnHit(GameConst.FlyType at, AmmoInfo info);
     }
 
     public interface IHitRoot
     {
-        void OnHit(GameConst.FlyType at, AmmoInfo info);
+        bool OnHit(GameConst.FlyType at, AmmoInfo info);
     }
 
     public interface IBump

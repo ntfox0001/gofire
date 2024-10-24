@@ -151,3 +151,4 @@ MonoBehaviour:
   Speed: 20
   Acc: 0
   Duration: 3
+  HitToDestroy: 1

@@ -13,9 +13,9 @@ namespace GoFire
             rootHit = GetComponentInParent<IHitRoot>();
         }
 
-        public void OnHit(GameConst.FlyType at, AmmoInfo info)
+        public bool OnHit(GameConst.FlyType at, AmmoInfo info)
         {
-            rootHit.OnHit(at, info);
+            return rootHit.OnHit(at, info);
         }
     }
 }
