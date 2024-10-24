@@ -25,6 +25,11 @@ namespace GoFire
         KeyCode[] right = { KeyCode.D, KeyCode.RightArrow };
         KeyCode[] fire = { KeyCode.Space };
 
+        public void Init()
+        {
+
+        }
+
         private void Awake()
         {
             Gun = GameObject.Instantiate<Gun>(Gun);
@@ -178,11 +183,6 @@ namespace GoFire
             OnDead();
             DeadEffect.Fire(GameConst.FlyType.None, new AmmoInfo());
             Destroy(gameObject);
-        }
-
-        public void Born()
-        {
-
         }
     }
 }

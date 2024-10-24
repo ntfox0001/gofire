@@ -8,6 +8,7 @@ namespace GoFire
     {
         public Camera MainCamera;
         public PlayerCtrl Player;
+        public Transform PlayerBornPos;
         EventBase[] events;
         // Start is called before the first frame update
         void Start()
@@ -21,7 +22,7 @@ namespace GoFire
             StartCoroutine(Run());
 
             Player = GameObject.Instantiate<PlayerCtrl>(Player);
-            Player.transform.SetParent(transform, false);
+            Player.transform.SetParent(PlayerBornPos, false);
             Player.MainCamera = MainCamera;
         }
 

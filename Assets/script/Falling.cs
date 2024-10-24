@@ -31,7 +31,7 @@ namespace GoFire
             var idx = UnityEngine.Random.Range(0, Pool.Length - 1);
 
             var fly = GameObject.Instantiate<Fly>(Pool[idx]);
-            fly.Initiall(transform.position, GameConst.Down, GameConst.FlyType.Fall);
+            fly.Init(transform.position, GameConst.Down, GameConst.FlyType.Fall);
         }
     }
 }

@@ -29,7 +29,7 @@ namespace GoFire
 
             var fly = GameObject.Instantiate<Fly>(Fly);
             fly.transform.SetParent(rootSence.transform, false);
-            fly.Initiall(transform.position, transform.rotation * Vector3.forward, flyType, AmmoDestory);
+            fly.Init(transform.position, transform.rotation * Vector3.forward, flyType, AmmoDestory);
             fly.AmmoInfo = ammoInfo;
 
             count++;

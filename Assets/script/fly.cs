@@ -19,7 +19,7 @@ namespace GoFire
         Action OnDestory;
 
 
-        public void Initiall(Vector3 pos, Vector3 dir, GameConst.FlyType flyType, Action onDestory = null)
+        public void Init(Vector3 pos, Vector3 dir, GameConst.FlyType flyType, Action onDestory = null)
         {
             OnDestory = onDestory;
             Dir = dir;
