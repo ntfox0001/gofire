@@ -40,7 +40,6 @@ namespace GoFire
             Destroy(gameObject);
         }
 
-
         public void Fire()
         {
             Gun.Fire(GameConst.FlyType.Enemy);

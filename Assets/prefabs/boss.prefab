@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ec2eb867ef2fd745a00ef5aec492f35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DeadEffect: {fileID: 0}
+  DeadEffect: {fileID: 1504072684956145668}
   Gun: {fileID: 9157226545906036634, guid: 1bc89cf912d1a2e42ae2813322956e52, type: 3}
   GunPosition: {fileID: 2133081807380973597}
   HP: 100
