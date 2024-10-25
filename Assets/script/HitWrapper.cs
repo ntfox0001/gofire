@@ -13,7 +13,7 @@ namespace GoFire
             rootHit = GetComponentInParent<IHitRoot>();
         }
 
-        public bool OnHit(GameConst.FlyType at, AmmoInfo info)
+        public HitBack OnHit(GameConst.FlyType at, AmmoInfo info)
         {
             return rootHit.OnHit(at, info);
         }

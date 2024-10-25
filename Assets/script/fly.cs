@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace GoFire
 {
@@ -12,7 +9,7 @@ namespace GoFire
         public float Acc = 0.01f;
         public float Duration = 20;
         public bool HitToDestroy = false;
-
+        public float BounceAttenuation = 0.7f;
         public GameConst.FlyType FlyType { get; private set; }
         public AmmoInfo AmmoInfo { get; set; }
         Vector3 Dir;
@@ -63,9 +60,25 @@ namespace GoFire
         private void OnTriggerEnter(Collider other)
         {
             var hit = other.gameObject.GetComponentInParent<IHit>();
-            if (hit != null && hit.OnHit(FlyType, AmmoInfo))
+            if (hit != null)
             {
-                Dead();
+                switch (hit.OnHit(FlyType, AmmoInfo))
+                {
+                case HitBack.Hit:
+                    if (HitToDestroy)
+                    {
+                        Dead();
+                    }
+                    
+                    break;
+                case HitBack.Bounce:
+                    Dir = new Vector3(UnityEngine.Random.Range(-1.0f, 1.0f), 0, UnityEngine.Random.Range(-1.0f, 1.0f));
+                    Dir.Normalize();
+                    Speed = BounceAttenuation * Speed;
+                    break;
+
+                }
+
             }
         }
 

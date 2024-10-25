@@ -13,14 +13,21 @@ namespace GoFire
         public float Damage;
     }
 
+    public enum HitBack
+    {
+        None = 0,
+        Hit = 1,
+        Bounce = 2,
+    }
+
     public interface IHit
     {
-        bool OnHit(GameConst.FlyType at, AmmoInfo info);
+        HitBack OnHit(GameConst.FlyType at, AmmoInfo info);
     }
 
     public interface IHitRoot
     {
-        bool OnHit(GameConst.FlyType at, AmmoInfo info);
+        HitBack OnHit(GameConst.FlyType at, AmmoInfo info);
     }
 
     public interface IBump

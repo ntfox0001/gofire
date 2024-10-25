@@ -11,6 +11,7 @@ namespace GoFire
         public Transform GunPosition;
         public float HP = 100;
         public float AutoFire = 2.0f;
+        public HitBack HitBack = HitBack.Bounce;
 
         void Awake()
         {
@@ -45,11 +46,11 @@ namespace GoFire
             Gun.Fire(GameConst.FlyType.Enemy);
         }
 
-        public bool OnHit(GameConst.FlyType at, AmmoInfo info)
+        public HitBack OnHit(GameConst.FlyType at, AmmoInfo info)
         {
             if (at != GameConst.FlyType.Player)
             {
-                return false;
+                return HitBack.None;
             }
 
             HP -= info.Damage;
@@ -59,7 +60,7 @@ namespace GoFire
                 Dead();
             }
 
-            return true;
+            return HitBack;
         }
     }
 }

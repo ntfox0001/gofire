@@ -143,11 +143,11 @@ namespace GoFire
             return found1 && found2;
         }
 
-        public bool OnHit(GameConst.FlyType at, AmmoInfo info)
+        public HitBack OnHit(GameConst.FlyType at, AmmoInfo info)
         {
             if (at != GameConst.FlyType.Enemy)
             {
-                return false;
+                return HitBack.None;
             }
             HP -= info.Damage;
 
@@ -156,7 +156,7 @@ namespace GoFire
                 Dead();
             }
 
-            return true;
+            return HitBack.Hit;
         }
 
         public void OnBump(Collider other)

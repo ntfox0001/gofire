@@ -150,5 +150,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 20
   Acc: 0
-  Duration: 3
+  Duration: 8
   HitToDestroy: 1
+  BounceAttenuation: 0.6

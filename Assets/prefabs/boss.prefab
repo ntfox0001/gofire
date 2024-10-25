@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dff893e341592e438963ea8cbceb377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _curve: {fileID: 0}
   handleStyle: 0
   _handle1: {x: 0.068157434, y: 0.0078125, z: -0.9983711}
   _handle2: {x: -0.068157434, y: -0.0078125, z: 0.9983711}
@@ -92,7 +91,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dff893e341592e438963ea8cbceb377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _curve: {fileID: 0}
   handleStyle: 0
   _handle1: {x: 2.4529603, y: -0, z: 0.08552313}
   _handle2: {x: -2.4529603, y: 0, z: -0.08552313}
@@ -240,6 +238,7 @@ MonoBehaviour:
   GunPosition: {fileID: 2133081807380973597}
   HP: 100
   AutoFire: 0.7
+  HitBack: 2
 --- !u!1 &3777595212075804440
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,7 +329,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dff893e341592e438963ea8cbceb377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _curve: {fileID: 0}
   handleStyle: 0
   _handle1: {x: -0.03203535, y: -0.0078125, z: 3.3709617}
   _handle2: {x: 0.03203535, y: 0.0078125, z: -3.3709617}
@@ -378,7 +376,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dff893e341592e438963ea8cbceb377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _curve: {fileID: 0}
   handleStyle: 0
   _handle1: {x: -3.5304487, y: 0.00390625, z: -0.30675054}
   _handle2: {x: 3.5304487, y: -0.00390625, z: 0.30675054}
@@ -426,7 +423,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dff893e341592e438963ea8cbceb377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _curve: {fileID: 0}
   handleStyle: 0
   _handle1: {x: 1.6143808, y: -0.0078125, z: 0.5417428}
   _handle2: {x: -1.6143808, y: 0.0078125, z: -0.5417428}
@@ -474,7 +470,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dff893e341592e438963ea8cbceb377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _curve: {fileID: 0}
   handleStyle: 0
   _handle1: {x: -0.041492105, y: 0.00390625, z: -1.888447}
   _handle2: {x: 0.041492105, y: -0.00390625, z: 1.888447}
