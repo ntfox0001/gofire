@@ -1,0 +1,43 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
+using uTools;
+
+namespace GoFire
+{
+    public class GroundLayer : TweenMat
+    {
+        public int Layer;        
+        float _speed = 1f;
+
+        public float Speed
+        {
+            get
+            {
+                return _speed;
+            }
+            set
+            {
+                _speed = value;
+                setSpeed(_speed);
+            }
+        }
+
+        public float Height
+        {
+            get
+            {
+                return transform.localPosition.y;
+            }
+            set
+            {
+                var pos = transform.localPosition;
+                pos.y = value;
+                transform.localPosition = pos;
+            }
+        }
+    }
+
+}

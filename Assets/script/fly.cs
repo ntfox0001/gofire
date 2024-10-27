@@ -84,7 +84,7 @@ namespace GoFire
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.GetComponent<Ground>() != null)
+            if (other.GetComponent<EventHorizon>() != null)
             {
                 Dead();
             }
