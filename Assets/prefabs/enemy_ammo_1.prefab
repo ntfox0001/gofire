@@ -148,10 +148,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 438745f55b0099d4b93eeb46965cfc0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AmmoType: 0
-  AmmoInfo:
-    Damage: 0
-  Dir: {x: 0, y: 0, z: 1}
   Speed: 0.1
   Acc: 0.01
   Duration: 6
+  HitToDestroy: 0
+  BounceAttenuation: 0.7
+  UseColor: 1
+  Color: {r: 1, g: 0, b: 0, a: 1}

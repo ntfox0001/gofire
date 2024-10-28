@@ -22,7 +22,8 @@ namespace GoFire
             StartCoroutine(Run());
 
             Player = GameObject.Instantiate<PlayerCtrl>(Player);
-            Player.transform.SetParent(PlayerBornPos, false);
+            Player.transform.SetParent(transform, false);
+            Player.transform.position = PlayerBornPos.position;
             Player.MainCamera = MainCamera;
         }
 

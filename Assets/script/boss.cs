@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using uTools;
 
 namespace GoFire
 {
@@ -12,11 +13,18 @@ namespace GoFire
         public float HP = 100;
         public float AutoFire = 2.0f;
         public HitBack HitBack = HitBack.Bounce;
+        public TweenBezierPath TrackRoot;
+        public BezierCurve Track;
 
         void Awake()
         {
             Gun = GameObject.Instantiate<Gun>(Gun);
             Gun.transform.SetParent(GunPosition, false);
+
+            Track = GameObject.Instantiate(Track);
+            Track.transform.SetParent(transform, false);
+            TrackRoot.Path = Track;
+            TrackRoot.onFinished.AddListener(Dead);
         }
 
         // Start is called before the first frame update

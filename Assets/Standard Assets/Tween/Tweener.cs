@@ -194,9 +194,6 @@ namespace uTools
             val = (method == EaseType.none) ? Evaluate(val) : EaseManager.EasingFromType(0, 1, val, method);
 
             // Call the virtual update
-            //OnUpdate((method == EaseType.none) ? animationCurve.Evaluate(val) : val, isFinished);
-            // edit by fox
-            // 完全不知道为啥要做两次曲线插值
             OnUpdate(val, isFinished);
 
             if (onUpdate != null)

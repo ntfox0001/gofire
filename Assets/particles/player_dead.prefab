@@ -4846,3 +4846,6 @@ MonoBehaviour:
   Speed: 2
   Acc: 0
   Duration: 2
+  HitToDestroy: 0
+  BounceAttenuation: 0.7
+  Color: {r: 1, g: 1, b: 1, a: 1}

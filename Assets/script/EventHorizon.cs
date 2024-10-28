@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class EventHorizon : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void OnResize()
     {
-        
-    }
+        var box = GetComponent<BoxCollider>();
+        if (box == null)
+        {
+            return;
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        var cam = GetComponent<Camera>();
+        if (cam == null)
+        {
+            return;
+        }
+
+        var size = box.size;
+
+        box.size = new Vector3((float)Screen.width / Screen.height * cam.orthographicSize * 2f, cam.orthographicSize * 2f, size.z);
+
     }
 }

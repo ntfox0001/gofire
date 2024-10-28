@@ -136,8 +136,8 @@ GameObject:
   - component: {fileID: 66113053}
   - component: {fileID: 66113055}
   - component: {fileID: 66113056}
-  - component: {fileID: 66113058}
   - component: {fileID: 66113059}
+  - component: {fileID: 66113060}
   m_Layer: 14
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -200,7 +200,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: -50
-  far clip plane: 50
+  far clip plane: 100
   field of view: 60
   orthographic: 1
   orthographic size: 5
@@ -238,7 +238,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 19.2, y: 10.8, z: 20}
+  m_Size: {x: 19, y: 10, z: 20}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &66113056
 Rigidbody:
@@ -267,64 +267,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &66113058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 66113051}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b869b674243e82a46879e19302aa41e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  method: 22
-  style: 0
-  animationCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 1
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  UseReverseCurve: 0
-  animationCurveReverse:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  ignoreTimeScale: 0
-  delay: 0
-  duration: 1
-  tweenGroup: 0
-  onFinished:
-    m_PersistentCalls:
-      m_Calls: []
-  eventReceiver: {fileID: 0}
-  callWhenFinished: 
-  from: 0
-  to: 0
-  includeChildren: 0
-  UV: 0
 --- !u!114 &66113059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,6 +279,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53e5be7bf1d430e4695e0d009d15fee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &66113060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66113051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcf92895875907545b5c566ed2e8441f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Size: 5
+  OnResize:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 66113059}
+        m_TargetAssemblyTypeName: EventHorizon, Assembly-CSharp
+        m_MethodName: OnResize
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &435296723
 GameObject:
   m_ObjectHideFlags: 0

@@ -153,3 +153,5 @@ MonoBehaviour:
   Duration: 8
   HitToDestroy: 1
   BounceAttenuation: 0.6
+  UseColor: 1
+  Color: {r: 0.64465404, g: 0.9515436, b: 1, a: 1}

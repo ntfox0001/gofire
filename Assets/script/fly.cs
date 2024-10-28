@@ -10,6 +10,8 @@ namespace GoFire
         public float Duration = 20;
         public bool HitToDestroy = false;
         public float BounceAttenuation = 0.7f;
+        public bool UseColor = false;
+        public Color Color = Color.white;
         public GameConst.FlyType FlyType { get; private set; }
         public AmmoInfo AmmoInfo { get; set; }
         Vector3 Dir;
@@ -22,6 +24,7 @@ namespace GoFire
             Dir = dir;
             transform.position = pos;
             FlyType = flyType;
+            GetComponent<Renderer>().material.color = Color;
         }
         // Start is called before the first frame update
         void Start()
