@@ -4,23 +4,38 @@ using UnityEngine;
 
 public class EventHorizon : MonoBehaviour
 {
+    public Vector2 Range { get
+        {
+            return OutRange + ViewRange;
+        } 
+    }
+    public Vector2 OutRange;
+    public Vector2 ViewRange;
+
+    public float Height = 50;
+    public float Weight = 50;
+    public float Thickness = 50;
+    
+    private void Start()
+    {
+        OnResize();
+    }
+    [ContextMenu("resize")]
     public void OnResize()
     {
-        var box = GetComponent<BoxCollider>();
-        if (box == null)
+        var boxes = GetComponents<BoxCollider>();
+        if (boxes == null)
         {
             return;
         }
 
-        var cam = GetComponent<Camera>();
-        if (cam == null)
-        {
-            return;
-        }
-
-        var size = box.size;
-
-        box.size = new Vector3((float)Screen.width / Screen.height * cam.orthographicSize * 2f, cam.orthographicSize * 2f, size.z);
-
+        boxes[0].center = new Vector3(0, 0, Range.y / 2 + Thickness / 2);
+        boxes[0].size = new Vector3(Weight, Height, Thickness);
+        boxes[1].center = new Vector3(0,0, -(Range.y / 2 + Thickness / 2));
+        boxes[1].size = new Vector3(Weight, Height, Thickness);
+        boxes[2].center = new Vector3(Range.y / 2 + Thickness / 2, 0, 0);
+        boxes[2].size = new Vector3(Thickness, Height, Weight);
+        boxes[3].center = new Vector3(-(Range.y / 2 + Thickness / 2), 0, 0);
+        boxes[3].size = new Vector3(Thickness, Height, Weight);
     }
 }

@@ -15,6 +15,11 @@ namespace GoFire
         const float rate = 1920f / 1080f;
         private void Awake()
         {
+
+        }
+
+        void Resize()
+        {
             Camera cam = GetComponent<Camera>();
             if (cam == null)
             {
@@ -23,7 +28,7 @@ namespace GoFire
 
             if (ScreenUtils.IsPortrait)
             {
-                cam.orthographicSize = (float)Screen.height / Screen.width * (1/rate) * Size;
+                cam.orthographicSize = (float)Screen.height / Screen.width * (1 / rate) * Size;
             }
             else
             {

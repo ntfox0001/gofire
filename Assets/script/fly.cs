@@ -62,6 +62,12 @@ namespace GoFire
 
         private void OnTriggerEnter(Collider other)
         {
+            if (other.GetComponent<EventHorizon>() != null)
+            {
+                Dead();
+                return;
+            }
+
             var hit = other.gameObject.GetComponentInParent<IHit>();
             if (hit != null)
             {
@@ -85,12 +91,5 @@ namespace GoFire
             }
         }
 
-        private void OnTriggerExit(Collider other)
-        {
-            if (other.GetComponent<EventHorizon>() != null)
-            {
-                Dead();
-            }
-        }
     }
 }
