@@ -6,13 +6,16 @@ namespace GoFire
 {
     public class Sence : MonoBehaviour
     {
-        public Camera MainCamera;
+        public CameraCtrl MainCameraCtrl;
         public PlayerCtrl Player;
         public Transform PlayerBornPos;
+        public EventHorizon EventHorizon { get; private set; }
         EventBase[] events;
         // Start is called before the first frame update
         void Start()
         {
+            EventHorizon = GetComponentInChildren<EventHorizon>();
+
             events = GetComponentsInChildren<EventBase>();
             Array.Sort(events, (EventBase a, EventBase b) =>
             {
@@ -24,7 +27,10 @@ namespace GoFire
             Player = GameObject.Instantiate<PlayerCtrl>(Player);
             Player.transform.SetParent(transform, false);
             Player.transform.position = PlayerBornPos.position;
-            Player.MainCamera = MainCamera;
+            Player.MainCamera = MainCameraCtrl.MainCamera;
+            Player.GroundRange = EventHorizon.ViewRange;
+            MainCameraCtrl.Target = Player.transform;
+            MainCameraCtrl.GroundWide = EventHorizon.ViewRange.x;
         }
 
         IEnumerator Run()

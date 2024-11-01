@@ -15,7 +15,13 @@ namespace GoFire
         public float MoveSpeed = 1;
         public float MinFireSpeed = 0.1f;
         public bool UseMouse = false;
+        public Vector2 GroundRange { set
+            {
+                groundWidthHalf = value * 0.5f;
+            }
+        }
 
+        Vector2 groundWidthHalf;
         float preFireTime = 0;
 
         KeyCode[] up = { KeyCode.W, KeyCode.UpArrow };
@@ -26,7 +32,7 @@ namespace GoFire
 
         public void Init()
         {
-
+            
         }
 
         private void Awake()
@@ -106,7 +112,9 @@ namespace GoFire
         }
         void Move(Vector3 dir)
         {
-            transform.localPosition += dir * Time.deltaTime * MoveSpeed;
+            var newPos = dir * Time.deltaTime * MoveSpeed + transform.position;
+            Math.TrimVector3From2(ref newPos, groundWidthHalf);
+            transform.position = newPos;
         }
 
         bool GetKey(KeyCode[] keys)
