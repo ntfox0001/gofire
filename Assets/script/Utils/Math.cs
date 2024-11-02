@@ -15,7 +15,7 @@ namespace GoFire
         static public void TrimVector3From2(ref Vector3 val, Vector2 rangeHalf)
         {
             val.x = val.x > rangeHalf.x ? rangeHalf.x : val.x < -rangeHalf.x ? -rangeHalf.x : val.x;
-            val.y = val.y > rangeHalf.y ? rangeHalf.y : val.y < -rangeHalf.y ? -rangeHalf.y : val.y;
+            val.z = val.z > rangeHalf.y ? rangeHalf.y : val.z < -rangeHalf.y ? -rangeHalf.y : val.z;
         }
     }
 }
