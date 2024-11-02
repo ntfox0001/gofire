@@ -7,6 +7,7 @@ using uTools;
 
 namespace GoFire
 {
+    [RequireComponent(typeof(TweenMaterial))]
     public class GroundLayer : TweenMat
     {
         public int Layer;        

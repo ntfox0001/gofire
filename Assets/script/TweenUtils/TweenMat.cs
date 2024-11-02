@@ -10,7 +10,7 @@ namespace GoFire
     {
         const float duration = 100;
         TweenMaterial _teenMaterial;
-
+        public bool Invert;
         protected virtual void Awake()
         {
             _teenMaterial = GetComponent<TweenMaterial>();
@@ -18,6 +18,10 @@ namespace GoFire
 
         protected void setSpeed(float speed)
         {
+            if (Invert)
+            {
+                speed = -speed;
+            }
             _teenMaterial.to = 0;
             _teenMaterial.from = speed;
             _teenMaterial.duration = duration;
