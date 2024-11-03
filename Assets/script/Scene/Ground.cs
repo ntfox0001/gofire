@@ -7,7 +7,7 @@ using uTools;
 namespace GoFire
 {
     [RequireComponent(typeof(TweenMaterial))]
-    public class Ground : TweenMat
+    public class Ground : TweenMat, IGround
     {
         public const int MaxLayer = 10;
         public float MaxHeight = 2f;
@@ -48,6 +48,38 @@ namespace GoFire
         {
             var collider = GetComponent<Collider>();
             TotalLength = collider.bounds.size.z;
+        }
+
+        public void OnEnter()
+        {
+
+        }
+
+        public void OnExit()
+        {
+
+        }
+
+        public float GetLength()
+        {
+            return TotalLength;
+        }
+
+        public float GetDuration()
+        {
+            return TotalDuration;
+        }
+
+        public void SetPosition(float z)
+        {
+            var pos = transform.localPosition;
+            pos.z = z + GetLength() * 0.5f;
+            transform.localPosition = pos;
+        }
+
+        public float GetSpeed()
+        {
+            return GetLength() / GetDuration();
         }
     }
 }

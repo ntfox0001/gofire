@@ -56,4 +56,14 @@ namespace GoFire
         void Fire(GameConst.FlyType flyType, AmmoInfo ammoInfo);
     }
 
+    public interface IGround
+    {
+        void OnEnter();
+        void OnExit();
+        float GetLength();
+        float GetSpeed();
+        float GetDuration();
+        void SetPosition(float z);
+    }
+
 }

@@ -10,9 +10,11 @@ namespace GoFire
         public PlayerCtrl Player;
         public Transform PlayerBornPos;
         public EventHorizon EventHorizon { get; private set; }
+
+        
         EventBase[] events;
         // Start is called before the first frame update
-        void Start()
+        void Awake()
         {
             EventHorizon = GetComponentInChildren<EventHorizon>();
 
@@ -31,6 +33,8 @@ namespace GoFire
             Player.GroundRange = EventHorizon.ViewRange;
             MainCameraCtrl.Target = Player.transform;
             MainCameraCtrl.GroundWide = EventHorizon.ViewRange.x;
+
+            GlobalVar.GetSingleton().MainCameraHeight = MainCameraCtrl.MainCamera.orthographicSize * 2.0f;
         }
 
         IEnumerator Run()

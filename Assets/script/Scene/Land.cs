@@ -1,18 +1,84 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
+using uTools;
 
-public class Land : MonoBehaviour
+namespace GoFire
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Land : MonoBehaviour
     {
-        
+        IGround[] grounds;
+        TweenPosition tween;
+        IGround currentGround;
+        float currentPos;
+        // Start is called before the first frame update
+        void Awake()
+        {
+            grounds = GetComponentsInChildren<IGround>();
+            
+            InitGrounds();
+        }
+
+        private void Start()
+        {
+            transform.localPosition = new Vector3(0, 0, -GlobalVar.GetSingleton().MainCameraHeight * 0.5f);
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            var ground = GetGroundByPos(currentPos);
+            if (ground == null)
+            {
+                return;
+            }
+
+            if (ground != currentGround)
+            {
+                ground.OnEnter();
+                if (currentGround != null) { 
+                    currentGround.OnExit();
+                }
+
+                currentGround = ground;
+            }
+
+            var pos = transform.localPosition;
+            pos.z = pos.z - ground.GetSpeed() * Time.deltaTime * GlobalVar.GetSingleton().EnemySpeedDeltaTime;
+            transform.localPosition = pos;
+            Debug.Log("POS " + pos);
+        }
+
+        IGround GetGroundByPos(float pos)
+        {
+            float t = 0f;
+            foreach (var ground in grounds)
+            {
+                if (t <= pos && pos <= ground.GetLength() + t)
+                {
+                    return ground;
+                }
+            }
+
+            return null;
+        }
+
+        void InitGrounds()
+        {
+            float pos = -GlobalVar.GetSingleton().MainCameraHeight * 0.5f;
+            foreach (var v in grounds)
+            {
+                if (v.GetLength() < GlobalVar.GetSingleton().MainCameraHeight)
+                {
+                    // ground 必须长度必须大于一个屏幕的大小
+                    continue;
+                }
+
+                v.SetPosition(pos);
+                pos += v.GetLength();
+            }
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

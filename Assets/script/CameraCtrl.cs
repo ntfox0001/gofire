@@ -14,11 +14,10 @@ namespace GoFire
         }
         public Transform Target { get; set; }
         float groundWideHalf;
-        public Camera MainCamera { get; private set; }
+        public Camera MainCamera;
         // Start is called before the first frame update
         void Start()
         {
-            MainCamera = GetComponentInChildren<Camera>();
         }
 
         // Update is called once per frame

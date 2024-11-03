@@ -4,5 +4,6 @@ namespace GoFire
     {
         [System.NonSerialized]
         public float EnemySpeedDeltaTime = GameConst.EnemySpeedDefaultDeltaTime;
+        public float MainCameraHeight { get; set; }
     }
 }
