@@ -10,7 +10,7 @@ namespace GoFire
     [RequireComponent(typeof(TweenMaterial))]
     public class GroundLayer : TweenMat
     {
-        public int Layer;        
+        public float Layer;        
         float _speed = 1f;
 
         public float Speed
@@ -22,7 +22,7 @@ namespace GoFire
             set
             {
                 _speed = value;
-                setSpeed(_speed);
+                setTexAniSpeed(_speed);
             }
         }
 

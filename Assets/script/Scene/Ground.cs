@@ -9,38 +9,34 @@ namespace GoFire
     [RequireComponent(typeof(TweenMaterial))]
     public class Ground : TweenMat, IGround
     {
-        public const int MaxLayer = 10;
-        public float MaxHeight = 2f;
-        public float MinSpeed = 0f; //当前层移动速度
-        public float TopSpeed; // 顶层速度
+        public float HeightPerLayer = 0.01f;
+        public float Speed = 0f; //当前层移动速度
 
         public float TotalDuration; // 摄像机经过当前地面所需时间
         public float TotalLength; // 当前地面总长度
+        public AnimationCurve MoveCurve = new AnimationCurve(new Keyframe(0f, 0f, 0f, 1f), new Keyframe(1f, 1f, 1f, 0f));
         GroundLayer[] layers;
+        float playPos = 0;
 
         protected void Start()
         {
-            if (MinSpeed > TopSpeed)
-            {
-                MinSpeed = TopSpeed;
-            }
             layers = GetComponentsInChildren<GroundLayer>();
-            setSpeed(MinSpeed);
-            SetSpeedToLayers();
+            setTexAniSpeed(Speed);
+            SetTexAniSpeedToLayers();
         }
 
-        public void SetSpeedToLayers()
+        public void SetTexAniSpeedToLayers()
         {
             foreach (var layer in layers)
             {
-                (layer.Speed, layer.Height) = GetInfoByLayer(layer.Layer, TopSpeed);
+                (layer.Speed, layer.Height) = GetTexAniInfoByLayer(layer.Layer, Speed);
             }
         }
 
-        public (float, float) GetInfoByLayer(int layer, float speed)
+        public (float, float) GetTexAniInfoByLayer(float layer, float speed)
         {
-            var rate = (float)layer / MaxLayer;
-            return (rate * (speed - MinSpeed) + MinSpeed, rate * MaxHeight);
+            var rate = layer;
+            return (rate * speed, rate * HeightPerLayer);
         }
 
         [ContextMenu("calculate length")]
@@ -76,10 +72,29 @@ namespace GoFire
             pos.z = z + GetLength() * 0.5f;
             transform.localPosition = pos;
         }
-
-        public float GetSpeed()
+        public float GetDeltaPos(float deltaTime)
         {
-            return GetLength() / GetDuration();
+            var prePos = playPos;
+            playPos += deltaTime;
+            if (playPos > GetDuration())
+            {
+                playPos = GetDuration();
+            }
+            else if (playPos < 0)
+            {
+                playPos = 0;
+            }
+
+            return GetPlayPos(playPos) - GetPlayPos(prePos);
+        }
+        public float GetPlayPos(float sec)
+        {
+            var e = MoveCurve.Evaluate(sec / GetDuration());
+            return e * GetLength();
+        }
+        public void SetPlayPos(float pos)
+        {
+            playPos = pos;
         }
     }
 }

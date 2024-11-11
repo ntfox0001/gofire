@@ -14,9 +14,7 @@ namespace GoFire
         float currentPos;
         // Start is called before the first frame update
         void Awake()
-        {
-            grounds = GetComponentsInChildren<IGround>();
-            
+        {            
             InitGrounds();
         }
 
@@ -45,9 +43,8 @@ namespace GoFire
             }
 
             var pos = transform.localPosition;
-            pos.z = pos.z - ground.GetSpeed() * Time.deltaTime * GlobalVar.GetSingleton().EnemySpeedDeltaTime;
+            pos.z = pos.z - ground.GetDeltaPos(Time.deltaTime * GlobalVar.GetSingleton().EnemySpeedDeltaTime);
             transform.localPosition = pos;
-            Debug.Log("POS " + pos);
         }
 
         IGround GetGroundByPos(float pos)
@@ -64,8 +61,10 @@ namespace GoFire
             return null;
         }
 
+        [ContextMenu("align grounds")]
         void InitGrounds()
         {
+            grounds = GetComponentsInChildren<IGround>();
             float pos = -GlobalVar.GetSingleton().MainCameraHeight * 0.5f;
             foreach (var v in grounds)
             {

@@ -16,7 +16,7 @@ namespace GoFire
             _teenMaterial = GetComponent<TweenMaterial>();
         }
 
-        protected void setSpeed(float speed)
+        protected void setTexAniSpeed(float speed)
         {
             if (Invert)
             {

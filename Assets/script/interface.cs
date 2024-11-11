@@ -61,9 +61,10 @@ namespace GoFire
         void OnEnter();
         void OnExit();
         float GetLength();
-        float GetSpeed();
         float GetDuration();
         void SetPosition(float z);
+        float GetDeltaPos(float deltaTime);
+
     }
 
 }
