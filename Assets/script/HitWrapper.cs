@@ -4,18 +4,19 @@ using UnityEngine;
 
 namespace GoFire
 {
+    [ExecuteInEditMode]
     public class HitWrapper : MonoBehaviour, IHit
     {
-        IHitRoot rootHit;
+        public IHitRoot RootHit;
 
         private void Awake()
         {
-            rootHit = GetComponentInParent<IHitRoot>();
+            RootHit = GetComponentInParent<IHitRoot>();
         }
 
         public HitBack OnHit(GameConst.FlyType at, AmmoInfo info)
         {
-            return rootHit.OnHit(at, info);
+            return RootHit.OnHit(at, info);
         }
     }
 }

@@ -4,7 +4,6 @@ using System.Collections;
 
 namespace uTools
 {
-
     public class TweenBezierPath : Tweener
     {
         public BezierCurve Path;

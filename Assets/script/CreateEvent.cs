@@ -10,8 +10,7 @@ namespace GoFire
 
         public override void OnTouch(Transform root)
         {
-            var obj = GameObject.Instantiate(Create);
-            obj.transform.SetParent(root, false);
+            var obj = GameObject.Instantiate(Create, root, false);
         }
 
     }

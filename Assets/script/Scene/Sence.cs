@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,32 +9,28 @@ namespace GoFire
         public CameraCtrl MainCameraCtrl;
         public PlayerCtrl Player;
         public Transform PlayerBornPos;
-        public EventHorizon EventHorizon { get; private set; }
-
-        
+        public EventHorizon EventHorizon;
+        public Land Land;
         EventBase[] events;
         // Start is called before the first frame update
-        void Awake()
+        void Start()
         {
-            EventHorizon = GetComponentInChildren<EventHorizon>();
+            Init();
+        }
 
+        void Init()
+        {
             events = GetComponentsInChildren<EventBase>();
-            Array.Sort(events, (EventBase a, EventBase b) =>
-            {
-                return (a.Time < b.Time) ? 1 : -1;
-            });
+            Array.Sort(events, (EventBase a, EventBase b) => (a.Time < b.Time) ? 1 : -1);
 
             StartCoroutine(Run());
 
-            Player = GameObject.Instantiate<PlayerCtrl>(Player);
-            Player.transform.SetParent(transform, false);
+            Player = GameObject.Instantiate<PlayerCtrl>(Player, transform, false);
             Player.transform.position = PlayerBornPos.position;
             Player.MainCamera = MainCameraCtrl.MainCamera;
             Player.GroundRange = EventHorizon.ViewRange;
-            MainCameraCtrl.Target = Player.transform;
-            MainCameraCtrl.GroundWide = EventHorizon.ViewRange.x;
-
-            GlobalVar.GetSingleton().MainCameraHeight = MainCameraCtrl.MainCamera.orthographicSize * 2.0f;
+            MainCameraCtrl.Set(Player.transform, EventHorizon.ViewRange.x);
+            GlobalVar.GetSingleton().MainCamera = MainCameraCtrl;
         }
 
         IEnumerator Run()

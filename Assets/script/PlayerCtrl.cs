@@ -15,20 +15,18 @@ namespace GoFire
         public float MoveSpeed = 1;
         public float MinFireSpeed = 0.1f;
         public bool UseMouse = false;
-        public Vector2 GroundRange { set
-            {
-                groundWidthHalf = value * 0.5f;
-            }
+        public Vector2 GroundRange { 
+            set => _groundWidthHalf = value * 0.5f;
         }
 
-        Vector2 groundWidthHalf;
-        float preFireTime = 0;
+        private Vector2 _groundWidthHalf;
+        private float _preFireTime = 0;
 
-        KeyCode[] up = { KeyCode.W, KeyCode.UpArrow };
-        KeyCode[] down = { KeyCode.S, KeyCode.DownArrow };
-        KeyCode[] left = { KeyCode.A, KeyCode.LeftArrow };
-        KeyCode[] right = { KeyCode.D, KeyCode.RightArrow };
-        KeyCode[] fire = { KeyCode.Space };
+        private readonly KeyCode[] _up = { KeyCode.W, KeyCode.UpArrow };
+        private readonly KeyCode[] _down = { KeyCode.S, KeyCode.DownArrow };
+        private readonly KeyCode[] _left = { KeyCode.A, KeyCode.LeftArrow };
+        private readonly KeyCode[] _right = { KeyCode.D, KeyCode.RightArrow };
+        private readonly KeyCode[] _fire = { KeyCode.Space };
 
         public void Init()
         {
@@ -37,14 +35,13 @@ namespace GoFire
 
         private void Awake()
         {
-            Gun = GameObject.Instantiate<Gun>(Gun);
-            Gun.transform.SetParent(GunPosition, false);
+            Gun = GameObject.Instantiate<Gun>(Gun, GunPosition, false);
         }
 
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
-            if (MainCamera == null)
+            if (!MainCamera)
             {
                 return;
             }
@@ -58,47 +55,49 @@ namespace GoFire
                 ReadKey();
             }
         }
-        void ReadKey()
+
+        private void ReadKey()
         {
-            if (Get2Key(up, left))
+            if (Get2Key(_up, _left))
             {
                 Move(GameConst.LeftUp);
             }
-            else if (Get2Key(down, left))
+            else if (Get2Key(_down, _left))
             {
                 Move(GameConst.LeftDown);
             }
-            else if (Get2Key(up, right))
+            else if (Get2Key(_up, _right))
             {
                 Move(GameConst.RightUp);
             }
-            else if (Get2Key(down, right))
+            else if (Get2Key(_down, _right))
             {
                 Move(GameConst.RightDown);
             }
-            else if (GetKey(up))
+            else if (GetKey(_up))
             {
                 Move(GameConst.Up);
             }
-            else if (GetKey(down))
+            else if (GetKey(_down))
             {
                 Move(GameConst.Down);
             }
-            else if (GetKey(left))
+            else if (GetKey(_left))
             {
                 Move(GameConst.Left);
             }
-            else if (GetKey(right))
+            else if (GetKey(_right))
             {
                 Move(GameConst.Right);
             }
 
-            if (GetKey(fire))
+            if (GetKey(_fire))
             {
                 Fire();
             }
         }
-        void ReadMouse()
+
+        private void ReadMouse()
         {
             // use mouse
             var pos = MainCamera.ScreenToWorldPoint(Input.mousePosition);
@@ -110,14 +109,15 @@ namespace GoFire
                 Fire();
             }
         }
-        void Move(Vector3 dir)
+
+        private void Move(Vector3 dir)
         {
-            var newPos = dir * Time.deltaTime * MoveSpeed + transform.position;
-            Math.TrimVector3From2(ref newPos, groundWidthHalf);
+            var newPos = dir * (Time.deltaTime * MoveSpeed) + transform.position;
+            Math.TrimVector3From2(ref newPos, _groundWidthHalf);
             transform.position = newPos;
         }
 
-        bool GetKey(KeyCode[] keys)
+        private static bool GetKey(KeyCode[] keys)
         {
             for (int i = 0; i < keys.Length; i++)
             {
@@ -129,21 +129,21 @@ namespace GoFire
             return false;
         }
 
-        bool Get2Key(KeyCode[] keys1, KeyCode[] keys2)
+        private static bool Get2Key(KeyCode[] keys1, KeyCode[] keys2)
         {
             var found1 = false;
             var found2 = false;
-            for (int i = 0; i < keys1.Length; i++)
+            foreach (var t in keys1)
             {
-                if (Input.GetKey(keys1[i]))
+                if (Input.GetKey(t))
                 {
                     found1 = true;
                 }
             }
 
-            for (int i = 0; i < keys2.Length; i++)
+            foreach (var t in keys2)
             {
-                if (Input.GetKey(keys2[i]))
+                if (Input.GetKey(t))
                 {
                     found2 = true;
                 }
@@ -177,13 +177,18 @@ namespace GoFire
 
         public void Fire()
         {
-            if (preFireTime + MinFireSpeed > Time.time)
+            if (_preFireTime + MinFireSpeed > Time.time)
             {
                 return;
             }
-            preFireTime = Time.time;
+            _preFireTime = Time.time;
 
             Gun.Fire(GameConst.FlyType.Player);
+        }
+
+        public override void Born()
+        {
+            
         }
         public override void Dead()
         {

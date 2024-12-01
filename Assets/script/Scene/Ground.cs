@@ -9,20 +9,51 @@ namespace GoFire
     [RequireComponent(typeof(TweenMaterial))]
     public class Ground : TweenMat, IGround
     {
+        public struct BodyPair
+        {
+            public Track Track;
+            public IBody Body;
+        }
         public float HeightPerLayer = 0.01f;
-        public float Speed = 0f; //µ±Ç°²ãÒÆ¶¯ËÙ¶È
+        public float Speed = 0f; // ç§»åŠ¨é€Ÿåº¦
 
-        public float TotalDuration; // ÉãÏñ»ú¾­¹ıµ±Ç°µØÃæËùĞèÊ±¼ä
-        public float TotalLength; // µ±Ç°µØÃæ×Ü³¤¶È
+        public float TotalDuration; // å½“å‰åœ°å½¢æ€»æ—¶é—´
+        public float TotalLength; // å½“å‰åœ°å½¢æ€»é•¿åº¦
         public AnimationCurve MoveCurve = new AnimationCurve(new Keyframe(0f, 0f, 0f, 1f), new Keyframe(1f, 1f, 1f, 0f));
+
+        public float ZScale = 1f;
+
         GroundLayer[] layers;
-        float playPos = 0;
+        private float _playPos = 0;
+        IBody[] bodies;
 
         protected void Start()
         {
             layers = GetComponentsInChildren<GroundLayer>();
             setTexAniSpeed(Speed);
             SetTexAniSpeedToLayers();
+            bodies = GetComponentsInChildren<IBody>();
+            Array.Sort(bodies, (IBody a, IBody b) =>
+            {
+                return a.GameObject.transform.position.z < b.GameObject.transform.position.z ? -1 : 1;
+            });
+        }
+        [ContextMenu("re-init")]
+        private void ReInitialize()
+        {
+            if (!Mathf.Approximately(ZScale, transform.localScale.z))
+            {
+                transform.localScale = new Vector3(1, 1, ZScale);
+                bodies = GetComponentsInChildren<IBody>();
+                foreach (var b in bodies)
+                {
+                    var scale = b.GameObject.transform.localScale;
+                    scale.z = 1 / ZScale;
+                    b.GameObject.transform.localScale = scale;
+                }
+            }
+            
+            TotalLength = GetComponent<Collider>().bounds.size.z;
         }
 
         public void SetTexAniSpeedToLayers()
@@ -39,13 +70,6 @@ namespace GoFire
             return (rate * speed, rate * HeightPerLayer);
         }
 
-        [ContextMenu("calculate length")]
-        void CalculateLength()
-        {
-            var collider = GetComponent<Collider>();
-            TotalLength = collider.bounds.size.z;
-        }
-
         public void OnEnter()
         {
 
@@ -55,7 +79,10 @@ namespace GoFire
         {
 
         }
+        public void OnView(float pos, float top)
+        {
 
+        }
         public float GetLength()
         {
             return TotalLength;
@@ -74,18 +101,18 @@ namespace GoFire
         }
         public float GetDeltaPos(float deltaTime)
         {
-            var prePos = playPos;
-            playPos += deltaTime;
-            if (playPos > GetDuration())
+            var prePos = _playPos;
+            _playPos += deltaTime;
+            if (_playPos > GetDuration())
             {
-                playPos = GetDuration();
+                _playPos = GetDuration();
             }
-            else if (playPos < 0)
+            else if (_playPos < 0)
             {
-                playPos = 0;
+                _playPos = 0;
             }
 
-            return GetPlayPos(playPos) - GetPlayPos(prePos);
+            return GetPlayPos(_playPos) - GetPlayPos(prePos);
         }
         public float GetPlayPos(float sec)
         {
@@ -94,7 +121,7 @@ namespace GoFire
         }
         public void SetPlayPos(float pos)
         {
-            playPos = pos;
+            _playPos = pos;
         }
     }
 }

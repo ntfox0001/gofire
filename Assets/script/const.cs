@@ -29,12 +29,5 @@ namespace GoFire
         }
     }
 
-    public class EditorConst
-    {
-        static public float CameraSceneHeight = 10;
-        static public float ScreenHeight = 1920;
-        static public float ScreenWidth = 1080;
-        static public float ScreenRate = ScreenHeight / ScreenWidth;
-        static public float CameraSceneWidth = CameraSceneHeight / ScreenRate;
-    }
+
 }

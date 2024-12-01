@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor.SearchService;
 using UnityEngine;
 using uTools;
@@ -8,67 +9,17 @@ namespace GoFire
 {
     public class Land : MonoBehaviour
     {
-        IGround[] grounds;
-        TweenPosition tween;
-        IGround currentGround;
-        float currentPos;
-        // Start is called before the first frame update
-        void Awake()
-        {            
-            InitGrounds();
-        }
+        private IGround[] _grounds;
+        private IGround _currentGround;
+        private float _currentPos;
 
-        private void Start()
+        public void Init()
         {
-            transform.localPosition = new Vector3(0, 0, -GlobalVar.GetSingleton().MainCameraHeight * 0.5f);
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-            var ground = GetGroundByPos(currentPos);
-            if (ground == null)
+            _grounds = GetComponentsInChildren<IGround>();
+            float pos = -GlobalVar.GetSingleton().MainCamera.Height * 0.5f;
+            foreach (var v in _grounds)
             {
-                return;
-            }
-
-            if (ground != currentGround)
-            {
-                ground.OnEnter();
-                if (currentGround != null) { 
-                    currentGround.OnExit();
-                }
-
-                currentGround = ground;
-            }
-
-            var pos = transform.localPosition;
-            pos.z = pos.z - ground.GetDeltaPos(Time.deltaTime * GlobalVar.GetSingleton().EnemySpeedDeltaTime);
-            transform.localPosition = pos;
-        }
-
-        IGround GetGroundByPos(float pos)
-        {
-            float t = 0f;
-            foreach (var ground in grounds)
-            {
-                if (t <= pos && pos <= ground.GetLength() + t)
-                {
-                    return ground;
-                }
-            }
-
-            return null;
-        }
-
-        [ContextMenu("align grounds")]
-        void InitGrounds()
-        {
-            grounds = GetComponentsInChildren<IGround>();
-            float pos = -GlobalVar.GetSingleton().MainCameraHeight * 0.5f;
-            foreach (var v in grounds)
-            {
-                if (v.GetLength() < GlobalVar.GetSingleton().MainCameraHeight)
+                if (v.GetLength() < GlobalVar.GetSingleton().MainCamera.Height)
                 {
                     // ground 必须长度必须大于一个屏幕的大小
                     continue;
@@ -77,6 +28,39 @@ namespace GoFire
                 v.SetPosition(pos);
                 pos += v.GetLength();
             }
+
+            transform.localPosition = new Vector3(0, 0, -GlobalVar.GetSingleton().MainCamera.Height * 0.5f);
+        }
+
+        // Update is called once per frame
+        private void Update()
+        {
+            var ground = GetGroundByPos(_currentPos);
+            if (ground == null)
+            {
+                return;
+            }
+
+            if (ground != _currentGround)
+            {
+                ground.OnEnter();
+                if (_currentGround != null) { 
+                    _currentGround.OnExit();
+                }
+
+                _currentGround = ground;
+            }
+
+            var pos = transform.localPosition;
+            pos.z -= ground.GetDeltaPos(Time.deltaTime * GlobalVar.GetSingleton().EnemySpeedDeltaTime);
+            transform.localPosition = pos;
+        }
+
+        private IGround GetGroundByPos(float pos)
+        {
+            float t = 0f;
+            
+            return _grounds.FirstOrDefault(ground => t <= pos && pos <= ground.GetLength() + t);
         }
     }
 

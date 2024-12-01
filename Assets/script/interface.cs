@@ -42,8 +42,10 @@ namespace GoFire
 
     public interface IBody
     {
+        void Born();
         void Dead();
         void RegisterOnDead(Action<IBody> onDead);
+        GameObject GameObject { get; }
     }
 
     public interface IEnemyBody : IBody
@@ -60,6 +62,7 @@ namespace GoFire
     {
         void OnEnter();
         void OnExit();
+        void OnView(float pos, float top);
         float GetLength();
         float GetDuration();
         void SetPosition(float z);

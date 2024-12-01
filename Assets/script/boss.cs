@@ -6,7 +6,7 @@ using uTools;
 
 namespace GoFire
 {
-    public class boss : BodyBase, IHitRoot, IEnemyBody
+    public class Boss : BodyBase, IHitRoot, IEnemyBody
     {
         public Gun Gun;
         public Transform GunPosition;
@@ -16,21 +16,10 @@ namespace GoFire
         public TweenBezierPath TrackRoot;
         public BezierCurve Track;
 
-        void Awake()
-        {
-            Gun = GameObject.Instantiate<Gun>(Gun);
-            Gun.transform.SetParent(GunPosition, false);
-
-            Track = GameObject.Instantiate(Track);
-            Track.transform.SetParent(transform, false);
-            TrackRoot.Path = Track;
-            TrackRoot.onFinished.AddListener(Dead);
-        }
-
         // Start is called before the first frame update
         void Start()
         {
-            StartCoroutine(autoFire());
+            
         }
 
         IEnumerator autoFire()
@@ -40,6 +29,19 @@ namespace GoFire
                 yield return new WaitForSeconds(AutoFire);
                 Fire();
             }
+        }
+
+        public override void Born()
+        {
+            Gun = GameObject.Instantiate<Gun>(Gun);
+            Gun.transform.SetParent(GunPosition, false);
+
+            Track = GameObject.Instantiate(Track);
+            Track.transform.SetParent(transform, false);
+            TrackRoot.Path = Track;
+            TrackRoot.onFinished.AddListener(Dead);
+
+            StartCoroutine(autoFire());
         }
 
         public override void Dead()

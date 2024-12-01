@@ -8,6 +8,10 @@ namespace GoFire
     {
         public Shooting DeadEffect;
         private Action<IBody> onDead;
+
+        public GameObject GameObject { get { return gameObject; } }
+
+        public abstract void Born();
         public abstract void Dead();
 
         public void OnDead()

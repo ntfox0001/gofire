@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace GoFire {
+    // 事件视界，管理可视范围
     public class EventHorizon : MonoBehaviour
     {
         public Vector2 Range { get

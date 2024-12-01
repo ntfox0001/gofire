@@ -7,22 +7,22 @@ namespace GoFire
     public class Falling : MonoBehaviour
     {
         public Fly[] Pool;
-        IBody parent;
+        private IBody _parent;
 
         // Start is called before the first frame update
         void Start()
         {
-            parent = GetComponentInParent<IBody>();
-            parent.RegisterOnDead(onDead);
+            _parent = GetComponentInParent<IBody>();
+            _parent.RegisterOnDead(OnDead);
         }
 
         // Update is called once per frame
-        void onDead(IBody dead)
+        private void OnDead(IBody dead)
         {
             Fall();
         }
 
-        void Fall()
+        private void Fall()
         {
             if (Pool.Length == 0)
             {

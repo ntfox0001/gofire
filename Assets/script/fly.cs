@@ -14,30 +14,25 @@ namespace GoFire
         public Color Color = Color.white;
         public GameConst.FlyType FlyType { get; private set; }
         public AmmoInfo AmmoInfo { get; set; }
-        Vector3 Dir;
-        Action OnDestory;
+        private Vector3 _dir;
+        private Action _onDestroy;
 
 
-        public void Init(Vector3 pos, Vector3 dir, GameConst.FlyType flyType, Action onDestory = null)
+        public void Init(Vector3 pos, Vector3 dir, GameConst.FlyType flyType, Action onDestroy = null)
         {
-            OnDestory = onDestory;
-            Dir = dir;
+            _onDestroy = onDestroy;
+            _dir = dir;
             transform.position = pos;
             FlyType = flyType;
             GetComponent<Renderer>().material.color = Color;
         }
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
 
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
             Speed += Acc;
-            var detlaDis = Dir * (Speed * Time.deltaTime * GlobalVar.GetSingleton().EnemySpeedDeltaTime);
-            transform.localPosition += detlaDis;
+            var deltaDis = _dir * (Speed * Time.deltaTime * GlobalVar.GetSingleton().EnemySpeedDeltaTime);
+            transform.localPosition += deltaDis;
             Duration -= Time.deltaTime;
             if (Duration < 0)
             {
@@ -47,9 +42,9 @@ namespace GoFire
 
         void Dead()
         {
-            if (OnDestory != null)
+            if (_onDestroy != null)
             {
-                OnDestory();
+                _onDestroy();
             }
 
             Destroy(gameObject);
@@ -81,8 +76,8 @@ namespace GoFire
                     
                     break;
                 case HitBack.Bounce:
-                    Dir = new Vector3(UnityEngine.Random.Range(-1.0f, 1.0f), 0, UnityEngine.Random.Range(-1.0f, 1.0f));
-                    Dir.Normalize();
+                    _dir = new Vector3(UnityEngine.Random.Range(-1.0f, 1.0f), 0, UnityEngine.Random.Range(-1.0f, 1.0f));
+                    _dir.Normalize();
                     Speed = BounceAttenuation * Speed;
                     break;
 

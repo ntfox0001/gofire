@@ -47,12 +47,12 @@ public class BezierCurveEditor : Editor
 
             if (GUILayout.Button("Add Point"))
             {
-                Undo.RegisterSceneUndo("Add Point");
-
                 GameObject pointObject = new GameObject("Point " + pointsProp.arraySize);
                 pointObject.transform.parent = curve.transform;
                 pointObject.transform.localPosition = Vector3.zero;
                 BezierPoint newPoint = pointObject.AddComponent<BezierPoint>();
+
+                Undo.RegisterCreatedObjectUndo(pointObject, "Add Point");
 
                 newPoint.curve = curve;
                 newPoint.handle1 = Vector3.right * 0.1f;
@@ -90,7 +90,6 @@ public class BezierCurveEditor : Editor
 
         if (GUILayout.Button("X", GUILayout.Width(20)))
         {
-            Undo.RegisterSceneUndo("Remove Point");
             pointsProp.MoveArrayElement(curve.GetPointIndex(point), curve.pointCount - 1);
             pointsProp.arraySize--;
             DestroyImmediate(point.gameObject);
@@ -99,14 +98,14 @@ public class BezierCurveEditor : Editor
 
         EditorGUILayout.ObjectField(point.gameObject, typeof(GameObject), true);
 
-        if (index != 0 && GUILayout.Button(@"¡ü", GUILayout.Width(25)))
+        if (index != 0 && GUILayout.Button(@"ï¿½ï¿½", GUILayout.Width(25)))
         {
             UnityEngine.Object other = pointsProp.GetArrayElementAtIndex(index - 1).objectReferenceValue;
             pointsProp.GetArrayElementAtIndex(index - 1).objectReferenceValue = point;
             pointsProp.GetArrayElementAtIndex(index).objectReferenceValue = other;
         }
 
-        if (index != pointsProp.arraySize - 1 && GUILayout.Button(@"¡ý", GUILayout.Width(25)))
+        if (index != pointsProp.arraySize - 1 && GUILayout.Button(@"ï¿½ï¿½", GUILayout.Width(25)))
         {
             UnityEngine.Object other = pointsProp.GetArrayElementAtIndex(index + 1).objectReferenceValue;
             pointsProp.GetArrayElementAtIndex(index + 1).objectReferenceValue = point;

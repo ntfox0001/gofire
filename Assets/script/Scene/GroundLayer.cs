@@ -15,10 +15,7 @@ namespace GoFire
 
         public float Speed
         {
-            get
-            {
-                return _speed;
-            }
+            get => _speed;
             set
             {
                 _speed = value;
@@ -28,10 +25,7 @@ namespace GoFire
 
         public float Height
         {
-            get
-            {
-                return transform.localPosition.y;
-            }
+            get => transform.localPosition.y;
             set
             {
                 var pos = transform.localPosition;
