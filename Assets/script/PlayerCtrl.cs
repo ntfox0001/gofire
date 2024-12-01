@@ -8,7 +8,6 @@ namespace GoFire
 {
     public class PlayerCtrl : BodyBase, IHitRoot, IBumpRoot
     {
-        public Camera MainCamera;
         public float HP = 100;
         public Gun Gun;
         public Transform GunPosition;
@@ -41,7 +40,7 @@ namespace GoFire
         // Update is called once per frame
         private void Update()
         {
-            if (!MainCamera)
+            if (!CameraCtrl.GetSingleton().MainCamera)
             {
                 return;
             }
@@ -100,7 +99,7 @@ namespace GoFire
         private void ReadMouse()
         {
             // use mouse
-            var pos = MainCamera.ScreenToWorldPoint(Input.mousePosition);
+            var pos = CameraCtrl.GetSingleton().ScreenToWorldPoint(Input.mousePosition);
             pos.y = 0;
             gameObject.transform.localPosition = pos;
 

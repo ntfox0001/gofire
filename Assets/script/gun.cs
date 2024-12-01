@@ -7,17 +7,17 @@ namespace GoFire
     public class Gun : MonoBehaviour
     {
         public AmmoInfo AmmoInfo;
-        Shooting[] Shootings;
+        private Shooting[] _shootings;
 
 
         private void Awake()
         {
-            Shootings = GetComponentsInChildren<Shooting>();
+            _shootings = GetComponentsInChildren<Shooting>();
         }
 
         public void Fire(GameConst.FlyType at)
         {
-            foreach (Shooting s in Shootings)
+            foreach (Shooting s in _shootings)
             {
                 s.Fire(at, AmmoInfo);
             }

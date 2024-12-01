@@ -6,7 +6,6 @@ namespace GoFire
 {
     public class Sence : MonoBehaviour
     {
-        public CameraCtrl MainCameraCtrl;
         public PlayerCtrl Player;
         public Transform PlayerBornPos;
         public EventHorizon EventHorizon;
@@ -27,10 +26,8 @@ namespace GoFire
 
             Player = GameObject.Instantiate<PlayerCtrl>(Player, transform, false);
             Player.transform.position = PlayerBornPos.position;
-            Player.MainCamera = MainCameraCtrl.MainCamera;
             Player.GroundRange = EventHorizon.ViewRange;
-            MainCameraCtrl.Set(Player.transform, EventHorizon.ViewRange.x);
-            GlobalVar.GetSingleton().MainCamera = MainCameraCtrl;
+            CameraCtrl.GetSingleton().Set(Player.transform, EventHorizon.ViewRange.x);
         }
 
         IEnumerator Run()

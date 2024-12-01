@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,35 +6,41 @@ using UnityEngine;
 namespace GoFire
 {
     // 控制相机本身不超出屏幕，又跟随目标，只限x轴
-    public class CameraCtrl : MonoBehaviour
+    public class CameraCtrl : Singleton<CameraCtrl>
     {
-        public Camera MainCamera;
-
-        public Transform target;
+        private Transform _target;
         // 设置场景宽度
-        float _groundWideHalf; 
+        private float _groundWideHalf; 
         
-        public float Height { get
-            {
-                return MainCamera.orthographicSize * 2;
-            } 
+        public static float Height => GameConst.CameraOrthographicSize * 2;
+        public Camera MainCamera { get; private set; }
+
+        private void Awake()
+        {
+            MainCamera = GetComponentInChildren<Camera>();
+            MainCamera.orthographicSize = GameConst.CameraOrthographicSize;
         }
 
         public void Set(Transform target, float groundWide)
         {
-            this.target = target;
+            this._target = target;
             _groundWideHalf = groundWide * 0.5f;
         }
 
+        public Vector3 ScreenToWorldPoint(Vector3 position)
+        {
+            return MainCamera.ScreenToWorldPoint(position);
+        }
+
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
             Refresh();
         }
 
         void Refresh()
         {
-            if (!target)
+            if (!_target)
             {
                 return;
             }
@@ -48,9 +55,9 @@ namespace GoFire
                 return;
             }
 
-            var x = Mathf.Lerp(0, _groundWideHalf - camWidthHalf, Mathf.Abs(target.position.x) / _groundWideHalf);
+            var x = Mathf.Lerp(0, _groundWideHalf - camWidthHalf, Mathf.Abs(_target.position.x) / _groundWideHalf);
             var pos = transform.position;
-            pos.x = target.position.x > 0 ? x: -x;
+            pos.x = _target.position.x > 0 ? x: -x;
             transform.position = pos;
         }
     }

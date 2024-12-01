@@ -10,33 +10,32 @@ namespace GoFire
         public Fly Fly;
         public int MaxCount;
 
-        int count;
+        private int _count;
 
-        Sence rootSence;
+        private Sence _rootScene;
 
         private void Start()
         {
-            rootSence = GetComponentInParent<Sence>();
+            _rootScene = GetComponentInParent<Sence>();
         }
 
         public void Fire(GameConst.FlyType flyType, AmmoInfo ammoInfo)
         {
-            if (MaxCount > 0 && count >= MaxCount)
+            if (MaxCount > 0 && _count >= MaxCount)
             {
                 return;
             }
 
-            var fly = GameObject.Instantiate<Fly>(Fly);
-            fly.transform.SetParent(rootSence.transform, false);
-            fly.Init(transform.position, transform.rotation * Vector3.forward, flyType, AmmoDestory);
+            var fly = GameObject.Instantiate<Fly>(Fly, _rootScene.transform, false);
+            fly.Init(transform.position, transform.rotation * Vector3.forward, flyType, OnAmmoDestroy);
             fly.AmmoInfo = ammoInfo;
 
-            count++;
+            _count++;
         }
 
-        void AmmoDestory()
+        private void OnAmmoDestroy()
         {
-            count--;
+            _count--;
         }
     }
 }

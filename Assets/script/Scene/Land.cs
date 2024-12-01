@@ -13,13 +13,14 @@ namespace GoFire
         private IGround _currentGround;
         private float _currentPos;
 
-        public void Init()
+        [ContextMenu("adjust ground pos")]
+        public void AdjustGroundPos()
         {
             _grounds = GetComponentsInChildren<IGround>();
-            float pos = -GlobalVar.GetSingleton().MainCamera.Height * 0.5f;
+            float pos = -CameraCtrl.Height * 0.5f;
             foreach (var v in _grounds)
             {
-                if (v.GetLength() < GlobalVar.GetSingleton().MainCamera.Height)
+                if (v.GetLength() < CameraCtrl.Height)
                 {
                     // ground 必须长度必须大于一个屏幕的大小
                     continue;
@@ -29,11 +30,16 @@ namespace GoFire
                 pos += v.GetLength();
             }
 
-            transform.localPosition = new Vector3(0, 0, -GlobalVar.GetSingleton().MainCamera.Height * 0.5f);
+            transform.localPosition = new Vector3(0, 0, -CameraCtrl.Height * 0.5f);
         }
 
         // Update is called once per frame
         private void Update()
+        {
+            UpdatePos(Time.deltaTime * GlobalVar.GetSingleton().EnemySpeedDeltaTime);
+        }
+
+        public void UpdatePos(float deltaTime)
         {
             var ground = GetGroundByPos(_currentPos);
             if (ground == null)
@@ -44,23 +50,19 @@ namespace GoFire
             if (ground != _currentGround)
             {
                 ground.OnEnter();
-                if (_currentGround != null) { 
-                    _currentGround.OnExit();
-                }
+                _currentGround?.OnExit();
 
                 _currentGround = ground;
             }
 
             var pos = transform.localPosition;
-            pos.z -= ground.GetDeltaPos(Time.deltaTime * GlobalVar.GetSingleton().EnemySpeedDeltaTime);
+            pos.z -= ground.GetDeltaPos(deltaTime);
             transform.localPosition = pos;
         }
 
         private IGround GetGroundByPos(float pos)
         {
-            float t = 0f;
-            
-            return _grounds.FirstOrDefault(ground => t <= pos && pos <= ground.GetLength() + t);
+            return _grounds.FirstOrDefault(ground => pos <= ground.GetLength());
         }
     }
 
