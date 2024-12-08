@@ -9,17 +9,27 @@ namespace GoFire
 {
     public class Land : MonoBehaviour
     {
-        private IGround[] _grounds;
-        private IGround _currentGround;
+        private Ground[] _grounds;
+        private Ground _currentGround;
         private float _currentPos;
 
-        [ContextMenu("adjust ground pos")]
-        public void AdjustGroundPos()
+        public void Initialize()
         {
-            _grounds = GetComponentsInChildren<IGround>();
-            float pos = -CameraCtrl.Height * 0.5f;
-            foreach (var v in _grounds)
+            _grounds = GetComponentsInChildren<Ground>();
+            foreach (var ground in _grounds)
             {
+                ground.Initialize();                
+            }
+        }
+
+        [ContextMenu("adjust ground pos")]
+        private void AdjustGroundPos()
+        {
+            var grounds = GetComponentsInChildren<Ground>();
+            float pos = 0;//-CameraCtrl.Height * 0.5f;
+            foreach (var v in grounds)
+            {
+                v.Initialize();
                 if (v.GetLength() < CameraCtrl.Height)
                 {
                     // ground 必须长度必须大于一个屏幕的大小
@@ -36,33 +46,50 @@ namespace GoFire
         // Update is called once per frame
         private void Update()
         {
-            UpdatePos(Time.deltaTime * GlobalVar.GetSingleton().EnemySpeedDeltaTime);
-        }
-
-        public void UpdatePos(float deltaTime)
-        {
-            var ground = GetGroundByPos(_currentPos);
-            if (ground == null)
-            {
-                return;
-            }
-
-            if (ground != _currentGround)
-            {
-                ground.OnEnter();
-                _currentGround?.OnExit();
-
-                _currentGround = ground;
-            }
-
             var pos = transform.localPosition;
-            pos.z -= ground.GetDeltaPos(deltaTime);
+            var (deltaPos, currentGround) = UpdatePos(Time.deltaTime * GlobalVar.GetSingleton().EnemySpeedDeltaTime, pos.z, _currentGround, _grounds);
+            
+            _currentGround = currentGround;
+            pos.z -= deltaPos;
             transform.localPosition = pos;
         }
 
-        private IGround GetGroundByPos(float pos)
+        public static (float, Ground) UpdatePos(float deltaTime, float currentPos, Ground currentGround, Ground[] grounds) 
         {
-            return _grounds.FirstOrDefault(ground => pos <= ground.GetLength());
+            var ground = GetGroundByPos(currentPos, grounds);
+            if (!ground)
+            {
+                return (0,null);
+            }
+
+            if (ground != currentGround)
+            {
+                ground.OnEnter();
+                currentGround?.OnExit();
+
+                currentGround = ground;
+            }
+
+            currentPos += ground.GetDeltaPos(deltaTime);
+            // Debug.LogError("deltaTime:" + deltaTime + "currPos:" + currentPos);
+            return (currentPos, currentGround);
+        }
+
+        public static Ground GetGroundByPos(float pos, Ground[] grounds)
+        {
+            float preLen = 0;
+            for (int i = 0; i < grounds.Length; i++)
+            {
+                var ground = grounds[i]; 
+                if (pos < ground.GetLength() + preLen)
+                {
+                    return ground;
+                }
+
+                preLen += ground.GetLength();
+            }
+
+            return null;
         }
     }
 

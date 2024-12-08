@@ -29,6 +29,7 @@ namespace GoFire
         }
 
         public const float CameraOrthographicSize = 5f;
+        public const float CameraSceneHeight = CameraOrthographicSize * 2.0f;
     }
 
 

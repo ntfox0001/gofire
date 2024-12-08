@@ -7,11 +7,10 @@ namespace GoFire
 {
     public class EditorConst
     {
-        static public float CameraSceneHeight = 10;
         static public float ScreenHeight = 1920;
         static public float ScreenWidth = 1080;
         static public float ScreenRate = ScreenHeight / ScreenWidth;
-        static public float CameraSceneWidth = CameraSceneHeight / ScreenRate;
+        static public float CameraSceneWidth = GameConst.CameraSceneHeight / ScreenRate; // 编辑器下屏幕宽高比是固定的
         static public Vector3 SceneUp = Vector3.up;
         static public float TipsLineArrawHeight = 0.1f;
         static public int LabelFontSize = 24;
