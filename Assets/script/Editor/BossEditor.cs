@@ -17,6 +17,11 @@ namespace GoFire
         {
             var boss = (Boss)target;
 
+
+        }
+
+        public Draw(Boss boss) 
+        {
             if (_labelStyle == null)
             {
                 _labelStyle = new GUIStyle(GUI.skin.label);
@@ -33,5 +38,4 @@ namespace GoFire
             Handles.DrawLines(lines);
         }
     }
-
 }
