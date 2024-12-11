@@ -9,19 +9,24 @@ namespace GoFire
     public class BossEditor : Editor
     {
         private GUIStyle _labelStyle;
+        private IBody _body;
         void OnEnable()
         {
-
+            var boss = (Boss)target;
+            _body = boss.GetComponent<IBody>();
         }
         void OnSceneGUI()
         {
-            var boss = (Boss)target;
-
-
+            Draw(_body);
         }
 
-        public Draw(Boss boss) 
+        public void Draw(IBody body) 
         {
+            if (_body == null)
+            {
+                return;
+            }
+            
             if (_labelStyle == null)
             {
                 _labelStyle = new GUIStyle(GUI.skin.label);
@@ -30,7 +35,6 @@ namespace GoFire
             }
             
             Vector3[] lines = new Vector3[2];
-            var body = boss.GetComponent<IBody>();
             //Handles.Slider(body.GameObject.transform.position + posOffset, -EditorConst.SceneUp, 1.0f, Handles.ArrowHandleCap, 0);
             lines[0] = body.GameObject.transform.position + EditorConst.SceneTipLineHeightOffset;
             lines[1] = new Vector3(lines[0].x, 0, lines[0].z);

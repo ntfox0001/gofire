@@ -528,7 +528,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3339733250242404741, guid: 3f8d34fb9bbc72546967d3c747a437a5, type: 3}
       propertyPath: m_Name
-      value: boss
+      value: boss_2
       objectReference: {fileID: 0}
     - target: {fileID: 4432472864790904486, guid: 3f8d34fb9bbc72546967d3c747a437a5, type: 3}
       propertyPath: m_LocalScale.z
