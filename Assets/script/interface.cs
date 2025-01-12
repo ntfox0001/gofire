@@ -42,10 +42,11 @@ namespace GoFire
 
     public interface IBody
     {
+        string Name { get;  set; }
         void Born();
         void Dead();
         void RegisterOnDead(Action<IBody> onDead);
-        GameObject GameObject { get; }
+        Vector3 GetPosition(); 
     }
 
     public interface IEnemyBody : IBody

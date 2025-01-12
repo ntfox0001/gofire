@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 2153164766381883954}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.2320983, y: -0.00390625, z: 2.339337}
+  m_LocalPosition: {x: -2.7930107, y: 0, z: -6.2013807}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handleStyle: 0
-  _handle1: {x: 1.6143808, y: -0.0078125, z: 0.5417428}
-  _handle2: {x: -1.6143808, y: 0.0078125, z: -0.5417428}
+  _handle1: {x: -1.6143808, y: -0, z: -0.5417428}
+  _handle2: {x: 1.6143808, y: 0, z: 0.5417428}
 --- !u!1 &2743574284325350752
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,7 +73,7 @@ Transform:
   m_GameObject: {fileID: 2743574284325350752}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.8839738, y: -0.01171875, z: 0.16455607}
+  m_LocalPosition: {x: 0.32306194, y: 0, z: -8.376162}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -92,8 +92,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handleStyle: 0
-  _handle1: {x: -0.041492105, y: 0.00390625, z: -1.888447}
-  _handle2: {x: 0.041492105, y: -0.00390625, z: 1.888447}
+  _handle1: {x: 0.041492105, y: -0, z: 1.888447}
+  _handle2: {x: -0.041492105, y: 0, z: -1.888447}
 --- !u!1 &4737452545050919718
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,6 +104,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4145915244077116004}
   - component: {fileID: 7881542432859750590}
+  - component: {fileID: 972827796839243451}
   m_Layer: 0
   m_Name: track_1
   m_TagString: Untagged
@@ -120,7 +121,7 @@ Transform:
   m_GameObject: {fileID: 4737452545050919718}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.5609121, y: 0, z: 8.540718}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -148,14 +149,56 @@ MonoBehaviour:
   drawColor: {r: 1, g: 0, b: 0, a: 1}
   drawSize: 2
   zero: 000000
+  frozenX: 0
+  frozenY: 1
+  frozenZ: 0
   _close: 0
   points:
-  - {fileID: 2448561449065943447}
-  - {fileID: 3486497573445122701}
-  - {fileID: 8407230354619918683}
-  - {fileID: 764383767816365434}
-  - {fileID: 3686418855288121191}
   - {fileID: 5320511627867122211}
+  - {fileID: 3686418855288121191}
+  - {fileID: 764383767816365434}
+  - {fileID: 8407230354619918683}
+  - {fileID: 3486497573445122701}
+  - {fileID: 2448561449065943447}
+--- !u!114 &972827796839243451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4737452545050919718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c628d2b846f2dcd448c7c91d3df2aede, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showTimeGraduation: 1
+  duration: 10
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  trackType: 0
 --- !u!1 &5235715480492536676
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,7 +225,7 @@ Transform:
   m_GameObject: {fileID: 5235715480492536676}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.9980726, y: -0.00390625, z: 2.9715984}
+  m_LocalPosition: {x: 5.4371605, y: 0, z: -5.5691195}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -201,8 +244,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handleStyle: 0
-  _handle1: {x: 2.4529603, y: -0, z: 0.08552313}
-  _handle2: {x: -2.4529603, y: 0, z: -0.08552313}
+  _handle1: {x: -2.4529603, y: 0, z: -0.08552313}
+  _handle2: {x: 2.4529603, y: -0, z: 0.08552313}
 --- !u!1 &5781354666197056738
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,7 +272,7 @@ Transform:
   m_GameObject: {fileID: 5781354666197056738}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.5609125, y: -0.0078125, z: 8.540718}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -248,8 +291,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handleStyle: 0
-  _handle1: {x: 0.068157434, y: 0.0078125, z: -0.9983711}
-  _handle2: {x: -0.068157434, y: -0.0078125, z: 0.9983711}
+  _handle1: {x: -0.068157434, y: -0, z: 0.9983711}
+  _handle2: {x: 0.068157434, y: 0, z: -0.9983711}
 --- !u!1 &7407279753065362398
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,7 +319,7 @@ Transform:
   m_GameObject: {fileID: 7407279753065362398}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.07572293, y: -0.01171875, z: -1.7124207}
+  m_LocalPosition: {x: -1.4851894, y: 0, z: -10.253139}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -295,8 +338,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handleStyle: 0
-  _handle1: {x: -3.5304487, y: 0.00390625, z: -0.30675054}
-  _handle2: {x: 3.5304487, y: -0.00390625, z: 0.30675054}
+  _handle1: {x: 3.5304487, y: -0, z: 0.30675054}
+  _handle2: {x: -3.5304487, y: 0, z: -0.30675054}
 --- !u!1 &7697957123066595916
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,7 +366,7 @@ Transform:
   m_GameObject: {fileID: 7697957123066595916}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.4663577, y: -0.00390625, z: 0.20023136}
+  m_LocalPosition: {x: -4.0272694, y: 0, z: -8.340487}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -342,5 +385,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handleStyle: 0
-  _handle1: {x: -0.03203535, y: -0.0078125, z: 3.3709617}
-  _handle2: {x: 0.03203535, y: 0.0078125, z: -3.3709617}
+  _handle1: {x: 0.03203535, y: -0, z: -3.3709617}
+  _handle2: {x: -0.03203535, y: 0, z: 3.3709617}

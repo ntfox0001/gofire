@@ -9,11 +9,18 @@ namespace GoFire
         public Shooting DeadEffect;
         private Action<IBody> onDead;
 
-        public GameObject GameObject { get { return gameObject; } }
-
         public abstract void Born();
         public abstract void Dead();
 
+        public string Name
+        {
+            get => gameObject.name;
+            set => gameObject.name = value;
+        }
+        public Vector3 GetPosition()
+        {
+            return gameObject.transform.position;
+        }
         public void OnDead()
         {
             if (onDead != null)

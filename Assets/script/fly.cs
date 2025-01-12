@@ -17,7 +17,6 @@ namespace GoFire
         private Vector3 _dir;
         private Action _onDestroy;
 
-
         public void Init(Vector3 pos, Vector3 dir, GameConst.FlyType flyType, Action onDestroy = null)
         {
             _onDestroy = onDestroy;

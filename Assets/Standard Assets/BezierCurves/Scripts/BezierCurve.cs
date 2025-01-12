@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 #endregion
 
@@ -43,6 +44,9 @@ public class BezierCurve : MonoBehaviour {
 
 	public bool[] zero = new bool[]{false, false, false};
 	
+	public bool frozenX = false;
+	public bool frozenY = false;
+	public bool frozenZ = false;
 	#endregion
 	
 	#region PublicProperties
@@ -100,18 +104,16 @@ public class BezierCurve : MonoBehaviour {
 	{
 		get
 		{
-			if(dirty)
-			{
-				_length = 0;
-				for(int i = 0; i < points.Length - 1; i++){
-					_length += ApproximateLength(points[i], points[i + 1], resolution);
-				}
-				
-				if(close) _length += ApproximateLength(points[points.Length - 1], points[0], resolution);
-				
-				dirty = false;
+			if (!dirty) return _length;
+			_length = 0;
+			for(var i = 0; i < points.Length - 1; i++){
+				_length += ApproximateLength(points[i], points[i + 1], resolution);
 			}
-			
+				
+			if(close) _length += ApproximateLength(points[^1], points[0], resolution);
+				
+			dirty = false;
+
 			return _length;
 		}
 	}
@@ -138,7 +140,7 @@ public class BezierCurve : MonoBehaviour {
 				DrawCurve(points[i], points[i+1], resolution);
 			}
 			
-			if (close) DrawCurve(points[points.Length - 1], points[0], resolution);
+			if (close) DrawCurve(points[^1], points[0], resolution);
 		}
 	}
 	
@@ -150,6 +152,19 @@ public class BezierCurve : MonoBehaviour {
 	
 	#region PublicFunctions
 
+	public void RevertPoint()
+	{
+		for (var i = 0; i < pointCount/2; i++)
+		{
+			(points[i], points[pointCount - i - 1]) = (
+				points[pointCount - i - 1], points[i]);
+            
+			(points[i].handle1, points[i].handle2) = (points[i].handle2, points[i].handle1);
+			(points[pointCount - i - 1].handle1, points[pointCount - i - 1].handle2) = 
+				(points[pointCount - i - 1].handle2, points[pointCount - i - 1].handle1);
+		}
+	}
+	
 	/// <summary>
 	/// 	- Adds the given point to the end of the curve ("points" array)
 	/// </summary>
@@ -223,7 +238,7 @@ public class BezierCurve : MonoBehaviour {
 	public Vector3 GetPointAt(float t)
 	{
 		if(t <= 0) return points[0].position;
-		else if (t >= 1) return points[points.Length - 1].position;
+		else if (t >= 1) return points[^1].position;
 		
 		float totalPercent = 0;
 		float curvePercent = 0;
@@ -244,16 +259,16 @@ public class BezierCurve : MonoBehaviour {
 			else totalPercent += curvePercent;
 		}
 		
-		if(close && p1 == null)
+		if(close && p1 is null)
 		{
-			p1 = points[points.Length - 1];
+			p1 = points[^1];
 			p2 = points[0];
             curvePercent = 1.0f - totalPercent;
         }
 
 		if (p1 == null && p2 == null)
 		{
-			return points[points.Length - 1].position;
+			return points[^1].position;
 		}
 		
 		var nextTotalPercent = t - totalPercent;
@@ -273,7 +288,7 @@ public class BezierCurve : MonoBehaviour {
     public Vector3 GetLocalPointAt(float t)
     {
         if (t <= 0) return points[0].localPosition;
-        else if (t >= 1) return points[points.Length - 1].localPosition;
+        else if (t >= 1) return points[^1].localPosition;
 
         float totalPercent = 0;
         float curvePercent = 0;
@@ -296,7 +311,7 @@ public class BezierCurve : MonoBehaviour {
 
         if (close && p1 == null)
         {
-            p1 = points[points.Length - 1];
+            p1 = points[^1];
             p2 = points[0];
             curvePercent = 1.0f - totalPercent;
         }
@@ -356,13 +371,12 @@ public class BezierCurve : MonoBehaviour {
 	/// </param>
 	public static void DrawCurve(BezierPoint p1, BezierPoint p2, int resolution)
 	{
-		int limit = resolution+1;
-		float _res = resolution;
-		Vector3 lastPoint = p1.position;
-		Vector3 currentPoint = Vector3.zero;
-		
-		for(int i = 1; i < limit; i++){
-			currentPoint = GetPoint(p1, p2, i/_res);
+		var limit = resolution+1;
+		float res = resolution;
+		var lastPoint = p1.position;
+
+		for(var i = 1; i < limit; i++){
+			var currentPoint = GetPoint(p1, p2, i/res);
 			Gizmos.DrawLine(lastPoint, currentPoint);
 			lastPoint = currentPoint;
 		}		
@@ -388,14 +402,11 @@ public class BezierCurve : MonoBehaviour {
 	{
 		if(p1.handle2 != Vector3.zero)
 		{
-			if(p2.handle1 != Vector3.zero) return GetCubicCurvePoint(p1.position, p1.globalHandle2, p2.globalHandle1, p2.position, t);
-			else return GetQuadraticCurvePoint(p1.position, p1.globalHandle2, p2.position, t);
+			return p2.handle1 != Vector3.zero ? GetCubicCurvePoint(p1.position, p1.globalHandle2, p2.globalHandle1, p2.position, t) : GetQuadraticCurvePoint(p1.position, p1.globalHandle2, p2.position, t);
 		}
-		
 		else
 		{
-			if(p2.handle1 != Vector3.zero) return GetQuadraticCurvePoint(p1.position, p2.globalHandle1, p2.position, t);
-			else return GetLinearPoint(p1.position, p2.position, t);
+			return p2.handle1 != Vector3.zero ? GetQuadraticCurvePoint(p1.position, p2.globalHandle1, p2.position, t) : GetLinearPoint(p1.position, p2.position, t);
 		}	
 	}
 
@@ -419,14 +430,11 @@ public class BezierCurve : MonoBehaviour {
     {
         if (p1.handle2 != Vector3.zero)
         {
-            if (p2.handle1 != Vector3.zero) return GetCubicCurvePoint(p1.localPosition, p1.localHandle2, p2.localHandle1, p2.localPosition, t);
-            else return GetQuadraticCurvePoint(p1.localPosition, p1.localHandle2, p2.localPosition, t);
+	        return p2.handle1 != Vector3.zero ? GetCubicCurvePoint(p1.localPosition, p1.localHandle2, p2.localHandle1, p2.localPosition, t) : GetQuadraticCurvePoint(p1.localPosition, p1.localHandle2, p2.localPosition, t);
         }
-
         else
         {
-            if (p2.handle1 != Vector3.zero) return GetQuadraticCurvePoint(p1.localPosition, p2.localHandle1, p2.localPosition, t);
-            else return GetLinearPoint(p1.localPosition, p2.localPosition, t);
+	        return p2.handle1 != Vector3.zero ? GetQuadraticCurvePoint(p1.localPosition, p2.localHandle1, p2.localPosition, t) : GetLinearPoint(p1.localPosition, p2.localPosition, t);
         }
     }
 
@@ -455,10 +463,10 @@ public class BezierCurve : MonoBehaviour {
     {
         t = Mathf.Clamp01(t);
 
-        Vector3 part1 = Mathf.Pow(1 - t, 3) * p1;
-        Vector3 part2 = 3 * Mathf.Pow(1 - t, 2) * t * p2;
-        Vector3 part3 = 3 * (1 - t) * Mathf.Pow(t, 2) * p3;
-        Vector3 part4 = Mathf.Pow(t, 3) * p4;
+        var part1 = Mathf.Pow(1 - t, 3) * p1;
+        var part2 = 3 * Mathf.Pow(1 - t, 2) * t * p2;
+        var part3 = 3 * (1 - t) * Mathf.Pow(t, 2) * p3;
+        var part4 = Mathf.Pow(t, 3) * p4;
 
         return part1 + part2 + part3 + part4;
     }
@@ -485,9 +493,9 @@ public class BezierCurve : MonoBehaviour {
     {
         t = Mathf.Clamp01(t);
 
-        Vector3 part1 = Mathf.Pow(1 - t, 2) * p1;
-        Vector3 part2 = 2 * (1 - t) * t * p2;
-        Vector3 part3 = Mathf.Pow(t, 2) * p3;
+        var part1 = Mathf.Pow(1 - t, 2) * p1;
+        var part2 = 2 * (1 - t) * t * p2;
+        var part3 = Mathf.Pow(t, 2) * p3;
 
         return part1 + part2 + part3;
     }
@@ -528,12 +536,12 @@ public class BezierCurve : MonoBehaviour {
 	public static Vector3 GetPoint(float t, params Vector3[] points){
 		t = Mathf.Clamp01(t);
 		
-		int order = points.Length-1;
-		Vector3 point = Vector3.zero;
-		Vector3 vectorToAdd;
+		var order = points.Length-1;
+		var point = Vector3.zero;
 		
-		for(int i = 0; i < points.Length; i++){
-			vectorToAdd = points[points.Length-i-1] * (BinomialCoefficient(i, order) * Mathf.Pow(t, order-i) * Mathf.Pow((1-t), i));
+		for(int i = 0; i < points.Length; i++)
+		{
+			var vectorToAdd = points[points.Length-i-1] * (BinomialCoefficient(i, order) * Mathf.Pow(t, order-i) * Mathf.Pow((1-t), i));
 			point += vectorToAdd;
 		}
 		
@@ -557,14 +565,13 @@ public class BezierCurve : MonoBehaviour {
 	/// </param>
 	public static float ApproximateLength(BezierPoint p1, BezierPoint p2, int resolution = 10)
 	{
-		float _res = resolution;
+		float res = resolution;
 		float total = 0;
-		Vector3 lastPosition = p1.position;
-		Vector3 currentPosition;
-		
-		for(int i = 0; i < resolution + 1; i++)
+		var lastPosition = p1.position;
+
+		for(var i = 0; i < resolution + 1; i++)
 		{
-			currentPosition = GetPoint(p1, p2, i / _res);
+			var currentPosition = GetPoint(p1, p2, i / res);
 			total += (currentPosition - lastPosition).magnitude;
 			lastPosition = currentPosition;
 		}
@@ -589,14 +596,13 @@ public class BezierCurve : MonoBehaviour {
     /// </param>
     public static float LocalApproximateLength(BezierPoint p1, BezierPoint p2, int resolution = 10)
     {
-        float _res = resolution;
+        float res = resolution;
         float total = 0;
-        Vector3 lastPosition = p1.localPosition;
-        Vector3 currentPosition;
+        var lastPosition = p1.localPosition;
 
-        for (int i = 0; i < resolution + 1; i++)
+        for (var i = 0; i < resolution + 1; i++)
         {
-            currentPosition = GetLocalPoint(p1, p2, i / _res);
+            var currentPosition = GetLocalPoint(p1, p2, i / res);
             total += (currentPosition - lastPosition).magnitude;
             lastPosition = currentPosition;
         }
@@ -671,4 +677,12 @@ public class BezierCurve : MonoBehaviour {
 		return GetPoint(distance / curveLength, firstPoint, secondPoint);
 	}
 	*/
+	
+	public Vector3 GetPos( Vector3 pos)
+	{
+		pos.x = frozenX ? transform.position.x : pos.x;
+		pos.y = frozenY ? transform.position.y : pos.y;
+		pos.z = frozenZ ? transform.position.z : pos.z;
+		return pos;
+	}
 }

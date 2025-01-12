@@ -18,7 +18,7 @@ namespace GoFire
             int i = _preIdx;
             for (; i < _bodies.Length; i++)
             {
-                if (_bodies[i].GameObject.transform.position.z < top)
+                if (_bodies[i].GetPosition().z < top)
                 {
                     _bodies[i].Born();
                 }

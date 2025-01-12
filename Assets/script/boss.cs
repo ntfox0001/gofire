@@ -6,20 +6,18 @@ using uTools;
 
 namespace GoFire
 {
-    public class Boss : BodyBase, IHitRoot, IEnemyBody
+    public class Boss : BodyBase, IHitRoot, IEnemyBody, IRailcar
     {
         public Gun Gun;
-        public Transform GunPosition;
         public float HP = 100;
         public float AutoFire = 2.0f;
         public HitBack HitBack = HitBack.Bounce;
-        public TweenBezierPath TrackRoot;
         public BezierCurve Track;
 
         // Start is called before the first frame update
         void Start()
         {
-            
+
         }
 
         IEnumerator autoFire()
@@ -33,14 +31,6 @@ namespace GoFire
 
         public override void Born()
         {
-            Gun = GameObject.Instantiate<Gun>(Gun);
-            Gun.transform.SetParent(GunPosition, false);
-
-            Track = GameObject.Instantiate(Track);
-            Track.transform.SetParent(transform, false);
-            TrackRoot.Path = Track;
-            TrackRoot.onFinished.AddListener(Dead);
-
             StartCoroutine(autoFire());
         }
 
@@ -70,6 +60,16 @@ namespace GoFire
             }
 
             return HitBack;
+        }
+
+        public void SetPosition(Vector3 pos)
+        {
+            transform.position = pos;
+        }
+
+        public void OnArrive()
+        {
+            OnDead();
         }
     }
 }

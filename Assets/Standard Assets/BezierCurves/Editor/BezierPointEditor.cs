@@ -93,7 +93,7 @@ public class BezierPointEditor : Editor {
 	{
         point = (BezierPoint)target;
         Handles.color = Color.green;
-        Vector3 newPosition = Handles.FreeMoveHandle(point.position, HandleUtility.GetHandleSize(point.position) * 0.2f * point.curve.drawSize, Vector3.zero, Handles.CubeHandleCap);
+        Vector3 newPosition = point.curve.GetPos(Handles.FreeMoveHandle(point.position, HandleUtility.GetHandleSize(point.position) * 0.2f * point.curve.drawSize, Vector3.zero, Handles.CubeHandleCap));
         if (point.position != newPosition) point.position = newPosition;
 		
 		handlers[(int)point.handleStyle](point);
@@ -108,7 +108,10 @@ public class BezierPointEditor : Editor {
 	private static void HandleConnected(BezierPoint p){
 		Handles.color = Color.cyan;
 		
-		Vector3 newGlobal1 = Handles.FreeMoveHandle(p.globalHandle1, HandleUtility.GetHandleSize(p.globalHandle1)* 0.15f * p.curve.drawSize, Vector3.zero, Handles.SphereHandleCap);
+		Vector3 newGlobal1 = p.curve.GetPos(Handles.FreeMoveHandle(p.globalHandle1,
+			HandleUtility.GetHandleSize(p.globalHandle1) * 0.15f * p.curve.drawSize, 
+			Vector3.zero,
+			Handles.SphereHandleCap));
 		
 		if(newGlobal1 != p.globalHandle1){
 			Undo.RegisterCompleteObjectUndo(p, "Move Handle");
@@ -116,7 +119,10 @@ public class BezierPointEditor : Editor {
 			p.globalHandle2 = -(newGlobal1 - p.position) + p.position;
 		}
 		
-		Vector3 newGlobal2 = Handles.FreeMoveHandle(p.globalHandle2, HandleUtility.GetHandleSize(p.globalHandle2)* 0.15f * p.curve.drawSize, Vector3.zero, Handles.SphereHandleCap);
+		Vector3 newGlobal2 = p.curve.GetPos(Handles.FreeMoveHandle(p.globalHandle2,
+			HandleUtility.GetHandleSize(p.globalHandle2) * 0.15f * p.curve.drawSize,
+			Vector3.zero,
+			Handles.SphereHandleCap));
 		
 		if(newGlobal2 != p.globalHandle2){
 			Undo.RegisterCompleteObjectUndo(p, "Move Handle");
@@ -128,8 +134,14 @@ public class BezierPointEditor : Editor {
 	private static void HandleBroken(BezierPoint p){
 		Handles.color = Color.cyan;
 
-		Vector3 newGlobal1 = Handles.FreeMoveHandle(p.globalHandle1, HandleUtility.GetHandleSize(p.globalHandle1)*0.15f, Vector3.zero, Handles.SphereHandleCap);
-		Vector3 newGlobal2 = Handles.FreeMoveHandle(p.globalHandle2, HandleUtility.GetHandleSize(p.globalHandle2)*0.15f, Vector3.zero, Handles.SphereHandleCap);
+		Vector3 newGlobal1 = p.curve.GetPos(Handles.FreeMoveHandle(p.globalHandle1,
+			HandleUtility.GetHandleSize(p.globalHandle1) * 0.15f,
+			Vector3.zero,
+			Handles.SphereHandleCap));
+		Vector3 newGlobal2 = p.curve.GetPos(Handles.FreeMoveHandle(p.globalHandle2,
+			HandleUtility.GetHandleSize(p.globalHandle2) * 0.15f,
+			Vector3.zero,
+			Handles.SphereHandleCap));
 		
 		if(newGlobal1 != p.globalHandle1)
 		{

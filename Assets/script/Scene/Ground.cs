@@ -27,7 +27,7 @@ namespace GoFire
             // setTexAniSpeed(Speed);
             // SetTexAniSpeedToLayers();
         // }
-        public void Initialize()
+        public void AdjustChildrenPos()
         {
             // if (!Mathf.Approximately(ZScale, transform.localScale.z))
             // {
@@ -66,7 +66,9 @@ namespace GoFire
             _bodies = GetComponentsInChildren<IBody>();
             Array.Sort(_bodies, (a, b) =>
             {
-                return a.GameObject.transform.position.z < b.GameObject.transform.position.z ? -1 : 1;
+                var az = a.GetPosition().z;
+                var bz = b.GetPosition().z;
+                return az < bz ? -1 : 1;
             });
         }
 

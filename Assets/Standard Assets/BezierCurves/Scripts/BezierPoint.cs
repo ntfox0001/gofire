@@ -33,6 +33,18 @@ public class BezierPoint : MonoBehaviour{
 	#endregion
 	
 	#region PublicProperties
+
+	private string _name;
+	public string Name
+	{
+		get { return _name; }
+		set { _name = value; }
+	}
+
+	private string _postfix;
+	public string Postfix { get; set; }
+	
+	public string FullName { get { return name + Postfix; } }
 	
 	/// <summary>
 	///		- Curve this point belongs to

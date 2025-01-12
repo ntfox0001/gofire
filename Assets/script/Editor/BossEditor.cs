@@ -36,9 +36,9 @@ namespace GoFire
             
             Vector3[] lines = new Vector3[2];
             //Handles.Slider(body.GameObject.transform.position + posOffset, -EditorConst.SceneUp, 1.0f, Handles.ArrowHandleCap, 0);
-            lines[0] = body.GameObject.transform.position + EditorConst.SceneTipLineHeightOffset;
+            lines[0] = body.GetPosition() + EditorConst.SceneTipLineHeightOffset;
             lines[1] = new Vector3(lines[0].x, 0, lines[0].z);
-            Handles.Label(lines[0], body.GameObject.name, _labelStyle);
+            Handles.Label(lines[0], body.Name, _labelStyle);
             Handles.DrawLines(lines);
         }
     }
