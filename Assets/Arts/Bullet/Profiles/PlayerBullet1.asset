@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da8a7c80eab4c474da1e90eb12356b89, type: 3}
-  m_Name: DefaultEmitterProfile
+  m_Name: PlayerBullet1
   m_EditorClassIdentifier: 
   rootBullet: {fileID: 114671512830859702}
   subAssets:
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: Bullet
   m_EditorClassIdentifier: 
   parameterType: 0
-  uniqueIndex: 4594188
+  uniqueIndex: 2531923
   profile: {fileID: 11400000}
   parent: {fileID: 114201774248674550}
   children: []
@@ -7538,7 +7538,7 @@ MonoBehaviour:
   m_Name: Shot
   m_EditorClassIdentifier: 
   parameterType: 1
-  uniqueIndex: 5219993
+  uniqueIndex: 8970970
   profile: {fileID: 11400000}
   parent: {fileID: 114917193883442684}
   children:
@@ -9930,21 +9930,21 @@ MonoBehaviour:
   lowestValues: {x: 0, y: 0, z: -30}
   hasBeenSerializedOnce: 1
   fakeBulletAmount: 0
-  foldout0: 0
+  foldout0: 1
   foldout1: 0
   foldout2: 0
   foldout3: 0
   foldout4: 0
   foldout5: 0
-  foldout6: 0
-  foldout7: 0
+  foldout6: 1
+  foldout7: 1
   foldout8: 0
   textureSliceRate: 20
   ingameSizeOfTexture: {x: 1, y: 1}
   inputTexture: {fileID: 0}
   outputTexture:
     tex: {fileID: 0}
-    widthInWindow: 0.5
+    widthInWindow: 0.78
     ingameDistance: 5
     orientation: 0
     justChangedOrientation: 0
@@ -9972,7 +9972,7 @@ MonoBehaviour:
   m_Name: Root Emitter
   m_EditorClassIdentifier: 
   parameterType: 0
-  uniqueIndex: 5738433
+  uniqueIndex: 13828228
   profile: {fileID: 11400000}
   parent: {fileID: 0}
   children:
@@ -10090,7 +10090,7 @@ MonoBehaviour:
         parameterType: 0
         relativeTo: 0
         parameterName: 
-      defaultValue: {fileID: 21300000, guid: 963a799468bc9f94ba06627a3fe70fb9, type: 3}
+      defaultValue: {fileID: 21300000, guid: 2401496910a5a2d49a21fc8b07379fef, type: 3}
     narrowType: 1
     requireComponent: 0
     typeName: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
@@ -12296,10 +12296,10 @@ MonoBehaviour:
   foldoutVFX: 0
   hideSpriteList: 0
   vfxOpened: 0
-  currentlyDisplayedModule: 1
-  canMove: 0
-  canCollide: 0
-  isVisible: 0
+  currentlyDisplayedModule: 8
+  canMove: 1
+  canCollide: 1
+  isVisible: 1
   hasLifespan: 0
   hasLimitedRange: 0
   forwardSpeed:
@@ -12406,7 +12406,7 @@ MonoBehaviour:
         indexOfTo: 0
         indexOfBlendedChildren: 
         weight: 0
-        headerTitle: 
+        headerTitle: Forward Speed
         blendColor: {r: 0, g: 0, b: 0, a: 0}
         parameterType: 0
         relativeTo: 0
@@ -12519,7 +12519,7 @@ MonoBehaviour:
         indexOfTo: 0
         indexOfBlendedChildren: 
         weight: 0
-        headerTitle: 
+        headerTitle: Angular Speed
         blendColor: {r: 0, g: 0, b: 0, a: 0}
         parameterType: 0
         relativeTo: 0
@@ -12759,16 +12759,16 @@ MonoBehaviour:
     tagList: 1
   colliders:
   - colliderType: 0
-    size: 0.1
+    size: 0.09
     offset: {x: 0, y: 0, z: 0}
-    lineStart: {x: 0, y: 0}
+    lineStart: {x: 0, y: 0.15}
     lineEnd: {x: 0, y: 0}
   dieOnCollision: 1
   deathTiming: 0
   maxSimultaneousCollisionsPerFrame: 1
   shapeFoldout: 0
-  collisionTagsFoldout: 0
-  homing: 0
+  collisionTagsFoldout: 1
+  homing: 1
   homingTags:
     tagList: 1
   chaseMode: 1
@@ -17073,7 +17073,7 @@ MonoBehaviour:
   customParameters: []
   preview:
     collidersTex: {fileID: 0}
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 2401496910a5a2d49a21fc8b07379fef, type: 3}
     gizmoColor: {r: 0, g: 0, b: 0.5, a: 1}
 --- !u!114 &114917193883442684
 MonoBehaviour:
@@ -17088,7 +17088,7 @@ MonoBehaviour:
   m_Name: Pattern
   m_EditorClassIdentifier: 
   parameterType: 2
-  uniqueIndex: 15018627
+  uniqueIndex: 7779149
   profile: {fileID: 11400000}
   parent: {fileID: 114671512830859702}
   children:
