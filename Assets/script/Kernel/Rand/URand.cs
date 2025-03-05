@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace GoFire
+namespace GoFire.Kernel
 {
     public class Rand
     {

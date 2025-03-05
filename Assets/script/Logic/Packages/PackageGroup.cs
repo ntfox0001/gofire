@@ -2,12 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using GoFire;
+using GoFire.Kernel;
 using YooAsset;
 
 namespace GoFire
 {
-    public class PackageGroup
+    public class PackageGroup : IGetAsset
     {
         struct PackageInfo
         {
@@ -16,6 +16,8 @@ namespace GoFire
         }
 
         private PackageInfo[] _packageInfos = Array.Empty<PackageInfo>();
+        private bool _needReGenAllAssetsList = true;
+        private string[] _allAssetsNameList = Array.Empty<string>();
         
         public IEnumerator LoadPackage(string[] packageNames)
         {
@@ -64,6 +66,23 @@ namespace GoFire
             return null;
         }
 
+        public string[] GetAllAssetsNameList()
+        {
+            if (_needReGenAllAssetsList)
+            {
+                var allName = new List<string>(); 
+                foreach (var info in _packageInfos)
+                {
+                    foreach (var pair in info.AssetInfos)
+                    {
+                        allName.Add(pair.Key);
+                    }
+                }
+                _allAssetsNameList = allName.ToArray();
+            }
+            return _allAssetsNameList;
+        }
+        
         public IEnumerator Release()
         {
             IEnumerator[] enumerators = new IEnumerator[_packageInfos.Length];

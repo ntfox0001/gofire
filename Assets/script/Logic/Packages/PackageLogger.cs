@@ -7,22 +7,22 @@ namespace GoFire
     {
         public void Log(string message)
         {
-            GoFire.Log.Info(message);
+            GoFire.Kernel.Log.Info(message);
         }
 
         public void Warning(string message)
         {
-            GoFire.Log.Warning(message);
+            GoFire.Kernel.Log.Warning(message);
         }
 
         public void Error(string message)
         {
-            GoFire.Log.Error(message);
+            GoFire.Kernel.Log.Error(message);
         }
 
         public void Exception(Exception exception)
         {
-            GoFire.Log.Error(exception.Message);
+            GoFire.Kernel.Log.Error(exception.Message);
         }
     }
 }

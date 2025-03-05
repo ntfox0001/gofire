@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using GoFire;
-using YooAsset;
+﻿using GoFire.Kernel;
 
 namespace GoFire
 {

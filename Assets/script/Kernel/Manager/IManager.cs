@@ -1,4 +1,4 @@
-﻿namespace GoFire
+﻿namespace GoFire.Kernel
 {
     public interface IManager
     {

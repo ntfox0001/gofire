@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using GoFire.Kernel;
+using UnityEngine;
 
 namespace GoFire
 {
@@ -6,11 +7,11 @@ namespace GoFire
     {
         public Vector3 defaultUp = Vector3.up;
         public Vector3 defaultFront = Vector3.forward;
-        
-        public KeyboardInput KeyboardInput;
+
+        public Player1Layout Player1Layout;
         public void Init()
         {
-            KeyboardInput = new KeyboardInput(defaultFront, defaultUp);
+            
         }
 
         public void Release()
@@ -18,12 +19,5 @@ namespace GoFire
             
         }
 
-        void Update()
-        {
-            if (KeyboardInput.IsBind())
-            {
-                KeyboardInput.Update();
-            }
-        }
     }
 }

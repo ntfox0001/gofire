@@ -2,64 +2,48 @@
 
 namespace GoFire
 {
-    public class Airplane: MonoBehaviour, IBody, IHit
+    [RequireComponent(typeof(MoveCtrl))]
+    [RequireComponent(typeof(LifeCtrl))]
+    [RequireComponent(typeof(BounceCtrl))]
+    [RequireComponent(typeof(DamageCtrl))]
+    public class Airplane : MonoBehaviour
     {
-        private BodyData _bodyData;
-        private ulong _hitMask;
-
-        public void Init(cfg.Airplane template, ulong hitMask)
-        {
-            _bodyData.Life = template.Life;
-            _bodyData.Damage = template.Damage;
-            _bodyData.Speed.Init(Vector3.zero, template.Velocity);
-            _bodyData.Bounce.Dampening = template.Dampening;
-            _bodyData.Bounce.Mass = template.Mass;
-            _hitMask = hitMask;
-        }
+        private LifeCtrl _lifeCtrl;
+        private MoveCtrl _moveCtrl;
+        private BounceCtrl _bounceCtrl;
+        private DamageCtrl _damageCtrl;
+        private IInput _input;
         
-        public Vector3 GetPos()
+        private void Bind()
         {
-            return ObjectUtils.GetPosition(gameObject);
+            _lifeCtrl ??= GetComponent<LifeCtrl>();
+            _moveCtrl ??= GetComponent<MoveCtrl>();
+            _bounceCtrl ??= GetComponent<BounceCtrl>();
+            _damageCtrl ??= GetComponent<DamageCtrl>();
+
+            _input.Bind(_moveCtrl);
         }
 
-        public void SetPos(Vector3 pos)
+        public void Init(cfg.Airplane config, IInput input)
         {
-            ObjectUtils.SetPosition(gameObject, pos);
+            _lifeCtrl.life = config.Life;
+            _damageCtrl.damage = config.Damage;
+            _moveCtrl.speed = config.Speed;
+            _bounceCtrl.Bounce.Dampening = config.Dampening;
+            _bounceCtrl.Bounce.Mass = config.Mass;
+            
+            _input = input;
+            
+            Bind();
         }
 
-        public Speed GetSpeed()
+        void Update()
         {
-            return _bodyData.Speed;
-        }
-
-        public void SetSpeed(Speed speed)
-        {
-            _bodyData.Speed = speed;
-        }
-
-        public float GetLife()
-        {
-            return _bodyData.Life;
-        }
-
-        public void AddLife(float life)
-        {
-            _bodyData.Life += life;
-        }
-
-        public float GetDamage()
-        {
-            return _bodyData.Damage;
-        }
-
-        public BounceData GetBounce()
-        {
-            return _bodyData.Bounce;
-        }
-
-        public ulong HitMask()
-        {
-            return _hitMask;
+            if (_input.IsBind())
+            {
+                _input.Update();
+            }
         }
     }
 }
+

@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections;
-using GoFire;
+﻿using System.Collections;
+using GoFire.Kernel;
 using UnityEngine;
 
 namespace Script.Logic.ShadeUtil

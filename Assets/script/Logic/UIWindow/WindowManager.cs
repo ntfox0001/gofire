@@ -1,6 +1,5 @@
 ﻿using System.Collections;
-using GoFire;
-using UnityEngine;
+using GoFire.Kernel;
 using Object = UnityEngine.Object;
 
 namespace GoFire
@@ -49,6 +48,11 @@ namespace GoFire
             }
             
             return _globalPackageGroup.GetAsset<T>(assetName);
+        }
+
+        public string[] GetAllAssetsNameList()
+        {
+            return _globalPackageGroup.GetAllAssetsNameList();
         }
     }
 }

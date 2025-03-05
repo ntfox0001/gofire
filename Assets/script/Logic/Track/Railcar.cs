@@ -8,24 +8,25 @@ namespace GoFire
     [ExecuteInEditMode]
     public class Railcar : MonoBehaviour, IRailcar
     {
-        public IMovable movable;
-        
+        IMovable _movable;
         Vector3 _posOffset;
         private Quaternion _rotOffset;
+        private ITrack _track;
         private void Awake()
         {
-            if (movable == null) return;
-            movable = GetComponent<IMovable>();
+            _movable = GetComponent<IMovable>();
         }
 
-        public void SetOffset(Vector3 pos, Quaternion rot)
+        public void Init(ITrack track)
         {
+            var pos = track.GetPosition(0);
+            
             _posOffset = pos;
-            _rotOffset = rot;
+            
         }
         public void SetPosition(Vector3 pos)
         {
-            movable?.SetPos((_rotOffset * pos) + _posOffset);
+            _movable?.SetPos((_rotOffset * pos) + _posOffset);
         }
 
         public void OnArrive()

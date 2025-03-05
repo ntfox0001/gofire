@@ -1,18 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
-namespace GoFire
+namespace GoFire.Kernel
 {
     /// <summary>
     /// 对象池，目前不是线程安全的
     /// </summary>
     public class Pool : Singleton<Pool>
     {
-        private Dictionary<string, List<GameObject>> _pool = new();
-        private Dictionary<string, Func<GameObject>> _creators = new();
-        private HashSet<GameObject> _inPool = new();
+        private readonly Dictionary<string, List<GameObject>> _pool = new();
+        private readonly Dictionary<string, Func<GameObject>> _creators = new();
+        private readonly HashSet<GameObject> _inPool = new();
 
+        public enum ReturnCode
+        {
+            Success,
+            NotPoolObject,
+            AlreadyReturn,
+            
+        } 
         public void Register(string goName, Func<GameObject> creator)
         {
             _creators.Add(goName, creator);
@@ -38,26 +46,51 @@ namespace GoFire
                 _inPool.Remove(obj);
                 return obj;
             }
-            else
-            {
-                return _creators[goName]();
-            }
+
+            var newObj = _creators[goName]();
+            var pd = newObj.AddComponent<PoolData>();
+            pd.cacheName = goName;
+            return newObj;
         }
 
-        public void Return(string goName, GameObject g)
+        public ReturnCode CanReturn(GameObject go)
         {
-            if (_inPool.Contains(g))
+            var pd = go.GetComponent<PoolData>();
+            if (pd == null)
             {
-                Log.Error("Pool: " + goName + " is already in pool");
-                return;
+                return ReturnCode.NotPoolObject;
             }
-            List<GameObject> list;
-            if (!_pool.TryGetValue(goName, out list))
+            
+            if (_inPool.Contains(go))
+            {
+                return ReturnCode.AlreadyReturn;
+            }
+
+            return ReturnCode.Success;
+        }
+        public ReturnCode Return(GameObject go)
+        {
+            var pd = go.GetComponent<PoolData>();
+            if (pd == null)
+            {
+                return ReturnCode.NotPoolObject;
+            }
+
+            var goName = pd.cacheName; 
+            if (_inPool.Contains(go))
+            {
+                return ReturnCode.AlreadyReturn;
+            }
+
+            if (!_pool.TryGetValue(goName, out var list))
             {
                 list = new List<GameObject>();
                 _pool.Add(goName, list);
             }
-            list.Add(g);
+            
+            list.Add(go);
+            _inPool.Add(go);
+            return ReturnCode.Success;
         }
     }
 }

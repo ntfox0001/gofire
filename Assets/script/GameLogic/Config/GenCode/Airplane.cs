@@ -23,7 +23,7 @@ public sealed partial class Airplane : Luban.BeanBase
         { if(!_buf["gun"].IsString) { throw new SerializationException(); }  Gun = _buf["gun"]; }
         { if(!_buf["life"].IsNumber) { throw new SerializationException(); }  Life = _buf["life"]; }
         { if(!_buf["damage"].IsNumber) { throw new SerializationException(); }  Damage = _buf["damage"]; }
-        { if(!_buf["velocity"].IsNumber) { throw new SerializationException(); }  Velocity = _buf["velocity"]; }
+        { if(!_buf["speed"].IsNumber) { throw new SerializationException(); }  Speed = _buf["speed"]; }
         { if(!_buf["Mass"].IsNumber) { throw new SerializationException(); }  Mass = _buf["Mass"]; }
         { if(!_buf["dampening"].IsNumber) { throw new SerializationException(); }  Dampening = _buf["dampening"]; }
     }
@@ -42,7 +42,7 @@ public sealed partial class Airplane : Luban.BeanBase
     /// <summary>
     /// 速度
     /// </summary>
-    public readonly float Velocity;
+    public readonly float Speed;
     /// <summary>
     /// 质量
     /// </summary>
@@ -68,7 +68,7 @@ public sealed partial class Airplane : Luban.BeanBase
         + "gun:" + Gun + ","
         + "life:" + Life + ","
         + "damage:" + Damage + ","
-        + "velocity:" + Velocity + ","
+        + "speed:" + Speed + ","
         + "Mass:" + Mass + ","
         + "dampening:" + Dampening + ","
         + "}";

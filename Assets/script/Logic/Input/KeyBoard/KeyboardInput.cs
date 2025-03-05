@@ -2,7 +2,7 @@
 
 namespace GoFire
 {
-    public class KeyboardInput : IController
+    public class KeyboardInput : IInput
     {
         private Player1Layout _player1Layout;
 
@@ -30,14 +30,10 @@ namespace GoFire
             InitDirection();
         }
 
-        public bool Bind(GameObject target)
+        public bool Bind(IMovable target)
         {
-            _bindTarget = target.GetComponent<IMovable>();
-            if (_bindTarget == null)
-            {
-                return false;
-            }
-            return true;
+            _bindTarget = target;
+            return _bindTarget != null;
         }
 
         void InitDirection()
@@ -138,7 +134,12 @@ namespace GoFire
 
         void Move(Vector3 move)
         {
+            if (!IsBind())
+            {
+                return;
+            }
             
+            _bindTarget.SetPos(_bindTarget.GetPos() + move * Time.deltaTime);
         }
         
         void Fire()

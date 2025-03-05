@@ -1,4 +1,5 @@
 ﻿using GoFire;
+using GoFire.Kernel;
 using UnityEngine;
 
 namespace GoFire

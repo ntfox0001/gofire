@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-using Cysharp.Threading.Tasks;
-using GoFire;
-using UnityEngine;
+using GoFire.Kernel;
 using YooAsset;
 
 namespace GoFire

@@ -1,5 +1,5 @@
 ﻿using System;
-namespace GoFire
+namespace GoFire.Kernel
 {
     public class SysRand
     {

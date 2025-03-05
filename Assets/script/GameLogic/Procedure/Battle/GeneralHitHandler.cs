@@ -25,16 +25,8 @@ namespace GoFire
         
         public void OnHit(HitData data)
         {
-            var beHitBody = data.BeHit.GetComponent<IBody>();
-            var hitBody = data.Hit.gameObject.GetComponent<IBody>();
-            
-            if (beHitBody != null && hitBody != null)
-            {
-                beHitBody.AddLife(-hitBody.GetDamage());
-                hitBody.AddLife(-beHitBody.GetDamage());    
-            }
-            
-            BodyUtils.CalcBounce(beHitBody, hitBody);
+            BodyUtils.CalcLife(data.Hit.gameObject, data.BeHit);
+            BodyUtils.CalcBounce(data.Hit.gameObject, data.BeHit);
         }
     }
 }

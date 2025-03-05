@@ -3,10 +3,9 @@ using NLog;
 using NLog.Config;
 using NLog.Layouts;
 using NLog.Targets;
-using UnityEngine;
 using Logger = NLog.Logger;
 
-namespace GoFire
+namespace GoFire.Kernel
 {
     public class Log : Singleton<Log>, IManager
     {

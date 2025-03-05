@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace GoFire
+namespace GoFire.Kernel
 {
      public class WaitForObjects : CustomYieldInstruction, IProgress
      {

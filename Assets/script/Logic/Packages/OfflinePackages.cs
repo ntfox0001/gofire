@@ -1,6 +1,5 @@
 ﻿using System.Collections;
-using GoFire;
-using UnityEngine;
+using GoFire.Kernel;
 using YooAsset;
 
 namespace GoFire

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using GoFire;
+using GoFire.Kernel;
 
 namespace GoFire
 {
@@ -13,7 +13,7 @@ namespace GoFire
             _defaultHitAction = defaultAction;
         }
         
-        public void RegisterHit(ulong hitObj1,ulong hitObj2,IHitHandler handler)
+        public void RegisterHit(ulong hitObj1,ulong hitObj2, IHitHandler handler)
         {
             _hitActions.Add(GetKey(hitObj1, hitObj2), handler);
         }

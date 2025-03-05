@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using cfg;
-using GoFire;
+using GoFire.Kernel;
 using SimpleJSON;
 using UnityEngine;
 using YooAsset;
