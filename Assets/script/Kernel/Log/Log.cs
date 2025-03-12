@@ -45,51 +45,101 @@ namespace GoFire.Kernel
 
         public static void Debug(string message)
         {
+            if (GetSingleton()._logger == null)
+            {
+                UnityEngine.Debug.Log(message);
+                return;
+            }
             GetSingleton()._logger.Debug(message);
         }
 
         public static void Debug(string format, params object[] args)
         {
+            if (GetSingleton()._logger == null)
+            {
+                UnityEngine.Debug.LogFormat(format, args);
+                return;
+            }
             GetSingleton()._logger.Debug(format, args);
         }
 
         public static void Info(string message)
         {
+            if (GetSingleton()._logger == null)
+            {
+                UnityEngine.Debug.Log(message);
+                return;
+            }
             GetSingleton()._logger.Info(message);
         }
 
         public static void Info(string format, params object[] args)
         {
+            if (GetSingleton()._logger == null)
+            {
+                UnityEngine.Debug.LogFormat(format, args);
+                return;
+            }
             GetSingleton()._logger.Info(format, args);
         }
 
         public static void Warning(string message)
         {
+            if (GetSingleton()._logger == null)
+            {
+                UnityEngine.Debug.LogWarning(message);
+                return;
+            }
             GetSingleton()._logger.Warn(message);
         }
 
         public static void Warning(string format, params object[] args)
         {
+            if (GetSingleton()._logger == null)
+            {
+                UnityEngine.Debug.LogWarningFormat(format, args);
+                return;
+            }
             GetSingleton()._logger.Warn(format, args);
         }
 
         public static void Error(string message)
         {
+            if (GetSingleton()._logger == null)
+            {
+                UnityEngine.Debug.LogError(message);
+                return;
+            }
             GetSingleton()._logger.Error(message);
         }
 
         public static void Error(string format, params object[] args)
         {
+            if (GetSingleton()._logger == null)
+            {
+                UnityEngine.Debug.LogErrorFormat(format, args);
+                return;
+            }
             GetSingleton()._logger.Error(format, args);
         }
 
         public static void Fatal(string message)
         {
+            if (GetSingleton()._logger == null)
+            {
+                UnityEngine.Debug.LogError(message);
+                return;
+            }
             GetSingleton()._logger.Fatal(message);
         }
 
         public static void Fatal(string format, params object[] args)
         {
+            if (GetSingleton()._logger == null)
+            {
+                UnityEngine.Debug.LogErrorFormat(format, args);
+                return;
+            }
             GetSingleton()._logger.Fatal(format, args);
         }
 

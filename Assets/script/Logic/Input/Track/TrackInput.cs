@@ -2,7 +2,7 @@
 
 namespace GoFire
 {
-    public class TrackInput : MonoBehaviour, IInput
+    public class TrackInput : IInput
     {
         private IMovable _bindTarget;
         private ITrack _track;
@@ -25,7 +25,7 @@ namespace GoFire
             var v = _time * _duration;
             var pos = _track.GetPosition(v);
             _bindTarget.SetPos(pos);
-            var dir = _track.GetDir(v, Vector3.up);
+            var dir = _track.GetFront(v, Vector3.up);
             _bindTarget.SetDir(dir);
         }
 

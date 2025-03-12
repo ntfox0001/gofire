@@ -19,6 +19,11 @@ namespace GoFire
         {
             return UnityEngine.Object.Instantiate<T>(obj);
         }
+        
+        public new static T Instantiate<T>(T obj, Transform parent) where T : Object
+        {
+            return UnityEngine.Object.Instantiate<T>(obj, parent);
+        }
 
         public static void Destroy(GameObject obj)
         {

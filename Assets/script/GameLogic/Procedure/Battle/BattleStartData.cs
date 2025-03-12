@@ -1,4 +1,6 @@
-﻿namespace GoFire
+﻿using UnityEngine;
+
+namespace GoFire
 {
     public struct PlayerSetting
     {
@@ -7,7 +9,12 @@
     }
     public struct BattleStartData
     {
+        public GameObject Root;
         public PlayerSetting Player1;
         public PlayerSetting Player2;
+        public string LandName;
+        public string MainViewName;
+        public string[] UIWindowPackageNames;
+        public string[] PackageNames;
     }
 }

@@ -55,7 +55,7 @@ namespace GoFire
             foreach (var trackName in _packageGroup.GetAllAssetsNameList())
             {
                 var raw = _packageGroup.GetAsset<GameObject>(trackName);
-                var go = Instantiate(raw);
+                var go = ObjectManager.Instantiate(raw, transform);
                 var track = go.GetComponent<ITrack>();
                 if (track != null)
                 {
@@ -69,6 +69,15 @@ namespace GoFire
         public IEnumerator UnloadPackage()
         {
             yield return _packageGroup.Release();
+        }
+        
+        public ITrack GetTrack(string trackName)
+        {
+            if (_tracks.TryGetValue(trackName, out var track))
+            {
+                return track;
+            }
+            return _localTracks.TryGetValue(trackName, out var localTrack) ? localTrack.Track : null;
         }
     }
 }

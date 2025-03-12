@@ -1,213 +1,319 @@
-// using UnityEditor;
-// using UnityEngine;
-//
-// namespace GoFire
-// {
-//     [CustomEditor(typeof(Land))]
-//     public class LandEditor : Editor
-//     {
-//         private readonly Color _screenFaceColor = new(1f, 0f, 0f, 0.1f);
-//         private Land _land;
-//         private bool _isPlay = false;
-//         private readonly TimeUtils.Time _time = new();
-//         private Ground[] _grounds;
-//         private float _y = 0; // 绘制高度
-//         private float _currentPos; // 当前位置
-//         private float _progress = 0; // 时间进度
-//         private float _totalDuration; // 总时间
-//
-//         private void Reset()
-//         {
-//             Debug.LogError("Reset");
-//         }
-//
-//         private void OnEnable()
-//         {
-//             _land = (Land)target;
-//             InitStatus();
-//             ResetStatus();
-//         }
-//
-//         public override void OnInspectorGUI()
-//         {
-//             if (GUILayout.Button("Adjust ground pos", GUILayout.Width(100)))
-//             {
-//                 AdjustGroundPos(_land);
-//             }
-//             
-//             _land.objectsNode = EditorGUILayout.ObjectField("ObjectsNode", _land.objectsNode, typeof(GameObject), true) as GameObject;
-//             _land.screenTracksNode = EditorGUILayout.ObjectField("ScreenTracksNode", _land.screenTracksNode, typeof(GameObject), true) as GameObject;
-//             _land.groundTracksNode = EditorGUILayout.ObjectField("GroundTracksNode", _land.groundTracksNode, typeof(GameObject), true) as GameObject;
-//
-//             if (GUILayout.Button("RefreshAllTracks", GUILayout.Width(100)))
-//             {
-//                 AdjustTrackNode(_land);
-//             }
-//         }
-//
-//         void OnSceneGUI()
-//         {
-//             if (_isPlay && Event.current.type == EventType.Repaint)
-//             {
-//                 // 强制每帧刷新
-//                 SceneView.RepaintAll();
-//             }
-//
-//             HandleUtility.AddDefaultControl(GUIUtility.GetControlID(FocusType.Passive));
-//
-//             DrawScreenFace(_currentPos, _y, _screenFaceColor);
-//
-//             Handles.BeginGUI();
-//             GUILayout.FlexibleSpace();
-//             GUILayout.BeginHorizontal();
-//             GUILayout.FlexibleSpace();
-//             GUILayout.Label(_progress.ToString("F1") + "s", GUILayout.Width(40));
-//             _progress = GUILayout.HorizontalSlider(_progress, 0, _totalDuration, GUILayout.MinWidth(100), GUILayout.MaxWidth(1000));
-//             GUILayout.Label(_totalDuration.ToString("F1") + "s", GUILayout.Width(40));
-//             var buttonCaption = "play";
-//             if (_isPlay)
-//             {
-//                 buttonCaption = "stop";
-//             }
-//             if (GUILayout.Button(buttonCaption, GUILayout.Width(100)))
-//             {
-//                 _isPlay = !_isPlay;
-//             }
-//             if (GUILayout.Button("reset", GUILayout.Width(100)))
-//             {
-//                 ResetStatus();
-//             }
-//             GUILayout.EndHorizontal();
-//             Handles.EndGUI();
-//
-//             if (_isPlay)
-//             {
-//                 _currentPos = Land.UpdatePos(_time.DeltaSec, _currentPos, _grounds);
-//                 _progress += _time.DeltaSec;
-//                 if (_progress > _totalDuration)
-//                 {
-//                     _progress = _totalDuration;
-//                     _isPlay = false;
-//                 }
-//                 // Debug.LogError("currentPos:" + _currentPos + ", t: " + _time.DeltaSec);
-//             }
-//
-//             DrawBody(_land);
-//             DrawTracks(_land);
-//             
-//             _time.Update();
-//         }
-//
-//         private static void DrawScreenFace(float pos, float y, Color faceColor)
-//         {
-//             var vecs = new Vector3[4];
-//             var x = EditorConst.CameraSceneWidth * 0.5f;
-//             var z = GameConst.CameraSceneHeight * 0.5f;
-//             
-//             vecs[0] = new Vector3(-x, y, -z + pos);
-//             vecs[1] = new Vector3(x, y, -z + pos);
-//             vecs[2] = new Vector3(x, y, z + pos);
-//             vecs[3] = new Vector3(-x, y, z + pos);
-//             Handles.DrawSolidRectangleWithOutline(vecs, faceColor, Color.black);
-//         }
-//         private void InitStatus()
-//         {
-//             _grounds = _land.GetComponentsInChildren<Ground>();
-//         }
-//         private void ResetStatus()
-//         {
-//             _totalDuration = 0;
-//             foreach (var g in _grounds)
-//             {
-//                 g.AdjustChildrenPos();
-//                 _totalDuration += g.GetDuration();
-//                 g.SetPlayTimePos(0);
-//             }
-//             _currentPos = 0;
-//             _progress = 0;
-//             _y = _land.transform.position.y;
-//         }
-//
-//         void DrawBody(Land land)
-//         {
-//             var bodies = land.GetComponentsInChildren<IBody>();
-//             Vector3[] lines = new Vector3[bodies.Length*2];
-//             var labelStyle = new GUIStyle(GUI.skin.label);
-//             labelStyle.fontSize = EditorConst.LabelFontSize;
-//             labelStyle.normal.textColor = Color.cyan;
-//
-//             for (int i = 0; i < bodies.Length; i++)
-//             {
-//                 var body = bodies[i];
-//                 //Handles.Slider(body.GameObject.transform.position + posOffset, -EditorConst.SceneUp, 1.0f, Handles.ArrowHandleCap, 0);
-//                 lines[i * 2] = body.GetPosition() + EditorConst.SceneTipLineHeightOffset;
-//                 lines[i * 2 + 1] = body.GetPosition();
-//                 Handles.Label(lines[i * 2], body.Name, labelStyle);
-//             }
-//
-//             Handles.DrawLines(lines);
-//         }
-//
-//         void DrawTracks(Land land)
-//         {
-//             var bezierCurves = land.GetComponentsInChildren<BezierCurve>();
-//             var lines = new Vector3[bezierCurves.Length * 2];
-//             var labelStyle = new GUIStyle(GUI.skin.label);
-//             labelStyle.fontSize = EditorConst.LabelFontSize;
-//             labelStyle.normal.textColor = Color.magenta;
-//             
-//             for (var i = 0; i< bezierCurves.Length; i++)
-//             {
-//                 var curve = bezierCurves[i];
-//                 var pos = curve.pointCount > 0 ? curve[0].position : curve.transform.position;
-//                 
-//                 lines[i * 2] = pos + EditorConst.SceneTipLineHeightOffset;
-//                 lines[i * 2 + 1] = pos;
-//                 
-//                 Handles.DrawLines(lines);
-//                 Handles.Label(lines[i * 2], curve.name, labelStyle);
-//             }
-//         } 
-//         
-//         private static void AdjustGroundPos(Land land)
-//         {
-//             var grounds = land.GetComponentsInChildren<Ground>();
-//             float pos = 0;//-CameraCtrl.Height * 0.5f;
-//             foreach (var v in grounds)
-//             {
-//                 v.AdjustChildrenPos();
-//                 if (v.GetLength() < CameraCtrl.Height)
-//                 {
-//                     // ground 必须长度必须大于一个屏幕的大小
-//                     continue;
-//                 }
-//
-//                 v.SetPosition(pos);
-//                 pos += v.GetLength();
-//             }
-//
-//             land.transform.localPosition = new Vector3(0, 0, -CameraCtrl.Height * 0.5f);
-//         }
-//
-//         private static void AdjustTrackNode(Land land)
-//         {
-//             var stiList = land.screenTracksNode.GetComponentsInChildren<TrackInfo>();
-//             foreach (var v in stiList)
-//             {
-//                 if (!land.objectsNode.transform.Find(v.name))
-//                 {
-//                     new GameObject(v.name).transform.SetParent(land.objectsNode.transform);
-//                 }
-//             }
-//             var gtiList = land.groundTracksNode.GetComponentsInChildren<TrackInfo>();
-//             foreach (var v in gtiList)
-//             {
-//                 if (!land.objectsNode.transform.Find(v.name))
-//                 {
-//                     new GameObject(v.name).transform.SetParent(land.objectsNode.transform);
-//                 }
-//             }
-//         }
-//     }
-//
-// }
+﻿using System;
+using GoFire.Kernel;
+using UnityEditor;
+using UnityEngine;
+using YooAsset.Editor;
+
+namespace GoFire
+{
+    [CustomEditor(typeof(Land))]
+    public class LandEditor : Editor
+    {
+        private SerializedProperty _groundTracksNode;
+        private SerializedProperty _cameraTrack;
+        private SerializedProperty _objectsNode;
+        private SerializedProperty _airPlanePackageName;
+        private SerializedProperty _tracksPackageName;
+        private SerializedProperty _airPlanes;
+        
+        private string[] _packageNames;
+        private int _selectAirplanePackageIndex = 0;
+        private int _selectTracksPackageIndex = 0;
+        
+        private string[] _configOfAirplaneNames;
+        private string[] _trackNames;
+
+        private bool _showObjects = true;
+        private bool _initPosOfAirplanes = false;
+
+        struct AddNewAirplaneParams
+        {
+            public int AirplaneNameSelect;
+            public int TrackNameSelect;
+            public float TimeProgress;
+            public float DistanceToMid;
+        }
+
+        private AddNewAirplaneParams _addNewAirplaneParams;
+
+        private Land _land;
+        void OnEnable()
+        {
+            _land = (Land)target;
+            _groundTracksNode = serializedObject.FindProperty("groundTracksNode");
+            _cameraTrack = serializedObject.FindProperty("cameraTrack");
+            _objectsNode = serializedObject.FindProperty("objectsNode");
+            _airPlanePackageName = serializedObject.FindProperty("airPlanePackageName");
+            _tracksPackageName = serializedObject.FindProperty("tracksPackageName");
+            _airPlanes = serializedObject.FindProperty("Airplanes");
+            
+            InitPackageNameArray(false);
+            InitPosOfAirplanes(false);
+        }
+        public override void OnInspectorGUI()
+        {
+            // 获取目标脚本的序列化对象
+            serializedObject.Update();
+    
+            // 绘制一个接受 GameObject 类型的属性字段
+            EditorGUILayout.ObjectField(_groundTracksNode, typeof(GameObject), new GUIContent("Target GameObject"));
+            EditorGUILayout.ObjectField(_cameraTrack, typeof(GameObject), new GUIContent("CameraTrack"));
+            EditorGUILayout.ObjectField(_objectsNode, typeof(GameObject), new GUIContent("ObjectsNode"));
+
+            GUILayout.Space(20);
+            
+            var newSelectAirplaneIndex = EditorGUILayout.Popup("飞行物Package", _selectAirplanePackageIndex, _packageNames);
+            if (newSelectAirplaneIndex != _selectAirplanePackageIndex)
+            {
+                _selectAirplanePackageIndex = newSelectAirplaneIndex;
+                if (_selectAirplanePackageIndex == 0)
+                {
+                    _airPlanePackageName.stringValue = "";
+                }
+                else
+                {
+                    _airPlanePackageName.stringValue = _packageNames[_selectAirplanePackageIndex];    
+                }
+            }
+            
+            var newSelectTracksIndex = EditorGUILayout.Popup("轨道Package", _selectTracksPackageIndex, _packageNames);
+            if (newSelectTracksIndex != _selectTracksPackageIndex)
+            {
+                _selectTracksPackageIndex = newSelectTracksIndex;
+                if (_selectTracksPackageIndex == 0)
+                {
+                    _tracksPackageName.stringValue = "";
+                }
+                else
+                {
+                    _tracksPackageName.stringValue = _packageNames[_selectTracksPackageIndex];
+                }
+            }
+
+            GUILayout.Space(20);
+            GUILayout.BeginHorizontal();
+            
+            if (GUILayout.Button("刷新package", GUILayout.Width(200)))
+            {
+                InitPackageNameArray(true);
+            }
+            
+            GUILayout.FlexibleSpace();
+            
+            if (GUILayout.Button("刷新飞行物配置", GUILayout.Width(200)))
+            {
+                RefreshAirplaneConfig(true);
+            }
+            GUILayout.EndHorizontal();
+
+            GUILayout.Space(20);
+
+            var delayAction = DrawAirplanes();
+            // 应用对序列化对象所做的更改
+            serializedObject.ApplyModifiedProperties();
+
+            delayAction?.Invoke();
+        }
+
+        string[] RefreshAirplaneConfig(bool force = false)
+        {
+            if (!force && _configOfAirplaneNames != null)
+            {
+                return _configOfAirplaneNames;
+            }
+            
+            _configOfAirplaneNames = new string[EditorConfigUtils.GetTables().TbAirplane.DataList.Count];
+            for (int i = 0; i< EditorConfigUtils.GetTables().TbAirplane.DataList.Count; i++)
+            {
+                _configOfAirplaneNames[i] = EditorConfigUtils.GetTables().TbAirplane.DataList[i].AssetName;
+            }
+
+            return _configOfAirplaneNames;
+        }
+
+        string[] RefreshTrack(bool force = false)
+        {
+            if (!force && _trackNames != null)
+            {
+                return _trackNames;
+            }
+
+            if (_tracksPackageName.stringValue == "")
+            {
+                return _trackNames;
+            }
+
+            var package = EditorPackageUtils.GetPackageResource(_tracksPackageName.stringValue);
+            var infos = package.GetAllAssetInfos();
+            if (infos.Count == 0)
+            {
+                return _trackNames;
+            }
+
+            _trackNames = new string[infos.Count];
+            for (int i = 0; i< infos.Count; i++)
+            {
+                var info = infos[i];
+                _trackNames[i] = info.Address;
+            }
+            
+            return _trackNames;
+        }
+        
+        Action DrawAirplanes()
+        {
+            Action delayAction = null;
+            
+            EditorGUILayout.Space(5);
+            
+            _addNewAirplaneParams.AirplaneNameSelect = EditorGUILayout.Popup("选择飞行物配置",
+                _addNewAirplaneParams.AirplaneNameSelect,
+                RefreshAirplaneConfig());
+            _addNewAirplaneParams.TrackNameSelect = EditorGUILayout.Popup("选择轨道",
+                _addNewAirplaneParams.TrackNameSelect,
+                RefreshTrack());
+            
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("激活时间");
+            _addNewAirplaneParams.TimeProgress = EditorGUILayout.FloatField(_addNewAirplaneParams.TimeProgress);
+            EditorGUILayout.LabelField("秒", GUILayout.Width(50));
+            EditorGUILayout.EndHorizontal();
+            
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("屏幕距离");
+            _addNewAirplaneParams.DistanceToMid = EditorGUILayout.FloatField(_addNewAirplaneParams.DistanceToMid);
+            EditorGUILayout.EndHorizontal();
+            
+            if (GUILayout.Button("创建"))
+            {
+                _airPlanes.InsertArrayElementAtIndex(_airPlanes.arraySize);
+                var newIdx = _airPlanes.arraySize - 1;
+                var elem = _airPlanes.GetArrayElementAtIndex(newIdx);
+                elem.FindPropertyRelative("AirplaneName").stringValue = _configOfAirplaneNames[_addNewAirplaneParams.AirplaneNameSelect];
+                elem.FindPropertyRelative("TimeProgress").floatValue = _addNewAirplaneParams.TimeProgress;
+                elem.FindPropertyRelative("DistanceToMid").floatValue = _addNewAirplaneParams.DistanceToMid;
+                elem.FindPropertyRelative("TrackName").stringValue = _trackNames[_addNewAirplaneParams.TrackNameSelect];
+                elem.FindPropertyRelative("IsGroup").boolValue = false;
+                elem.FindPropertyRelative("Count").intValue = 0;
+                elem.FindPropertyRelative("Interval").floatValue = 0;
+                
+                delayAction += () =>
+                {
+                    _land.Airplanes[newIdx].AdjustPos(_land.cameraTrack.GetComponent<ITrack>());
+                };
+            }
+            
+            EditorGUILayout.Space(10);
+            
+            _showObjects = EditorGUILayout.Foldout(_showObjects, "airplanes");
+            if (_showObjects)
+            {
+                var oldLabelWidth = EditorGUIUtility.labelWidth;
+                EditorGUIUtility.labelWidth = 60;
+                EditorGUI.indentLevel++;
+                
+                for (int i = 0; i < _airPlanes.arraySize; i++)
+                {
+                    EditorGUILayout.BeginHorizontal();
+                    
+                    var airplane = _airPlanes.GetArrayElementAtIndex(i);
+                    var airplaneName = airplane.FindPropertyRelative("AirplaneName");
+                    var trackName = airplane.FindPropertyRelative("TrackName");
+                    var timeProgress = airplane.FindPropertyRelative("TimeProgress");
+                    var distanceToMid = airplane.FindPropertyRelative("DistanceToMid");
+                    var isGroup = airplane.FindPropertyRelative("IsGroup");
+                    var count = airplane.FindPropertyRelative("Count");
+                    var interval = airplane.FindPropertyRelative("Interval");
+                    
+                    if (GUILayout.Button("-", GUILayout.Width(15)))
+                    {
+                        var idx = i;
+                        _airPlanes.DeleteArrayElementAtIndex(idx);
+                        i--;
+                        continue;
+                    }
+                    
+                    EditorGUILayout.LabelField(airplaneName.stringValue + "->" + trackName.stringValue, GUILayout.MinWidth(150));
+                    EditorUtils.Field("时间(秒)",timeProgress.floatValue, v =>
+                    {
+                        timeProgress.floatValue = v;
+                        _land.Airplanes[i].AdjustPos(_land.GetCameraTrack());
+                    });
+                    
+                    EditorUtils.Field("距离", distanceToMid.floatValue, v =>
+                    {
+                        distanceToMid.floatValue = v;
+                        _land.Airplanes[i].AdjustPos(_land.GetCameraTrack());
+                    });
+
+                    EditorUtils.Field("组", isGroup.boolValue, v =>
+                    {
+                        isGroup.boolValue = v;
+                    }, 50, 100);
+                    EditorGUILayout.EndHorizontal();
+                    if (isGroup.boolValue)
+                    {
+                        EditorGUI.indentLevel++;   
+                        EditorGUILayout.BeginHorizontal();
+                        EditorUtils.Field("数量", count.intValue, v =>
+                        {
+                            v = System.Math.Clamp(v, 1, 100);
+                            count.intValue = v;
+                        });
+                        EditorUtils.Field("间隔", interval.floatValue, v =>
+                        {
+                            v = System.Math.Clamp(v, 0.0001f, 100.0f);
+                            interval.floatValue = v;
+                        });
+                        EditorGUILayout.EndHorizontal();
+                        EditorGUILayout.Space(10);
+                        EditorGUI.indentLevel--;
+                    }
+                }
+                EditorGUI.indentLevel--;
+                EditorGUIUtility.labelWidth = oldLabelWidth;
+            }
+
+            if (GUILayout.Button("排序"))
+            {
+                _land.SortAirplaneMarkers();
+            }
+
+            return delayAction;
+        }
+
+        void InitPackageNameArray(bool force)
+        {
+            if (_packageNames != null && !force)
+            {
+                return;
+            }
+            _packageNames = new string[AssetBundleCollectorSettingData.Setting.Packages.Count + 1];
+            _packageNames[0] = "NoUse";
+            for (int i = 0; i < AssetBundleCollectorSettingData.Setting.Packages.Count; i++)
+            {
+                var package = AssetBundleCollectorSettingData.Setting.Packages[i];
+                _packageNames[i + 1] = package.PackageName;
+
+                if (package.PackageName == _airPlanePackageName.stringValue)
+                {
+                    _selectAirplanePackageIndex = i + 1;
+                }
+                
+                if (package.PackageName == _tracksPackageName.stringValue)
+                {
+                    _selectTracksPackageIndex = i + 1;
+                }
+            }
+        }
+
+        void InitPosOfAirplanes(bool force)
+        {
+            if (_initPosOfAirplanes && !force)
+            {
+                return;
+            }
+            _land.InitAirplanesPos();
+        }
+    }
+}

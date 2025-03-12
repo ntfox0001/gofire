@@ -19,7 +19,7 @@ namespace GoFire
             var package = YooAssets.CreatePackage(packageName);
 
             var initOperation = package.InitializeAsync(initParameters);
-            yield return new WaitForObjects(YieldInstructionWrapper.Wrap(initOperation));
+            yield return initOperation;
             
             if(initOperation.Status == EOperationStatus.Succeed)
                 Log.Info("资源包初始化成功！");

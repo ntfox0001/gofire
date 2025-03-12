@@ -1,12 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace GoFire
 {
-    [ExecuteInEditMode]
-    public class Railcar : MonoBehaviour, IRailcar
+    public class Railcar : MonoBehaviour
     {
         IMovable _movable;
         Vector3 _posOffset;

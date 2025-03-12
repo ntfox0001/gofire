@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections;
-using GoFire;
+﻿using System.Collections;
+using GoFire.Kernel;
 using GoFire.UIWindow;
 
 namespace GoFire
@@ -10,21 +9,16 @@ namespace GoFire
         private StartUpWindow _startUpWindow;
         public IEnumerator Init(params object[] args)
         {
-            yield return _init();
-            
+            Log.Info("StartUpProcedure Init....");
+            yield return WindowManager.GetSingleton().LoadGlobalPackage(new[] { "UICommon" });
+            _startUpWindow = WindowManager.GetSingleton().topNode.CreateWindow<StartUpWindow>();
+            yield return ConfigManager.GetSingleton().LoadPackage();
         }
 
         public IEnumerator Release()
         {
             UnityEngine.Object.Destroy(_startUpWindow.gameObject);
             yield return null;
-        }
-
-        IEnumerator _init()
-        {
-            yield return WindowManager.GetSingleton().LoadGlobalPackage(new[] { "UICommon" });
-            _startUpWindow = WindowManager.GetSingleton().topNode.CreateWindow<StartUpWindow>();
-            yield return ConfigManager.GetSingleton().LoadPackage();
         }
     }
 }

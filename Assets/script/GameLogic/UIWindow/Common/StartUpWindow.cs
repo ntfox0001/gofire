@@ -70,7 +70,7 @@ namespace GoFire.UIWindow
                 yield return null;
             }
             
-            ProcedureManager.GetSingleton().Switch(new BattleProcedure());
+            yield return ProcedureManager.GetSingleton().Switch(new BattleProcedure());
         }
     }
 }

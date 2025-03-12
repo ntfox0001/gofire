@@ -205,3 +205,24 @@ MonoBehaviour:
         FilterRuleName: CollectAll
         AssetTags: 
         UserData: 
+  - PackageName: MainView
+    PackageDesc: 
+    EnableAddressable: 1
+    LocationToLower: 0
+    IncludeAssetGUID: 1
+    AutoCollectShaders: 1
+    IgnoreRuleName: NormalIgnoreRule
+    Groups:
+    - GroupName: MainView
+      GroupDesc: 
+      AssetTags: 
+      ActiveRuleName: EnableGroup
+      Collectors:
+      - CollectPath: Assets/DataRes/MainView
+        CollectorGUID: 53551d05b7e2af546a9b81b1afa67c18
+        CollectorType: 0
+        AddressRuleName: AddressByFileName
+        PackRuleName: PackDirectory
+        FilterRuleName: CollectAll
+        AssetTags: 
+        UserData: 

@@ -95,6 +95,7 @@ public class BezierCurveEditor : Editor
 
     void AddPoint()
     {
+        var lastPos = curve.pointCount > 0 ? curve.GetPos(curve[curve.pointCount - 1].localPosition + Vector3.one) : Vector3.zero; 
         GameObject pointObject = new GameObject("Point " + pointsProp.arraySize);
         pointObject.transform.parent = curve.transform;
         pointObject.transform.localPosition = Vector3.zero;
@@ -103,9 +104,9 @@ public class BezierCurveEditor : Editor
         Undo.RegisterCreatedObjectUndo(pointObject, "Add Point");
 
         newPoint.curve = curve;
-        newPoint.localPosition = curve.pointCount > 0 ? curve.GetPos(curve[curve.pointCount - 1].localPosition + Vector3.one) : Vector3.zero;
-        newPoint.handle1 = Vector3.right * 0.1f;
-        newPoint.handle2 = -Vector3.right * 0.1f;
+        newPoint.localPosition = lastPos;
+        newPoint.handle1 = Vector3.right * 1.0f;
+        newPoint.handle2 = -Vector3.right * 1.0f;
 
         pointsProp.InsertArrayElementAtIndex(pointsProp.arraySize);
         pointsProp.GetArrayElementAtIndex(pointsProp.arraySize - 1).objectReferenceValue = newPoint;

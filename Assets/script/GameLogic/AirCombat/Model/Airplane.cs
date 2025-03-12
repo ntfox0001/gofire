@@ -28,7 +28,7 @@ namespace GoFire
         {
             _lifeCtrl.life = config.Life;
             _damageCtrl.damage = config.Damage;
-            _moveCtrl.speed = config.Speed;
+            _moveCtrl.speed = config.SpeedRate;
             _bounceCtrl.Bounce.Dampening = config.Dampening;
             _bounceCtrl.Bounce.Mass = config.Mass;
             
