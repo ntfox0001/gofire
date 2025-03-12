@@ -7,7 +7,7 @@ using YooAsset.Editor;
 namespace GoFire
 {
     [CustomEditor(typeof(Land))]
-    public class LandEditor : Editor
+    public partial class LandEditor : Editor
     {
         private SerializedProperty _groundTracksNode;
         private SerializedProperty _cameraTrack;
@@ -15,6 +15,7 @@ namespace GoFire
         private SerializedProperty _airPlanePackageName;
         private SerializedProperty _tracksPackageName;
         private SerializedProperty _airPlanes;
+        private SerializedProperty _preActiveDistance;
         
         private string[] _packageNames;
         private int _selectAirplanePackageIndex = 0;
@@ -46,12 +47,14 @@ namespace GoFire
             _airPlanePackageName = serializedObject.FindProperty("airPlanePackageName");
             _tracksPackageName = serializedObject.FindProperty("tracksPackageName");
             _airPlanes = serializedObject.FindProperty("Airplanes");
+            _preActiveDistance = serializedObject.FindProperty("preActiveDistance");
             
             InitPackageNameArray(false);
             InitPosOfAirplanes(false);
         }
         public override void OnInspectorGUI()
         {
+            DrawInspectorFakeScreen();
             // 获取目标脚本的序列化对象
             serializedObject.Update();
     

@@ -15,7 +15,7 @@ public class BezierCurveEditor : Editor
     private SerializedProperty _frozenYProp;
     private SerializedProperty _frozenZProp;
 
-    private static bool showPoints = true;
+    private static bool showPoints = false;
 
     void OnEnable()
     {
