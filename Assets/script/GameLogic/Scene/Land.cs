@@ -14,6 +14,7 @@ namespace GoFire
         public string tracksPackageName; // 地图使用轨道包名
         public GameObject objectsNode; // 场景物体根节点
         public AirplaneMarker[] Airplanes; // 这个地图上所有对象
+        public float preActiveDistance = 1.0f;
 
         private ITrack _track;
         

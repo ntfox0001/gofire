@@ -35,7 +35,7 @@ namespace GoFire
             var line = new Vector3[count * 2];
             for (int i = 0; i < count; i++)
             {
-                var pos = _track.GetPosition((float)i/count);
+                var pos = _track.GetPosition((float)i/count * _track.duration);
                 line[i * 2] = pos;
                 line[i * 2 + 1] = pos + HandleUtility.GetHandleSize(pos) * 0.4f * Vector3.up;
                 
