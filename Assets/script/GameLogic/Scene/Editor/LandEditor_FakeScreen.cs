@@ -6,6 +6,7 @@ namespace GoFire
     public partial class LandEditor
     {
         private static bool _showFakeScreen;
+        private static bool _followScreen = false;
         private bool _showFakeScreenOptions = false;
         private Vector3[] _screenRangeLineRaw;
         private Vector3[] _screenRangeLineRender;
@@ -31,10 +32,22 @@ namespace GoFire
                     SceneView.RepaintAll();
                 });
 
-                if (_land.GetCameraTrack() == null)
+                if (_showFakeScreen && _land.GetCameraTrack() != null)
                 {
-                    _fakeScreenTimeProgress = EditorGUILayout.Slider("Time Progress", _fakeScreenTimeProgress, 0,
-                        _land.GetCameraTrack().GetDuration());    
+                    EditorUtils.Field("follow screen", _followScreen, v =>
+                    {
+                        _followScreen = v;
+                        SceneView.RepaintAll();
+                    });
+                    EditorUtils.Slider("Time Progress", _fakeScreenTimeProgress, 0,
+                        _land.GetCameraTrack().GetDuration(), v =>
+                        {
+                            _fakeScreenTimeProgress = v;
+                            var pos = _land.GetCameraTrack().GetPosition(_fakeScreenTimeProgress);
+                            SceneView.lastActiveSceneView.pivot = pos;
+                            
+                            SceneView.RepaintAll();
+                        });
                 }
                 EditorGUI.indentLevel--;
             }
@@ -47,11 +60,6 @@ namespace GoFire
             {
                 return;
             }
-            
-            var pos = _land.GetCameraTrack().GetPosition(_fakeScreenTimeProgress);
-            var front = _land.GetCameraTrack().GetFront(_fakeScreenTimeProgress, GameConfig.Up);
-
-            var rot = Quaternion.LookRotation(front, GameConfig.Up);
             
             // Gizmos.DrawIcon(pos, "ScreenMarker.png");
             
@@ -73,7 +81,12 @@ namespace GoFire
                 _screenRangeLineRender = new Vector3[6];
             }
             
-            for (int i = 0; i < _screenRangeLineRaw.Length; i++)
+            var pos = _land.GetCameraTrack().GetPosition(_fakeScreenTimeProgress);
+            var front = _land.GetCameraTrack().GetFront(_fakeScreenTimeProgress, GameConfig.Up);
+
+            var rot = Quaternion.LookRotation(front, GameConfig.Up);
+            
+            for (int i = 0; i < 4; i++)
             {
                 _screenRangeLineRender[i] = rot * _screenRangeLineRaw[i] + pos;
             }

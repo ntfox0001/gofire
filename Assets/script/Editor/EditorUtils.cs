@@ -22,6 +22,15 @@ namespace GoFire
             
             onChange(v);
         }
+
+        public static void Slider(string label, float v, float minVal, float maxVal, Action<float> onChange, int minWidth = 60, int maxWidth = 100)
+        {
+            var old = v;
+            v = EditorGUI.Slider(GUILayoutUtility.GetRect(minWidth, maxWidth, 18, 18), label, v, minVal, maxVal);
+            if (Mathf.Approximately(old, v)) return;
+            
+            onChange(v);
+        }
         
         public static void Field<T>(string label, T v, Action<T> onChange, int minWidth = 60, int maxWidth = 100) where T : struct
         {

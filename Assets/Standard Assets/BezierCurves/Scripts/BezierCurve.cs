@@ -256,7 +256,7 @@ public class BezierCurve : MonoBehaviour {
 				break;
 			}
 			
-			else totalPercent += curvePercent;
+			totalPercent += curvePercent;
 		}
 		
 		if(close && p1 is null)
@@ -633,7 +633,7 @@ public class BezierCurve : MonoBehaviour {
 	
 	#endregion
 	
-	/* needs testing
+	// needs testing
 	public Vector3 GetPointAtDistance(float distance)
 	{
 		if(close)
@@ -645,7 +645,7 @@ public class BezierCurve : MonoBehaviour {
 		else
 		{
 			if(distance <= 0) return points[0].position;
-			else if(distance >= length) return points[points.Length - 1].position;
+			else if(distance >= length) return points[^1].position;
 		}
 		
 		float totalLength = 0;
@@ -663,7 +663,8 @@ public class BezierCurve : MonoBehaviour {
 				secondPoint = points[i+1];
 				break;
 			}
-			else totalLength += curveLength;
+
+			totalLength += curveLength;
 		}
 		
 		if(firstPoint == null)
@@ -674,9 +675,9 @@ public class BezierCurve : MonoBehaviour {
 		}
 		
 		distance -= totalLength;
-		return GetPoint(distance / curveLength, firstPoint, secondPoint);
+		return GetPoint(firstPoint, secondPoint, distance / curveLength);
 	}
-	*/
+	
 	
 	public Vector3 GetPos( Vector3 pos)
 	{

@@ -714,7 +714,7 @@ MonoBehaviour:
   Airplanes:
   - AirplaneName: Aircraft01
     TrackName: Track_Circle_1
-    TimeProgress: 32.71
+    TimeProgress: 22.59
     DistanceToMid: 3
     IsGroup: 0
     Count: 0
@@ -726,6 +726,7 @@ MonoBehaviour:
     IsGroup: 0
     Count: 0
     Interval: 0
+  preActiveDistance: 1
 --- !u!1 &3740472657166886854
 GameObject:
   m_ObjectHideFlags: 0
