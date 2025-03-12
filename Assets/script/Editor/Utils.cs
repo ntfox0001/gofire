@@ -7,6 +7,12 @@ namespace GoFire
 {
     public class Utils
     {
+        [MenuItem("GoFire/查看luban文档")]
+        public static void OpenLuBanUrl()
+        {
+            Application.OpenURL("https://luban.doc.code-philosophy.com/docs/intro");
+            // Application.OpenURL("https://github.com/lubanproject/luban");
+        }
         [MenuItem("GoFire/GenConfig")]
         public static void GenConfig()
         {
