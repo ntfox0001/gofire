@@ -10,7 +10,7 @@ namespace GoFire
         private bool _showFakeScreenOptions = false;
         private Vector3[] _screenRangeLineRaw;
         private Vector3[] _screenRangeLineRender;
-        private readonly int[] _screenRangeLineSegment = {0,1 ,1, 2, 2, 3, 3, 0};
+        private readonly int[] _screenRangeLineSegment = {0, 1 ,1, 2, 2, 3, 3, 0};
         private readonly int[] _screenRangePreActiveLineSegment = { 4, 5 }; 
         
         private float _fakeScreenTimeProgress = 0;
@@ -43,10 +43,15 @@ namespace GoFire
                         _land.GetCameraTrack().GetDuration(), v =>
                         {
                             _fakeScreenTimeProgress = v;
-                            var pos = _land.GetCameraTrack().GetPosition(_fakeScreenTimeProgress);
-                            SceneView.lastActiveSceneView.pivot = pos;
-                            
-                            SceneView.RepaintAll();
+                            if (_followScreen)
+                            {
+                                var pos = _land.GetCameraTrack().GetPosition(_fakeScreenTimeProgress);
+                                SceneView.lastActiveSceneView.pivot = pos;   
+                            }
+                            else
+                            {
+                                SceneView.RepaintAll();    
+                            }
                         });
                 }
                 EditorGUI.indentLevel--;

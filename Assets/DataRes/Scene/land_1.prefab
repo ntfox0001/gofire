@@ -714,8 +714,8 @@ MonoBehaviour:
   Airplanes:
   - AirplaneName: Aircraft01
     TrackName: Track_Circle_1
-    TimeProgress: 22.59
-    DistanceToMid: 3
+    TimeProgress: 30.33
+    DistanceToMid: 19.1
     IsGroup: 0
     Count: 0
     Interval: 0

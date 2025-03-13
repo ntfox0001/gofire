@@ -33,11 +33,14 @@ namespace GoFire
             EditorGUILayout.Space(20);
             EditorGUILayout.ObjectField(_track);
             EditorGUILayout.PropertyField(_speedRate);
-
-            EditorGUILayout.BeginHorizontal();
-            GUILayout.Label("Time Progress", GUILayout.Width( 200));
-            _followTrack.TimeProgress = GUILayout.HorizontalSlider(_followTrack.TimeProgress, 0, _followTrack.GetTrack().GetDuration());
-            EditorGUILayout.EndHorizontal();
+            
+            if (_followTrack.GetTrack() != null)
+            {
+                EditorGUILayout.BeginHorizontal();
+                GUILayout.Label("Time Progress", GUILayout.Width( 200));
+                _followTrack.TimeProgress = GUILayout.HorizontalSlider(_followTrack.TimeProgress, 0, _followTrack.GetTrack().GetDuration());
+                EditorGUILayout.EndHorizontal();
+            }
             
             EditorGUILayout.PropertyField(_followPos);
             EditorGUILayout.PropertyField(_followDir);

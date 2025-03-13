@@ -15,6 +15,9 @@ public class BezierCurveEditor : Editor
     private SerializedProperty _frozenYProp;
     private SerializedProperty _frozenZProp;
 
+    private static bool showAdjustPos = false;
+    private Vector3 adjustOffsetPos = Vector3.zero;
+    
     private static bool showPoints = false;
 
     void OnEnable()
@@ -35,20 +38,35 @@ public class BezierCurveEditor : Editor
     {
         serializedObject.Update();
 
-        GUILayout.BeginHorizontal();
-        if (GUILayout.Button("adjust pos at head"))
+        showAdjustPos = EditorGUILayout.Foldout(showAdjustPos, "Adjust Pos", true);
+        if (showAdjustPos)
         {
-            ResetAtHead();
+            GUILayout.BeginHorizontal();
+            if (GUILayout.Button("adjust pos at head"))
+            {
+                ResetAtHead(curve);
+            }
+            if (GUILayout.Button("adjust pos at center"))
+            {
+                ResetCenter(curve);
+            }
+            if (GUILayout.Button("adjust pos at tail"))
+            {
+                ResetAtTail(curve);
+            }
+            GUILayout.EndHorizontal();
+
+            GUILayout.Space(10);
+            adjustOffsetPos = EditorGUILayout.Vector3Field("offset", adjustOffsetPos);
+            GUILayout.BeginHorizontal();
+            GUILayout.FlexibleSpace();
+            if (GUILayout.Button("Adjust Pos", GUILayout.Width(200)))
+            {
+                ResetAtOffset(curve, adjustOffsetPos);
+            }
+            GUILayout.EndHorizontal();
+            GUILayout.Space(20);
         }
-        if (GUILayout.Button("adjust pos at center"))
-        {
-            ResetCenter();
-        }
-        if (GUILayout.Button("adjust pos at tail"))
-        {
-            ResetAtTail();
-        }
-        GUILayout.EndHorizontal();
 
         EditorGUILayout.PropertyField(sizeProp);
         EditorGUILayout.PropertyField(resolutionProp);
@@ -62,7 +80,7 @@ public class BezierCurveEditor : Editor
         EditorGUILayout.PropertyField(_frozenZProp);
         
         GUILayout.Space(10);
-        showPoints = EditorGUILayout.Foldout(showPoints, "Points");
+        showPoints = EditorGUILayout.Foldout(showPoints, "Points", true);
 
         if (showPoints)
         {
@@ -237,7 +255,7 @@ public class BezierCurveEditor : Editor
         }
     }
 
-    void ResetCenter()
+    public static void ResetCenter(BezierCurve curve)
     {
         var bounds = new Bounds();
         for (var i = 0; i < curve.pointCount; i++)
@@ -262,7 +280,7 @@ public class BezierCurveEditor : Editor
         }
     }
 
-    void ResetAtHead()
+    public static void ResetAtHead(BezierCurve curve)
     {
         if (curve.pointCount == 0) return;
         var offset = curve.transform.position - curve[0].position;
@@ -273,11 +291,22 @@ public class BezierCurveEditor : Editor
         }
     }
     
-    void ResetAtTail()
+    public static void ResetAtTail(BezierCurve curve)
     {
         if (curve.pointCount == 0) return;
         var offset = curve.transform.position - curve[curve.pointCount-1].position;
-        curve.transform.position = curve[curve.pointCount-1].position = curve[curve.pointCount-1].position;
+        curve.transform.position = curve[curve.pointCount - 1].position;
+        for (var i = 0; i < curve.pointCount; i++)
+        {
+            curve[i].transform.position += offset;
+        }
+    }
+
+    public static void ResetAtOffset(BezierCurve curve, Vector3 offset)
+    {
+        if (curve.pointCount == 0) return;
+        // offset = curve.transform.position - offset;
+        curve.transform.position -= offset;
         for (var i = 0; i < curve.pointCount; i++)
         {
             curve[i].transform.position += offset;
@@ -337,7 +366,7 @@ public class BezierCurveEditor : Editor
         }
     }
 
-    [MenuItem("GameObject/Create Other/Bezier Curve")]
+    [MenuItem("GameObject/Bezier Curve")]
     public static void CreateCurve(MenuCommand command)
     {
         GameObject curveObject = new GameObject("BezierCurve");

@@ -62,6 +62,7 @@ namespace GoFire
             EditorGUILayout.ObjectField(_groundTracksNode, typeof(GameObject), new GUIContent("Target GameObject"));
             EditorGUILayout.ObjectField(_cameraTrack, typeof(GameObject), new GUIContent("CameraTrack"));
             EditorGUILayout.ObjectField(_objectsNode, typeof(GameObject), new GUIContent("ObjectsNode"));
+            _preActiveDistance.floatValue = EditorGUILayout.FloatField("激活距离", _preActiveDistance.floatValue);
 
             GUILayout.Space(20);
             
