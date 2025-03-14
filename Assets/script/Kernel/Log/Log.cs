@@ -128,9 +128,14 @@ namespace GoFire.Kernel
             if (GetSingleton()._logger == null)
             {
                 UnityEngine.Debug.LogError(message);
-                return;
+                
             }
-            GetSingleton()._logger.Fatal(message);
+            else
+            {
+                GetSingleton()._logger.Fatal(message);
+            }
+            
+            throw new Exception(message);
         }
 
         public static void Fatal(string format, params object[] args)
@@ -138,9 +143,12 @@ namespace GoFire.Kernel
             if (GetSingleton()._logger == null)
             {
                 UnityEngine.Debug.LogErrorFormat(format, args);
-                return;
             }
-            GetSingleton()._logger.Fatal(format, args);
+            else
+            {
+                GetSingleton()._logger.Fatal(format, args);    
+            }
+            throw new Exception(string.Format(format, args));
         }
 
         public void Update()

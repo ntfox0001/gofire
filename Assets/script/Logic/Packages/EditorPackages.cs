@@ -23,10 +23,11 @@ namespace GoFire
             
             if(initOperation.Status == EOperationStatus.Succeed)
                 Log.Info("资源包初始化成功！");
-            else 
-                Log.Error($"资源包初始化失败：{initOperation.Error}");
+            else
+                Log.Fatal($"资源包初始化失败：{initOperation.Error}");
+ 
+            
+            yield return CheckVersion(packageName);
         }
-
-
     }
 }

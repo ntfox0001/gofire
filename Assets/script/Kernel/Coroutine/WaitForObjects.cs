@@ -45,7 +45,8 @@ namespace GoFire.Kernel
                          bool keepwait = false;
                          foreach (CustomYieldInstruction obj in _waitObject)
                          {
-                             keepwait = keepwait || obj.keepWaiting;
+                             keepwait = obj.keepWaiting || keepwait;
+                             Debug.Log("wait");
                          }
                          return keepwait;    
                      }

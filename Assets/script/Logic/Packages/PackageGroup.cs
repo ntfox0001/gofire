@@ -30,7 +30,7 @@ namespace GoFire
                     enumerators[i] = e;
                 }
 
-                yield return new WaitForObjects(enumerators);
+                yield return new WaitForObjectsEx(enumerators);
 
                 PackageInfo[] infos = new PackageInfo[enumerators.Length];
                 for (int i = 0; i < enumerators.Length; i++)
@@ -39,11 +39,12 @@ namespace GoFire
                     var pi = new PackageInfo
                     {
                         Package = package,
+                        AssetInfos = new Dictionary<string, AssetInfo>()
                     };
 
                     foreach (var info in package.GetAllAssetInfos())
                     {
-                        pi.AssetInfos.Add(info.Address, info);
+                        pi.AssetInfos.Add(info.Address, new AssetInfo(info, package));
                     }
 
                     infos[i] = pi;
@@ -57,9 +58,9 @@ namespace GoFire
         {
             foreach (var info in _packageInfos)
             {
-                if (info.AssetInfos.ContainsKey(assetName))
+                if (info.AssetInfos.TryGetValue(assetName, out var assetInfo))
                 {
-                    return info.Package.LoadAssetSync(assetName).GetAssetObject<T>();
+                    return assetInfo.GetAssetObject<T>();
                 }
             }
 
@@ -85,6 +86,14 @@ namespace GoFire
         
         public IEnumerator Release()
         {
+            foreach (var pi in _packageInfos)
+            {
+                foreach (var ai in pi.AssetInfos)
+                {
+                    ai.Value.Release();
+                }
+            }
+            
             IEnumerator[] enumerators = new IEnumerator[_packageInfos.Length];
             for (int i = 0; i < _packageInfos.Length; i++)
             {

@@ -1,22 +1,23 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace GoFire.Kernel
 {
     public class ProgressWrapper : IProgress
     {
-        private readonly CustomYieldInstruction _instruction;
+        private readonly IEnumerator _instruction;
 
-        ProgressWrapper(CustomYieldInstruction instruction)
+        ProgressWrapper(IEnumerator instruction)
         {
             _instruction = instruction;
         }
 
         public float GetProgress()
         {
-            return _instruction.keepWaiting ? 0 : 1;
+            return _instruction.Current == null ? 1 : 0;
         }
         
-        public static IProgress Wrap(CustomYieldInstruction instruction)
+        public static IProgress Wrap(IEnumerator instruction)
         {
             if (instruction is IProgress progress)
             {
