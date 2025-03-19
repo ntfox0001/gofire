@@ -8,6 +8,7 @@ namespace GoFire.UIWindow
     {
         public Image shadeBg;
         public Text tips;
+        public Slider loadingProgress;
         
         public override void OnCreate(params object[] args)
         {
@@ -16,7 +17,7 @@ namespace GoFire.UIWindow
 
         public override void OnClose()
         {
-            throw new System.NotImplementedException();
+            
         }
     }
 }

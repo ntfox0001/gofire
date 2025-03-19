@@ -28,7 +28,7 @@ namespace GoFire.UIWindow
 
         public override void OnClose()
         {
-            Debug.Log("aaaaaaaaaaaaaaaaaaaa");
+            Debug.Log("StartUP end");
         }
 
         void OnClick()
