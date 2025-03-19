@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "com.code-philosophy.luban": "https://github.com/focus-creative-games/luban_unity.git",
-    "com.cysharp.unitask": "file:J:/github.com/UniTask/src/UniTask/Assets/Plugins/UniTask",
     "com.tuyoogame.yooasset": "2.2.10",
     "com.unity.cinemachine": "2.9.7",
     "com.unity.device-simulator.devices": "1.0.0",

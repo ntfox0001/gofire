@@ -207,6 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7df37e6809fe448ba50653206018281d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFullScreen: 1
   shadeBg: {fileID: 7774443154296363345}
   tips: {fileID: 8856704009860947637}
 --- !u!222 &5357750545704431886
