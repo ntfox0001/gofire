@@ -7,20 +7,22 @@ namespace GoFire
     public class WindowCtrl : MonoBehaviour
     {
         public WindowBase window;
-
-        private void Awake()
+        public Action OnClose;
+        
+        public void Init(Action onClose, params object[] args)
         {
-            window ??= GetComponent<WindowBase>();
-        }
-
-        public void Init(params object[] args)
-        {
+            OnClose = onClose;
+            window = GetComponent<WindowBase>();
             window.OnCreate(args);
         }
 
         private void OnDestroy()
         {
             window.OnClose();
+            if (OnClose != null)
+            {
+                OnClose();    
+            }
         }
     }
 }

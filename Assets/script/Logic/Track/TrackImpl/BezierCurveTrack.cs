@@ -1,8 +1,4 @@
-﻿using System;
-using Cysharp.Threading.Tasks.Triggers;
-using GoFire.Kernel;
-using Unity.Mathematics;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace GoFire
 {

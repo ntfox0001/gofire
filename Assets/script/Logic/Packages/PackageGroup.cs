@@ -90,6 +90,9 @@ namespace GoFire
             }
 
             yield return new WaitForObjectsEx(enumerators);
+
+            _packageInfos.Clear();
+            _packages = null;
         }
     }
 }

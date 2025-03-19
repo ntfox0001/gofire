@@ -1,4 +1,4 @@
-﻿using GoFire;
+﻿using System;
 using GoFire.Kernel;
 using UnityEngine;
 
@@ -6,7 +6,13 @@ namespace GoFire
 {
     public class WindowStack : MonoBehaviour
     {
+        public Action OnFirstWindowCreated;
+
+        private int _createdCount;
+        private int _windowCount;
+        private int _isFullScreenCount;
         private IGetAsset _getAsset;
+        
         public void Init(IGetAsset getAsset)
         {
             _getAsset = getAsset;
@@ -23,10 +29,33 @@ namespace GoFire
                 return null;
             }
             
-            var go = Instantiate(obj, transform, true);
+            if (_createdCount == 0)
+            {
+                OnFirstWindowCreated?.Invoke();
+            }
+            
+            var go = Instantiate(obj, transform, false);
+            var winBase = go.GetComponent<T>();
             var window = go.AddComponent<WindowCtrl>();
-            window.Init(args);
-            return window.GetComponent<T>();
+            window.Init(() =>
+            {
+                if (winBase.isFullScreen)
+                {
+                    _isFullScreenCount--;
+                }
+
+                _windowCount--;
+            }, args);
+            
+            if (winBase.isFullScreen)
+            {
+                _isFullScreenCount++;
+            }
+
+            _createdCount++;
+            _windowCount++;
+
+            return winBase;
         }
     }
 }

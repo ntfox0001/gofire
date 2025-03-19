@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using GoFire.Kernel;
+using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace GoFire
@@ -9,6 +10,8 @@ namespace GoFire
         public WindowStack sysNode; // 系统置顶窗口
         public WindowStack topNode; // 普通置顶窗口
         public WindowStack normalNode; // 普通窗口
+
+        public GameObject boostMask; // 启动后，startup启动以后，要删除
         
         private PackageGroup _globalPackageGroup = new();
         private PackageGroup _packageGroup = new();
