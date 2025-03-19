@@ -6,9 +6,9 @@ namespace GoFire
 {
     public class WindowStack : MonoBehaviour
     {
-        public Action OnFirstWindowCreated;
-
-        private int _createdCount;
+        public Action OnWindowCreated;
+        public Action OnWindowClosed;
+        
         private int _windowCount;
         private int _isFullScreenCount;
         private IGetAsset _getAsset;
@@ -29,16 +29,12 @@ namespace GoFire
                 return null;
             }
             
-            if (_createdCount == 0)
-            {
-                OnFirstWindowCreated?.Invoke();
-            }
-            
             var go = Instantiate(obj, transform, false);
             var winBase = go.GetComponent<T>();
             var window = go.AddComponent<WindowCtrl>();
             window.Init(() =>
             {
+                OnWindowClosed?.Invoke();
                 if (winBase.isFullScreen)
                 {
                     _isFullScreenCount--;
@@ -51,9 +47,10 @@ namespace GoFire
             {
                 _isFullScreenCount++;
             }
-
-            _createdCount++;
+            
             _windowCount++;
+            
+            OnWindowCreated?.Invoke();
 
             return winBase;
         }

@@ -25,7 +25,7 @@ namespace GoFire
 
         public void Release()
         {
-            
+            _globalPackageGroup.Release();
         }
         
         public IEnumerator LoadGlobalPackage(string[] packageNames)
@@ -57,6 +57,11 @@ namespace GoFire
         public string[] GetAllAssetsNameList()
         {
             return _globalPackageGroup.GetAllAssetsNameList();
+        }
+
+        public void StartUp()
+        {
+            boostMask.SetActive(false);
         }
     }
 }

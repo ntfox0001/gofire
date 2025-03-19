@@ -122979,7 +122979,7 @@ MonoBehaviour:
   sysNode: {fileID: 2066290049}
   topNode: {fileID: 302087192}
   normalNode: {fileID: 1216315539}
-  boostMask: {fileID: 0}
+  boostMask: {fileID: 70412892}
 --- !u!114 &1407424767
 MonoBehaviour:
   m_ObjectHideFlags: 0

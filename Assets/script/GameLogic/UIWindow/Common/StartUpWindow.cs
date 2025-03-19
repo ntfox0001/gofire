@@ -20,6 +20,8 @@ namespace GoFire.UIWindow
         private bool _jumpFadeInterval = false;
         public override void OnCreate(params object[] args)
         {
+            WindowManager.GetSingleton().StartUp();
+            
             clickEvent.OnClick.AddListener(OnClick);
             StartCoroutine(StartShade());
         }
@@ -59,7 +61,7 @@ namespace GoFire.UIWindow
                 while (t >= 0)
                 {
                     t -= Time.deltaTime;
-                    imageAlpha.alpha = Mathf.Lerp(1, 0, t / fadeTime);
+                    imageAlpha.alpha = Mathf.Lerp(0, 1, t / fadeTime);
                     yield return null;
                 }
             }
