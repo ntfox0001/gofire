@@ -14,7 +14,7 @@ namespace GoFire.UIWindow
             
         }
 
-        public override void OnRelease()
+        public override void OnClose()
         {
             throw new System.NotImplementedException();
         }

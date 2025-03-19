@@ -12,11 +12,12 @@ namespace GoFire
         
         private PackageGroup _globalPackageGroup = new();
         private PackageGroup _packageGroup = new();
-        public void Init()
+        public IEnumerator Init()
         {
             sysNode.Init(this);
             topNode.Init(this);
             normalNode.Init(this);
+            yield return null;
         }
 
         public void Release()

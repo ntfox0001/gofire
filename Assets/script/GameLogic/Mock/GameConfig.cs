@@ -2,14 +2,22 @@
 
 namespace GoFire
 {
-    public static class BattleConfig
-    {
-        public static string[] BattlePackage = { "Tracks", "Ammos", "Airplane" };
-        public static string[] WindowPackage = { "UIAll" };
-    }
-
     public static class GameConfig
     {
+        public static readonly string[] PackageList =
+        {
+            "Main", 
+            "Tracks", 
+            "Ammos",
+            "UICommon",
+            "UIMain",
+            "UIBattle",
+            "UIAll",
+            "Config",
+            "Airplane",
+            "MainView"
+        };
+        
         public static readonly Vector3 Front = Vector3.forward;
         public static readonly Vector3 Up = Vector3.up;
 

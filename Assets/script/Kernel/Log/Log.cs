@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using NLog;
 using NLog.Config;
 using NLog.Layouts;
@@ -9,17 +10,20 @@ namespace GoFire.Kernel
 {
     public class Log : Singleton<Log>, IManager
     {
-        public string fluentdUrl = "tcp://127.0.0.1:24224";
+        public string fluentdHost = "127.0.0.1";
+        public int fluentdPort = 24224;
         
         private Logger _logger;
 
-        public void Init()
+        public IEnumerator Init()
         {
             var config = new LoggingConfiguration();
             // 创建一个 Fluentd 目标
             var fluentdTarget = new Fluentd();
             fluentdTarget.Name = "GoFire";
             fluentdTarget.Layout = new SimpleLayout("${message:withexception=true}");
+            fluentdTarget.Host = fluentdHost;
+            fluentdTarget.Port = fluentdPort;
             
             config.AddTarget(fluentdTarget);
             // 创建一个日志规则，将所有日志记录到 Fluentd
@@ -36,66 +40,62 @@ namespace GoFire.Kernel
             {
                 _logger.Trace("Testing connection to Fluentd");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // 如果连接不成功，直接返回
-                return;
             }
+
+            yield return null;
         }
 
         public static void Debug(string message)
         {
-            if (GetSingleton()._logger == null)
+            UnityEngine.Debug.Log(message);
+            if (GetSingleton()._logger != null)
             {
-                UnityEngine.Debug.Log(message);
-                return;
+                GetSingleton()._logger.Debug(message);
             }
-            GetSingleton()._logger.Debug(message);
         }
 
         public static void Debug(string format, params object[] args)
         {
-            if (GetSingleton()._logger == null)
+            UnityEngine.Debug.LogFormat(format, args);
+            if (GetSingleton()._logger != null)
             {
-                UnityEngine.Debug.LogFormat(format, args);
-                return;
+                GetSingleton()._logger.Debug(format, args);
             }
-            GetSingleton()._logger.Debug(format, args);
         }
 
         public static void Info(string message)
         {
-            if (GetSingleton()._logger == null)
+            UnityEngine.Debug.Log(message);
+            if (GetSingleton()._logger != null)
             {
-                UnityEngine.Debug.Log(message);
-                return;
+                GetSingleton()._logger.Info(message);
             }
-            GetSingleton()._logger.Info(message);
         }
 
         public static void Info(string format, params object[] args)
         {
-            if (GetSingleton()._logger == null)
+            UnityEngine.Debug.LogFormat(format, args);
+            if (GetSingleton()._logger != null)
             {
-                UnityEngine.Debug.LogFormat(format, args);
-                return;
+                GetSingleton()._logger.Info(format, args);
             }
-            GetSingleton()._logger.Info(format, args);
         }
 
         public static void Warning(string message)
         {
-            if (GetSingleton()._logger == null)
+            UnityEngine.Debug.LogWarning(message);
+            if (GetSingleton()._logger != null)
             {
-                UnityEngine.Debug.LogWarning(message);
-                return;
+                GetSingleton()._logger.Warn(message);
             }
-            GetSingleton()._logger.Warn(message);
         }
 
         public static void Warning(string format, params object[] args)
         {
-            if (GetSingleton()._logger == null)
+            if (GetSingleton()._logger != null)
             {
                 UnityEngine.Debug.LogWarningFormat(format, args);
                 return;
@@ -105,48 +105,38 @@ namespace GoFire.Kernel
 
         public static void Error(string message)
         {
-            if (GetSingleton()._logger == null)
+            UnityEngine.Debug.LogError(message);
+            if (GetSingleton()._logger != null)
             {
-                UnityEngine.Debug.LogError(message);
-                return;
+                GetSingleton()._logger.Error(message);
             }
-            GetSingleton()._logger.Error(message);
         }
 
         public static void Error(string format, params object[] args)
         {
-            if (GetSingleton()._logger == null)
+            UnityEngine.Debug.LogErrorFormat(format, args);
+            if (GetSingleton()._logger != null)
             {
-                UnityEngine.Debug.LogErrorFormat(format, args);
-                return;
+                GetSingleton()._logger.Error(format, args);
             }
-            GetSingleton()._logger.Error(format, args);
         }
 
         public static void Fatal(string message)
         {
-            if (GetSingleton()._logger == null)
+            UnityEngine.Debug.LogError(message);
+            if (GetSingleton()._logger != null)
             {
-                UnityEngine.Debug.LogError(message);
-                
+                GetSingleton()._logger.Fatal(message);    
             }
-            else
-            {
-                GetSingleton()._logger.Fatal(message);
-            }
-            
             throw new Exception(message);
         }
 
         public static void Fatal(string format, params object[] args)
         {
-            if (GetSingleton()._logger == null)
+            UnityEngine.Debug.LogErrorFormat(format, args);
+            if (GetSingleton()._logger != null)
             {
-                UnityEngine.Debug.LogErrorFormat(format, args);
-            }
-            else
-            {
-                GetSingleton()._logger.Fatal(format, args);    
+                GetSingleton()._logger.Fatal(format, args);
             }
             throw new Exception(string.Format(format, args));
         }

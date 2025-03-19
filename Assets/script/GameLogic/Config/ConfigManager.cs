@@ -13,33 +13,30 @@ namespace GoFire
         public Tables Tables { get; private set; }
         public string packageName = "Config";
         
-        private ResourcePackage _package;
-        private Dictionary<string, JSONNode> _tablesJson = new();
-        public void Init()
+        private PackageGroup _packageGroup;
+        private readonly Dictionary<string, JSONNode> _tablesJson = new();
+        public IEnumerator Init()
         {
+            _packageGroup = new PackageGroup();
+            yield return _packageGroup.LoadPackage(packageName);
             
+            Tables = new Tables((tableName) =>
+            {
+                if (_tablesJson.ContainsKey(tableName))
+                {
+                    return _tablesJson[tableName];
+                }
+                
+                var txt = _packageGroup.GetAsset<TextAsset>(tableName);
+                var jsObj = JSON.Parse(txt.text);
+                _tablesJson[tableName] = jsObj;
+                return jsObj;
+            });
         }
 
         public void Release()
         {
-            
-        }
-
-        public IEnumerator LoadPackage()
-        {
-            yield return PackageManager.GetSingleton().PackageLoader.Load(packageName);
-
-            _package = PackageManager.GetSingleton().PackageLoader.Get(packageName);
-            foreach (var info in _package.GetAllAssetInfos())
-            {
-                yield return _package.LoadAssetAsync(info.PackageName);
-            }
-            
-            Tables = new Tables((tableName) =>
-            {
-                var txt = _package.LoadAssetSync(tableName).GetAssetObject<TextAsset>();
-                return JSON.Parse(txt.text);
-            });
+            _packageGroup.Release();
         }
     }
 }

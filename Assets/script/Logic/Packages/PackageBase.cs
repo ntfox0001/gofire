@@ -4,9 +4,15 @@ using YooAsset;
 
 namespace GoFire
 {
-    public abstract class PackageBase
+    public abstract class PackageBase : IPackageLoader
     {
-        public abstract IEnumerator Load(string packageName);
+        public abstract IEnumerator Init(string packageName);
+
+        public IEnumerator Load(string packageName)
+        {
+            var package = YooAssets.GetPackage(packageName);
+            return package.LoadAllAssetsAsync<UnityEngine.Object>("");
+        }
 
         protected IEnumerator CheckVersion(string packageName)
         {

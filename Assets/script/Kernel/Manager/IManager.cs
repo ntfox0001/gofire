@@ -1,8 +1,10 @@
-﻿namespace GoFire.Kernel
+﻿using System.Collections;
+
+namespace GoFire.Kernel
 {
     public interface IManager
     {
-        void Init();
+        IEnumerator Init();
         void Release();
     }
 }

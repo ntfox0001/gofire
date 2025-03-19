@@ -23,8 +23,9 @@ namespace GoFire
         private Dictionary<string, NodeTrack> _localTracks = new();
         private readonly PackageGroup _packageGroup = new();
         
-        public void Init()
+        public IEnumerator Init()
         {
+            yield return null;
         }
         public void Update()
         {

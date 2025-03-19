@@ -122772,6 +122772,7 @@ GameObject:
   - component: {fileID: 1407424758}
   - component: {fileID: 1407424764}
   - component: {fileID: 1407424763}
+  - component: {fileID: 1407424767}
   - component: {fileID: 1407424762}
   - component: {fileID: 1407424761}
   - component: {fileID: 1407424766}
@@ -122902,6 +122903,19 @@ MonoBehaviour:
   sysNode: {fileID: 2066290049}
   topNode: {fileID: 302087192}
   normalNode: {fileID: 1216315539}
+--- !u!114 &1407424767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407424757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08f8a71f05544f8f856dc651e8fc1d09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  packageName: Config
 --- !u!1 &1409204340
 GameObject:
   m_ObjectHideFlags: 0

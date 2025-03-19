@@ -20,7 +20,7 @@ namespace GoFire
 
         private void OnDestroy()
         {
-            window.OnRelease();
+            window.OnClose();
         }
     }
 }

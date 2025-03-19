@@ -1,4 +1,5 @@
-﻿using GoFire.Kernel;
+﻿using System.Collections;
+using GoFire.Kernel;
 using UnityEngine;
 
 namespace GoFire
@@ -9,9 +10,9 @@ namespace GoFire
         public Vector3 defaultFront = Vector3.forward;
 
         public Player1Layout Player1Layout;
-        public void Init()
+        public IEnumerator Init()
         {
-            
+            yield return null;
         }
 
         public void Release()

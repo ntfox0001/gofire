@@ -4,10 +4,10 @@ using YooAsset;
 
 namespace GoFire
 {
-    public class EditorPackages : PackageBase, IPackageLoader
+    public class EditorPackages : PackageBase
     {
-        public override IEnumerator Load(string packageName)
-        {  
+        public override IEnumerator Init(string packageName)
+        {
             var buildResult = EditorSimulateModeHelper.SimulateBuild(packageName);    
             var packageRoot = buildResult.PackageRootDirectory;
             var editorFileSystemParams = FileSystemParameters.CreateDefaultEditorFileSystemParameters(packageRoot);
@@ -22,7 +22,7 @@ namespace GoFire
             yield return initOperation;
             
             if(initOperation.Status == EOperationStatus.Succeed)
-                Log.Info("资源包初始化成功！");
+                Log.Info($"package init success: {packageName}");
             else
                 Log.Fatal($"资源包初始化失败：{initOperation.Error}");
  

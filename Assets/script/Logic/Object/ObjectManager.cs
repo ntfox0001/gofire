@@ -1,13 +1,14 @@
-﻿using GoFire.Kernel;
+﻿using System.Collections;
+using GoFire.Kernel;
 using UnityEngine;
 
 namespace GoFire
 {
     public class ObjectManager : Singleton<ObjectManager>, IManager
     {
-        public void Init()
+        public IEnumerator Init()
         {
-            
+            yield return null;
         }
 
         public void Release()

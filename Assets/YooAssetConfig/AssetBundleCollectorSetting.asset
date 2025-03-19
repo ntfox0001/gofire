@@ -192,10 +192,10 @@ MonoBehaviour:
     AutoCollectShaders: 1
     IgnoreRuleName: NormalIgnoreRule
     Groups:
-    - GroupName: Default Group
+    - GroupName: Airplane
       GroupDesc: 
       AssetTags: 
-      ActiveRuleName: DisableGroup
+      ActiveRuleName: EnableGroup
       Collectors:
       - CollectPath: Assets/DataRes/Airplane
         CollectorGUID: e10214c10f3b2844684ea3dccbbcab4a

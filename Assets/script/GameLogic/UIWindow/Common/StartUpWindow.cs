@@ -24,9 +24,9 @@ namespace GoFire.UIWindow
             StartCoroutine(StartShade());
         }
 
-        public override void OnRelease()
+        public override void OnClose()
         {
-            
+            Debug.Log("aaaaaaaaaaaaaaaaaaaa");
         }
 
         void OnClick()

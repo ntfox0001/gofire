@@ -25,9 +25,9 @@ namespace GoFire
             InSwitch = false;
         }
 
-        public void Init()
+        public IEnumerator Init()
         {
-            
+            yield return null;
         }
 
         public void Update()

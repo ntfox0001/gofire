@@ -16,14 +16,15 @@ namespace GoFire
         public T CreateWindow<T>(params object[] args) where T : WindowBase
         {
             var windowName = typeof(T).Name;
-            var obj = _getAsset.GetAsset<WindowCtrl>(windowName);
+            var obj = _getAsset.GetAsset<GameObject>(windowName);
             if (obj == null)
             {
                 Log.Error("Window: " + windowName + " is not exist");
                 return null;
             }
             
-            WindowCtrl window = Instantiate(obj, transform, true);
+            var go = Instantiate(obj, transform, true);
+            var window = go.AddComponent<WindowCtrl>();
             window.Init(args);
             return window.GetComponent<T>();
         }

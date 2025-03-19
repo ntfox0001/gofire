@@ -4,9 +4,9 @@ using YooAsset;
 
 namespace GoFire
 {
-    public class OfflinePackages : PackageBase, IPackageLoader
+    public class OfflinePackages : PackageBase
     {
-        public override IEnumerator Load(string packageName)
+        public override IEnumerator Init(string packageName)
         {
             var buildinFileSystemParams = FileSystemParameters.CreateDefaultBuildinFileSystemParameters();
             var initParameters = new OfflinePlayModeParameters

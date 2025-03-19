@@ -23,8 +23,10 @@ using System.Diagnostics;
 using System.Reflection;
 using MsgPack;
 using MsgPack.Serialization;
+using NLog;
+using NLog.Targets;
 
-namespace NLog.Targets
+namespace GoFire.Kernel
 {
     internal class OrdinaryDictionarySerializer : MessagePackSerializer<IDictionary<string, object>>
     {
@@ -181,7 +183,7 @@ namespace NLog.Targets
     }
 
     [Target("Fluentd")]
-    public class Fluentd : NLog.Targets.TargetWithLayout
+    public class Fluentd : TargetWithLayout
     {
         public string Host { get; set; }
 
@@ -207,6 +209,8 @@ namespace NLog.Targets
 
         public bool IncludeAllProperties { get; set; }
 
+        public int ConnectRetryCount { get; set; }
+        
         private TcpClient client;
 
         private Stream stream;
@@ -231,6 +235,13 @@ namespace NLog.Targets
 
         protected void EnsureConnected()
         {
+            if (ConnectRetryCount == 0)
+            {
+                return;
+            }
+
+            ConnectRetryCount--;
+            
             if (this.client == null)
             {
                 InitializeClient();
@@ -333,6 +344,11 @@ namespace NLog.Targets
 
             try
             {
+                if (client == null || !client.Connected)
+                {
+                    return;
+                }
+                
                 this.emitter?.Emit(logEvent.TimeStamp, this.Tag, record);
             }
             catch (Exception ex)
@@ -366,6 +382,7 @@ namespace NLog.Targets
             this.LingerTime = 1000;
             this.EmitStackTraceWhenAvailable = false;
             this.Tag = Assembly.GetCallingAssembly().GetName().Name;
+            this.ConnectRetryCount = 1;
         }
     }
 }

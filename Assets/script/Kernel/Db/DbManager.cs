@@ -1,11 +1,13 @@
-﻿namespace GoFire.Kernel
+﻿using System.Collections;
+
+namespace GoFire.Kernel
 {
     public class DbManager : Singleton<DbManager>, IManager
     {
         LocalDb _db = new();
-        public void Init()
+        public IEnumerator Init()
         {
-            
+            yield return null;
         }
 
         public void Release()
