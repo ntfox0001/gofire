@@ -5,37 +5,37 @@ using UnityEngine;
 
 namespace GoFire.Kernel
 {
-    public class WaitForObjectsEx : IEnumerator, IProgress
+    public class WaitForObjectsEx : IEnumerator
     {
-
-         IEnumerator[] _waitObject;
-         IProgress[] _progress;
-
-
+        private readonly IEnumerator[] _waitObject;
+        
          public WaitForObjectsEx(params IEnumerator[] objects)
          {
              _waitObject = objects;
-             _progress = objects.Select(x => ProgressWrapper.Wrap(x)).ToArray();
          }
 
          public bool MoveNext()
          {
-             bool keepwait = false;
-             List<IEnumerator> nestedList = new List<IEnumerator>();
+             var next = false;
+             IEnumerator currObj = null;
              foreach (var obj in _waitObject)
              {
                  if (obj.MoveNext())
                  {
-                     if (obj.Current is IEnumerator nested)
+                     var current = obj.Current;
+                     if (current is IEnumerator enu)
                      {
-                         nestedList.Add(nested);
+                         currObj = enu;
                      }
-                     keepwait = true;
+                     
+                     next = true;
+                     break;
                  }
              }
-
-             Current = new WaitForObjectsEx(nestedList.ToArray());
-             return keepwait;    
+             
+             Current = currObj;
+             
+             return next;    
          }
 
          public void Reset()
@@ -44,15 +44,5 @@ namespace GoFire.Kernel
          }
 
          public object Current { get; private set; }
-
-         public float GetProgress()
-         {
-             var total = 0f;
-             foreach (var p in _progress)
-             {
-                 total += p.GetProgress();
-             }
-             return total / _progress.Length;
-         }
     }
 }

@@ -1,78 +1,39 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
 namespace GoFire.Kernel
 {
-     public class WaitForObjects : CustomYieldInstruction, IProgress
-     {
-         public enum WaitReturn
-         {
-             Continue,
-             Wait,
-         }
-         public enum WaitForType
-         {
-             WaitForAny,
-             WaitForAll,
-         }
-         CustomYieldInstruction[] _waitObject;
-         IProgress[] _progress;
-         WaitForType _comboType;
-         /// <summary>
-         /// 等待多个对象，当真时，继续等待，当假时不等待
-         /// </summary>
-         public WaitForObjects(params CustomYieldInstruction[] objects) : this(WaitForType.WaitForAll, objects)
-         {}
+    public class WaitForObjects : IEnumerator
+    {
+        private readonly IEnumerator[] _waitObjects;
+        private readonly Dictionary<int, bool> _isDone = new();
 
-         public WaitForObjects(params IEnumerator[] objects) : this(objects.Select(x => YieldInstructionWrapper.Wrap(x)).ToArray())
-         {}
-         
-         public WaitForObjects(WaitForType comboType, params CustomYieldInstruction[] objects)
-         {
-             _comboType = comboType;
-             _waitObject = objects;
-             _progress = objects.Select(x => ProgressWrapper.Wrap(x)).ToArray();
-         }
-         public override bool keepWaiting
-         {
-             get
-             {
-                 switch (_comboType)
-                 {
-                     case WaitForType.WaitForAll:
-                     {
-                         bool keepwait = false;
-                         foreach (CustomYieldInstruction obj in _waitObject)
-                         {
-                             keepwait = obj.keepWaiting || keepwait;
-                             Debug.Log("wait");
-                         }
-                         return keepwait;    
-                     }
-                     case WaitForType.WaitForAny:
-                     {
-                         bool keepwait = true;
-                         foreach (CustomYieldInstruction obj in _waitObject)
-                         {
-                             keepwait = keepwait && obj.keepWaiting;
-                         }
-                         return keepwait;    
-                     }
-                     default:
-                         throw new System.NotImplementedException();
-                 }
-             }
-         }
+        public WaitForObjects(IEnumerator[] objects)
+        {
+            _waitObjects = objects;
+            for (int i = 0; i < _waitObjects.Length; i++)
+            {
+                CoroutineManager.GetSingleton().StartCoroutine(DoWait(i));
+            }
+        }
 
-         public float GetProgress()
-         {
-             var total = 0f;
-             foreach (var p in _progress)
-             {
-                 total += p.GetProgress();
-             }
-             return total / _progress.Length;
-         }
-     }
+        private IEnumerator DoWait(int idx)
+        {
+            yield return _waitObjects[idx];
+            _isDone[idx] = true;
+        }
+        
+        public bool MoveNext()
+        {
+            return _isDone.Any(isDone => !isDone.Value);
+        }
+
+        public void Reset()
+        {
+            
+        }
+
+        public object Current => null;
+    }
 }
