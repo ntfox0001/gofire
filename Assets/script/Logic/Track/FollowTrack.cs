@@ -12,6 +12,7 @@ namespace GoFire
 
         public bool followDir;
         public bool followPos;
+        public bool running = true;
 
         private ITrack _track;
         private float _timeProgress;
@@ -25,11 +26,12 @@ namespace GoFire
             } 
         }
 
-        public void Init(GameObject track, bool followDir, bool followPos)
+        public void Init(ITrack track, bool followDir, bool followPos, bool running = true)
         {
-            this.track = track;
+            this._track = track;
             this.followDir = followDir;
             this.followPos = followPos;
+            this.running = running;
         }
         
         private void Start()
@@ -46,7 +48,7 @@ namespace GoFire
 
         public ITrack GetTrack()
         {
-            if (!track)
+            if (!track || _track == null)
             {
                 return null;
             }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Script.Logic.SceneRoot;
 using Script.Logic.ShadeUtil;
 using UnityEngine;
 using UnityEngine.UI;
@@ -71,8 +72,28 @@ namespace GoFire.UIWindow
             {
                 yield return null;
             }
-            
-            yield return ProcedureManager.GetSingleton().Switch(new BattleProcedure());
+
+            BattleStartData battleStartData = new BattleStartData
+            {
+                Root = SceneRoot.GetSingleton().gameObject,
+                Player1 = default,
+                Player2 = default,
+                LandName = "Land_1",
+                MainViewName = "MainView",
+                UIWindowPackageNames = new string[]
+                {
+                    "UIBattle"
+                },
+                PackageNames = new string[]
+                {
+                    "Land",
+                    "Airplane",
+                    "MainView",
+                    "Track",
+                    "Ammo"
+                }
+            };
+            LoadingWindow.Loading(ProcedureManager.GetSingleton().Switch(new BattleProcedure(), battleStartData));
         }
     }
 }

@@ -37,7 +37,7 @@ MonoBehaviour:
         FilterRuleName: CollectAll
         AssetTags: 
         UserData: 
-  - PackageName: Tracks
+  - PackageName: Track
     PackageDesc: 
     EnableAddressable: 1
     LocationToLower: 0
@@ -45,12 +45,12 @@ MonoBehaviour:
     AutoCollectShaders: 1
     IgnoreRuleName: NormalIgnoreRule
     Groups:
-    - GroupName: Tracks
+    - GroupName: Track
       GroupDesc: 
       AssetTags: 
       ActiveRuleName: EnableGroup
       Collectors:
-      - CollectPath: Assets/DataRes/Tracks
+      - CollectPath: Assets/DataRes/Track
         CollectorGUID: 0a50b11e9c5d11a4587882206fcbcd22
         CollectorType: 0
         AddressRuleName: AddressByFileName
@@ -58,7 +58,7 @@ MonoBehaviour:
         FilterRuleName: CollectPrefab
         AssetTags: 
         UserData: 
-  - PackageName: Ammos
+  - PackageName: Ammo
     PackageDesc: 
     EnableAddressable: 1
     LocationToLower: 0
@@ -66,12 +66,12 @@ MonoBehaviour:
     AutoCollectShaders: 1
     IgnoreRuleName: NormalIgnoreRule
     Groups:
-    - GroupName: Ammos
+    - GroupName: Ammo
       GroupDesc: 
       AssetTags: 
       ActiveRuleName: EnableGroup
       Collectors:
-      - CollectPath: Assets/DataRes/Ammos
+      - CollectPath: Assets/DataRes/Ammo
         CollectorGUID: 3011ac6c457ae7e4bb6d6c145b33330e
         CollectorType: 0
         AddressRuleName: AddressByFileName
@@ -220,6 +220,27 @@ MonoBehaviour:
       Collectors:
       - CollectPath: Assets/DataRes/MainView
         CollectorGUID: 53551d05b7e2af546a9b81b1afa67c18
+        CollectorType: 0
+        AddressRuleName: AddressByFileName
+        PackRuleName: PackDirectory
+        FilterRuleName: CollectAll
+        AssetTags: 
+        UserData: 
+  - PackageName: Land
+    PackageDesc: 
+    EnableAddressable: 1
+    LocationToLower: 0
+    IncludeAssetGUID: 1
+    AutoCollectShaders: 1
+    IgnoreRuleName: NormalIgnoreRule
+    Groups:
+    - GroupName: Land
+      GroupDesc: 
+      AssetTags: 
+      ActiveRuleName: EnableGroup
+      Collectors:
+      - CollectPath: Assets/DataRes/Land
+        CollectorGUID: 01fa130850ff30047bccc77e2e25da85
         CollectorType: 0
         AddressRuleName: AddressByFileName
         PackRuleName: PackDirectory

@@ -16,11 +16,7 @@ namespace test
         IEnumerator ss()
         {
             // yield return new WaitForObjectsEx(a1());
-            var ie = b2();
-            yield return CoroutineUtils.WaitForProgress(ie, (p) =>
-            {
-                Debug.Log(p);
-            });
+            yield return b2();
         }
 
         IEnumerator b2()

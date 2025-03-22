@@ -34,6 +34,7 @@ namespace GoFire
             yield return InitAirplanePool(_land.Airplanes);
 
             var mainViewRaw = PackageGroup.GetAsset<MainView>(battleData.MainViewName);
+            mainViewRaw.Init(_land.GetCameraTrack());
             yield return null;
             _mainView = ObjectManager.Instantiate(mainViewRaw, battleData.Root.transform);
         }

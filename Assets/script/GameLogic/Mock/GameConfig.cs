@@ -7,15 +7,16 @@ namespace GoFire
         public static readonly string[] PackageList =
         {
             "Main", 
-            "Tracks", 
-            "Ammos",
+            "Track", 
+            "Ammo",
             "UICommon",
             "UIMain",
             "UIBattle",
             "UIAll",
             "Config",
             "Airplane",
-            "MainView"
+            "MainView",
+            "Land",
         };
         
         public static readonly Vector3 Front = Vector3.forward;

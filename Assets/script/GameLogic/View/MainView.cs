@@ -14,7 +14,11 @@ namespace GoFire
         
         private Vector3[] _screenRangeLineRaw;
         private Vector3[] _screenRangeLineRender;
-        
+
+        public void Init(ITrack track)
+        {
+            viewPoint.Init(track, true, true, false);
+        }
         private void OnDrawGizmos()
         {
             if (viewPoint != null)
