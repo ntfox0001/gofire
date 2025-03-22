@@ -23,7 +23,7 @@ namespace GoFire
         {
             if (viewPoint != null)
             {
-                Gizmos.DrawIcon(viewPoint.transform.position, "ScreenMarker.png");    
+                Gizmos.DrawIcon(viewPoint.transform.position, "ScreenMarker.png");
             }
             
             var height = mainVirtualCamera.m_Lens.OrthographicSize;

@@ -1,11 +1,14 @@
 ﻿using GoFire.Kernel;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 
 namespace GoFire
 {
     public class FollowTrack : MonoBehaviour
     {
+        public UnityEvent<float> onTimeProgressChange;
+        
         public float speedRate = 1;
         [Interface(typeof(ITrack))]
         public GameObject track;
@@ -79,16 +82,18 @@ namespace GoFire
         {
             if (GetTrack().GetDuration() != 0 && GetTrack() != null)
             {
-                if (followDir)
-                {
-                    var dir = _track.GetFront(_timeProgress, GameConfig.Up);
-                    transform.forward = dir;
-                }
-
                 if (followPos)
                 {
+                    if (followDir)
+                    {
+                        var dir = _track.GetFront(_timeProgress, GameConfig.Up);
+                        transform.forward = dir;
+                    }
+                    
                     var pos = _track.GetPosition(_timeProgress);
-                    transform.position = pos;   
+                    transform.position = pos;
+                    
+                    onTimeProgressChange?.Invoke(_timeProgress);
                 }
             }
         }
