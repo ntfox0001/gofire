@@ -45,9 +45,9 @@ namespace GoFire
 
         public T GetAsset<T>(string assetName) where T : Object
         {
-            var res = _packageGroup.GetAsset<T>(assetName);
-            if (res != null)
+            if (_packageGroup.HasAsset(assetName))
             {
+                var res = _packageGroup.GetAsset<T>(assetName);
                 return res;
             }
             

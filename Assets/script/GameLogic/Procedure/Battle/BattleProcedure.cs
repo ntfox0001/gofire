@@ -25,18 +25,16 @@ namespace GoFire
             yield return PackageGroup.LoadPackage(battleData.PackageNames);
             
             yield return null;
-            var landRaw = PackageGroup.GetAsset<Land>(battleData.LandName);
-            yield return null;
+            var landRaw = PackageGroup.GetComponent<Land>(battleData.LandName);
             // 创建场景
             _land = ObjectManager.Instantiate(landRaw, battleData.Root.transform);
-            
             // 初始化场景中的飞机
             yield return InitAirplanePool(_land.Airplanes);
 
-            var mainViewRaw = PackageGroup.GetAsset<MainView>(battleData.MainViewName);
-            mainViewRaw.Init(_land.GetCameraTrack());
+            var mainViewRaw = PackageGroup.GetComponent<MainView>(battleData.MainViewName);
             yield return null;
             _mainView = ObjectManager.Instantiate(mainViewRaw, battleData.Root.transform);
+            _mainView.Init(_land.GetCameraTrack());
         }
 
         public IEnumerator Release()

@@ -17,7 +17,7 @@ namespace GoFire
 
         public void Init(ITrack track)
         {
-            viewPoint.Init(track, true, true, false);
+            viewPoint.Init(track, true, true, true);
         }
         private void OnDrawGizmos()
         {

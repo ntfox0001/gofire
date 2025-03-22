@@ -14,7 +14,7 @@ namespace GoFire
         public bool followPos;
         public bool running = true;
 
-        private ITrack _track;
+        private ITrack _track { get; set; }
         private float _timeProgress;
         public float TimeProgress
         {
@@ -42,13 +42,23 @@ namespace GoFire
         
         private void Update()
         {
+            if (_track == null || !running)
+            {
+                return;
+            }
+            
             UpdateFollow();
             UpdateTimeProgress();
         }
 
         public ITrack GetTrack()
         {
-            if (!track || _track == null)
+            if (_track != null)
+            {
+                return _track;
+            }
+            
+            if (!track)
             {
                 return null;
             }

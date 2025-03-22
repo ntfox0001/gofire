@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using GoFire.Kernel;
+using UnityEngine;
 using YooAsset;
 using Object = UnityEngine.Object;
 
@@ -61,10 +62,17 @@ namespace GoFire
         {
             if (_packageInfos.TryGetValue(assetName, out var assetInfo))
             {
-                return assetInfo.GetAssetObject<T>();    
+                return assetInfo.GetAssetObject<T>();
             }
-
+            
+            Log.Error("Asset: " + assetName + " is not exist");
             return null;
+        }
+
+        public T GetComponent<T>(string assetName) where T : MonoBehaviour
+        {
+            var go = GetAsset<GameObject>(assetName);
+            return go.GetComponent<T>();
         }
 
         public string[] GetAllAssetsNameList()
