@@ -38,7 +38,7 @@ namespace GoFire
         {
             if (_relativePos == Vector3.zero)
             {
-                _relativePos = new Vector3(DistanceToMid, 0, GameConfig.CameraSize * 0.5f);
+                _relativePos = new Vector3(DistanceToMid, 0, GameConfig.CameraSize * 0.5f + GameConfig.PreLoadDistance);
             }
             return _relativePos;
         }

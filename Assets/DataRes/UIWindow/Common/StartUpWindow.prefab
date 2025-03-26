@@ -147,7 +147,6 @@ MonoBehaviour:
   clickEvent: {fileID: 2464131077646161191}
   sprites:
   - {fileID: 21300000, guid: efa2bb36b93425e41995d7e0ea957efa, type: 3}
-  - {fileID: 21300000, guid: 026e65741bdcedc44a7f0ca9cca3a4ad, type: 3}
   fadeTime: 2
   fadeIntervalTime: 2
 --- !u!222 &1540641665480165824

@@ -26,5 +26,7 @@ namespace GoFire
         public const float ScreenWidth = 1920;
 
         public const float CameraSize = 10;
+        
+        public const float PreLoadDistance = 1;
     }
 }

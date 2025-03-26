@@ -92,5 +92,10 @@ namespace GoFire
         {
             return duration;
         }
+
+        public Transform GetNode()
+        {
+            return transform.parent;
+        }
     }
 }

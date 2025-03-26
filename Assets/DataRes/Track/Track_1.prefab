@@ -214,7 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dirDelta: 0.001
-  duration: 20
+  duration: 10
   speedRateCurve:
     serializedVersion: 2
     m_Curve:

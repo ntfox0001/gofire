@@ -10,8 +10,10 @@ namespace GoFire
     public partial class LandEditor : Editor
     {
         private SerializedProperty _groundTracksNode;
+        private SerializedProperty _groundOutsideNode;
+        private SerializedProperty _groundInsideNode;
         private SerializedProperty _cameraTrack;
-        private SerializedProperty _objectsNode;
+        private SerializedProperty _airplanesNode;
         private SerializedProperty _airPlanePackageName;
         private SerializedProperty _tracksPackageName;
         private SerializedProperty _airPlanes;
@@ -41,9 +43,11 @@ namespace GoFire
         void OnEnable()
         {
             _land = (Land)target;
+            _groundOutsideNode = serializedObject.FindProperty("groundOutsideNode");
+            _groundInsideNode = serializedObject.FindProperty("groundInsideNode");
             _groundTracksNode = serializedObject.FindProperty("groundTracksNode");
             _cameraTrack = serializedObject.FindProperty("cameraTrack");
-            _objectsNode = serializedObject.FindProperty("objectsNode");
+            _airplanesNode = serializedObject.FindProperty("airplanesNode");
             _airPlanePackageName = serializedObject.FindProperty("airPlanePackageName");
             _tracksPackageName = serializedObject.FindProperty("tracksPackageName");
             _airPlanes = serializedObject.FindProperty("Airplanes");
@@ -59,10 +63,12 @@ namespace GoFire
             serializedObject.Update();
     
             // 绘制一个接受 GameObject 类型的属性字段
-            EditorGUILayout.ObjectField(_groundTracksNode, typeof(GameObject), new GUIContent("Target GameObject"));
-            EditorGUILayout.ObjectField(_cameraTrack, typeof(GameObject), new GUIContent("CameraTrack"));
-            EditorGUILayout.ObjectField(_objectsNode, typeof(GameObject), new GUIContent("ObjectsNode"));
-            _preActiveDistance.floatValue = EditorGUILayout.FloatField("激活距离", _preActiveDistance.floatValue);
+            EditorGUILayout.ObjectField(_groundOutsideNode, typeof(GameObject), new GUIContent("地面外节点"));
+            EditorGUILayout.ObjectField(_groundInsideNode, typeof(GameObject), new GUIContent("地面内节点"));
+            EditorGUILayout.ObjectField(_groundTracksNode, typeof(GameObject), new GUIContent("地面轨道节点"));
+            EditorGUILayout.ObjectField(_airplanesNode, typeof(GameObject), new GUIContent("飞行物节点"));
+            EditorGUILayout.ObjectField(_cameraTrack, typeof(GameObject), new GUIContent("摄像机轨道"));
+            // _preActiveDistance.floatValue = EditorGUILayout.FloatField("激活距离", _preActiveDistance.floatValue);
 
             GUILayout.Space(20);
             

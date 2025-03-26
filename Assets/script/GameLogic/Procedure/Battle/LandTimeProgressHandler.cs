@@ -54,7 +54,7 @@ namespace GoFire
             airplane.Init(ConfigManager.GetSingleton().Tables.TbAirplane.Get(marker.AirplaneName), trackInput);
         }
         
-        public IEnumerator Init(AirplaneMarker[] airplaneMarkers, Transform parent)
+        public IEnumerator Init(AirplaneMarker[] airplaneMarkers)
         {
             yield return _airplanePackageGroup.LoadPackage(_airplanePackageName);
             

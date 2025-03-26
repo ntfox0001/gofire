@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using GoFire.Kernel;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace GoFire
 {
@@ -10,13 +12,27 @@ namespace GoFire
         [Interface(typeof(ITrack))]
         public GameObject cameraTrack; // 摄像机轨道
         public GameObject groundTracksNode; // 地面轨道，所有这个节点下的ITrack
+        public GameObject airplanesNode; // 飞行物节点
+        public GameObject groundOutsideNode; // 地面外节点
+        public GameObject groundInsideNode; // 地面内节点
+        
         public string airPlanePackageName; // 地图使用飞行物包名
         public string tracksPackageName; // 地图使用轨道包名
-        public GameObject objectsNode; // 场景物体根节点
         public AirplaneMarker[] Airplanes; // 这个地图上所有对象
-        public float preActiveDistance = 1.0f;
 
+        public bool Running
+        {
+            get => _clip.Running;
+            set => _clip.Running = value;
+        }
+        
+        private Clip _clip;
         private ITrack _track;
+
+        public void Init()
+        {
+            _clip = new Clip(GetCameraTrack().GetDuration(), OnClipUpdate, OnClipEnd);
+        }
         
         public void SortAirplaneMarkers()
         {
@@ -47,6 +63,29 @@ namespace GoFire
             {
                 Airplanes[i].AdjustPosByCameraTrack(GetCameraTrack());
             }
+        }
+
+        void OnClipUpdate(float deltaTime)
+        {
+            var track = GetCameraTrack();
+            if (track == null)
+            {
+                return;
+            }
+            
+            var pos = track.GetPosition(deltaTime);
+            groundInsideNode.transform.localPosition =  - new Vector3(pos.x / groundOutsideNode.transform.localScale.x,
+                pos.y / groundOutsideNode.transform.localScale.y,
+                pos.z / groundOutsideNode.transform.localScale.z);
+            
+            var dir = track.GetFront(deltaTime, Vector3.up);
+            dir.x = -dir.x;
+            groundOutsideNode.transform.forward = dir;
+        }
+
+        void OnClipEnd()
+        {
+            
         }
         
         private void OnDrawGizmos()

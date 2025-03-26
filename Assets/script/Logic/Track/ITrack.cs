@@ -14,5 +14,6 @@ namespace GoFire
         Vector3 GetLocalLeft(float timeProgress, Vector3 up);
         float GetLength();
         float GetDuration();
+        Transform GetNode();
     }
 }

@@ -26,16 +26,17 @@ namespace GoFire
             
             // 初始化飞行物创建流程
             _landTimeProgressHandler = new LandTimeProgressHandler(_landHandler.Land.airPlanePackageName);
-            yield return _landTimeProgressHandler.Init(_landHandler.Land.Airplanes, _landHandler.Land.objectsNode.transform);
+            yield return _landTimeProgressHandler.Init(_landHandler.Land.Airplanes);
             
             // 初始化摄像机
             _mainViewHandler = new MainViewHandler(battleData.MainViewPackageName);
-            yield return _mainViewHandler.Load(battleData.MainViewName, battleData.Root.transform, _landHandler.Land.GetCameraTrack(), _landTimeProgressHandler.OnTimeProgress);
+            yield return _mainViewHandler.Load(battleData.MainViewName, battleData.Root.transform);
             
             // track
-            yield return TrackManager.GetSingleton().LoadPackage(_mainViewHandler.MainView.viewPoint.transform, _landHandler.Land.tracksPackageName);
+            yield return TrackManager.GetSingleton().LoadPackage(_mainViewHandler.MainView.trackParent, _landHandler.Land.tracksPackageName);
             TrackManager.GetSingleton().LoadTrackByNode(_landHandler.Land.groundTracksNode);
-            
+
+            _landHandler.Land.Running = true;
         }
 
         public IEnumerator Release()

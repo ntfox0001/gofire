@@ -16,13 +16,13 @@ namespace GoFire
             _packageName = packageName;
         }
 
-        public IEnumerator Load(string mainViewName, Transform parent, ITrack track, UnityAction<float> onTimeProgress)
+        public IEnumerator Load(string mainViewName, Transform parent)
         {
             yield return _packageGroup.LoadPackage(_packageName);
             var mainViewRaw = _packageGroup.GetComponent<MainView>(mainViewName);
             // 创建场景
             MainView = ObjectManager.Instantiate(mainViewRaw, parent);
-            MainView.Init(track, onTimeProgress);
+            // MainView.Init(track, onTimeProgress);
         }
     
         public IEnumerator Release()

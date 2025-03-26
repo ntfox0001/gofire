@@ -12,6 +12,7 @@ namespace GoFire
         public Camera mainCamera;
         public CinemachineVirtualCamera mainVirtualCamera;
         public FollowTrack viewPoint;
+        public Transform trackParent;
         
         private Vector3[] _screenRangeLineRaw;
         private Vector3[] _screenRangeLineRender;
@@ -19,8 +20,8 @@ namespace GoFire
         public void Init(ITrack track, UnityAction<float> onTimeProgressChanged)
         {
             _onTimeProgressChanged = onTimeProgressChanged;
-            viewPoint.Init(track, true, true, true);
-            viewPoint.onTimeProgressChanged.AddListener(onTimeProgressChanged);
+            // viewPoint.Init(track, true, true, true);
+            // viewPoint.onTimeProgressChanged.AddListener(onTimeProgressChanged);
         }
         
         private void OnDrawGizmos()

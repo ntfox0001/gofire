@@ -22,6 +22,7 @@ namespace GoFire
             var landRaw = _packageGroup.GetComponent<Land>(landName);
             // 创建场景
             Land = ObjectManager.Instantiate(landRaw, parent);
+            Land.Init();
         }
 
         public IEnumerator Release()

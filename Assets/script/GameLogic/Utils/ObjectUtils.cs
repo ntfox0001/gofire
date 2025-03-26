@@ -6,22 +6,22 @@ namespace GoFire
     {
         public static Vector3 GetPosition(GameObject go)
         {
-            return go.transform.position;
+            return go.transform.localPosition;
         }
 
         public static void SetPosition(GameObject go, Vector3 pos)
         {
-            go.transform.position = pos;
+            go.transform.localPosition = pos;
         }
 
         public static Vector3 GetDir(GameObject go, Vector3 front)
         {
-            return go.transform.rotation * front;
+            return go.transform.localRotation * front;
         }
 
         public static void SetDir(GameObject go, Vector3 dir, Vector3 up)
         {
-            go.transform.rotation = Quaternion.LookRotation(dir, up);
+            go.transform.localRotation = Quaternion.LookRotation(dir, up);
         }
     }
 }

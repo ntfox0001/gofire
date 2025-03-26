@@ -73,17 +73,17 @@ namespace GoFire
             var width = height * rate;
             if (_screenRangeLineRaw == null)
             {
-                _screenRangeLineRaw = new Vector3[6];
+                _screenRangeLineRaw = new Vector3[4];
                 _screenRangeLineRaw[0] = new Vector3(-width, 0, -height);
                 _screenRangeLineRaw[1] = new Vector3(width, 0, -height);
             
                 _screenRangeLineRaw[2] = new Vector3(width, 0, height);
                 _screenRangeLineRaw[3] = new Vector3(-width, 0, height);
             
-                _screenRangeLineRaw[4] = _screenRangeLineRaw[3] + Vector3.forward * _land.preActiveDistance;
-                _screenRangeLineRaw[5] = _screenRangeLineRaw[2] + Vector3.forward * _land.preActiveDistance;
+                // _screenRangeLineRaw[4] = _screenRangeLineRaw[3] + Vector3.forward * _land.preActiveDistance;
+                // _screenRangeLineRaw[5] = _screenRangeLineRaw[2] + Vector3.forward * _land.preActiveDistance;
                 
-                _screenRangeLineRender = new Vector3[6];
+                _screenRangeLineRender = new Vector3[4];
             }
             
             var pos = _land.GetCameraTrack().GetPosition(_fakeScreenTimeProgress);
@@ -99,9 +99,9 @@ namespace GoFire
             // Gizmos.DrawLineList(_screenRangeLineRender);
             Handles.DrawLines(_screenRangeLineRender, _screenRangeLineSegment);
             
-            Handles.color = Color.red;
-            
-            Handles.DrawLines(_screenRangeLineRender, _screenRangePreActiveLineSegment);
+            // Handles.color = Color.red;
+            //
+            // Handles.DrawLines(_screenRangeLineRender, _screenRangePreActiveLineSegment);
         }
     }
 }
