@@ -129,7 +129,7 @@ namespace GoFire
             _configOfAirplaneNames = new string[EditorConfigUtils.GetTables().TbAirplane.DataList.Count];
             for (int i = 0; i< EditorConfigUtils.GetTables().TbAirplane.DataList.Count; i++)
             {
-                _configOfAirplaneNames[i] = EditorConfigUtils.GetTables().TbAirplane.DataList[i].AssetName;
+                _configOfAirplaneNames[i] = EditorConfigUtils.GetTables().TbAirplane.DataList[i].Id;
             }
 
             return _configOfAirplaneNames;
@@ -203,7 +203,7 @@ namespace GoFire
                 
                 delayAction += () =>
                 {
-                    _land.Airplanes[newIdx].AdjustPos(_land.cameraTrack.GetComponent<ITrack>());
+                    _land.Airplanes[newIdx].AdjustPosByCameraTrack(_land.cameraTrack.GetComponent<ITrack>());
                 };
             }
             
@@ -241,13 +241,13 @@ namespace GoFire
                     EditorUtils.Field("时间(秒)",timeProgress.floatValue, v =>
                     {
                         timeProgress.floatValue = v;
-                        _land.Airplanes[i].AdjustPos(_land.GetCameraTrack());
+                        _land.Airplanes[i].AdjustPosByCameraTrack(_land.GetCameraTrack());
                     });
                     
                     EditorUtils.Field("距离", distanceToMid.floatValue, v =>
                     {
                         distanceToMid.floatValue = v;
-                        _land.Airplanes[i].AdjustPos(_land.GetCameraTrack());
+                        _land.Airplanes[i].AdjustPosByCameraTrack(_land.GetCameraTrack());
                     });
 
                     EditorUtils.Field("组", isGroup.boolValue, v =>

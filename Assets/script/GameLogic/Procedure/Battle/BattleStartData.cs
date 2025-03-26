@@ -15,6 +15,8 @@ namespace GoFire
         public string LandName;
         public string MainViewName;
         public string[] UIWindowPackageNames;
-        public string[] PackageNames;
+        public string LandPackageName;
+        public string MainViewPackageName;
+        public string[] AmmoPackageNames;
     }
 }

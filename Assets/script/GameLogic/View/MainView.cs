@@ -1,6 +1,7 @@
 ﻿using System;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace GoFire
 {
@@ -14,11 +15,14 @@ namespace GoFire
         
         private Vector3[] _screenRangeLineRaw;
         private Vector3[] _screenRangeLineRender;
-
-        public void Init(ITrack track)
+        private UnityAction<float> _onTimeProgressChanged;
+        public void Init(ITrack track, UnityAction<float> onTimeProgressChanged)
         {
+            _onTimeProgressChanged = onTimeProgressChanged;
             viewPoint.Init(track, true, true, true);
+            viewPoint.onTimeProgressChanged.AddListener(onTimeProgressChanged);
         }
+        
         private void OnDrawGizmos()
         {
             if (viewPoint != null)

@@ -3,7 +3,7 @@
     public interface IInput
     {
         bool Bind(IMovable target);
-        void Update();
+        void Update(float deltaTime);
         bool IsBind();
     }
 }

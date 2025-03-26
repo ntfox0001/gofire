@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -21,15 +22,15 @@ namespace GoFire.Kernel
             AlreadyReturn,
             
         } 
+        
         public void Register(string goName, Func<GameObject> creator)
         {
             _creators.Add(goName, creator);
         }
         
-        public GameObject Get(string goName)
+        public GameObject Get(string goName, Transform parent = null)
         {
-            List<GameObject> list;
-            if (!_pool.TryGetValue(goName, out list))
+            if (!_pool.TryGetValue(goName, out var list))
             {
                 list = new List<GameObject>();
                 _pool.Add(goName, list);
@@ -37,19 +38,31 @@ namespace GoFire.Kernel
             
             if (list.Count > 0)
             {
-                GameObject obj = list[0];
+                var obj = list[0];
                 list.RemoveAt(0);
+                
                 if (!_inPool.Contains(obj))
                 {
                     Log.Error("Pool: " + goName + " is not in pool");
                 }
+                
                 _inPool.Remove(obj);
+                if (parent != null)
+                {
+                    obj.transform.SetParent(parent);
+                }
+                
                 return obj;
             }
 
             var newObj = _creators[goName]();
             var pd = newObj.AddComponent<PoolData>();
             pd.cacheName = goName;
+            if (parent != null)
+            {
+                newObj.transform.SetParent(parent);
+            }
+            
             return newObj;
         }
 
@@ -57,6 +70,11 @@ namespace GoFire.Kernel
         {
             var pd = go.GetComponent<PoolData>();
             if (pd == null)
+            {
+                return ReturnCode.NotPoolObject;
+            }
+            
+            if (!_creators.ContainsKey(pd.cacheName))
             {
                 return ReturnCode.NotPoolObject;
             }
@@ -76,7 +94,13 @@ namespace GoFire.Kernel
                 return ReturnCode.NotPoolObject;
             }
 
-            var goName = pd.cacheName; 
+            var goName = pd.cacheName;
+
+            if (!_creators.ContainsKey(goName))
+            {
+                return ReturnCode.NotPoolObject;
+            }
+            
             if (_inPool.Contains(go))
             {
                 return ReturnCode.AlreadyReturn;
@@ -90,7 +114,22 @@ namespace GoFire.Kernel
             
             list.Add(go);
             _inPool.Add(go);
+            
+            go.transform.SetParent(transform);
+            
             return ReturnCode.Success;
+        }
+
+        public IEnumerator Clear()
+        {
+            _pool.Clear();
+            foreach (var go in _inPool)
+            {
+                Object.Destroy(go);
+                yield return null;
+            }
+            _inPool.Clear();
+            _creators.Clear();
         }
     }
 }

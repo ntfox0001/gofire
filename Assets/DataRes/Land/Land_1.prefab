@@ -709,20 +709,20 @@ MonoBehaviour:
   cameraTrack: {fileID: 5071491791532152881}
   groundTracksNode: {fileID: 6598173721219351733}
   airPlanePackageName: Airplane
-  tracksPackageName: Tracks
+  tracksPackageName: Track
   objectsNode: {fileID: 8561680115828326549}
   Airplanes:
-  - AirplaneName: Aircraft01
-    TrackName: Track_Circle_1
-    TimeProgress: 30.33
-    DistanceToMid: 19.1
+  - AirplaneName: plane1
+    TrackName: Track_1
+    TimeProgress: 4.99
+    DistanceToMid: 6.99
     IsGroup: 0
     Count: 0
     Interval: 0
-  - AirplaneName: Aircraft01
-    TrackName: Track_Circle_1
-    TimeProgress: 19.4
-    DistanceToMid: -6.16
+  - AirplaneName: plane1
+    TrackName: Track_1
+    TimeProgress: 5.7
+    DistanceToMid: -4.79
     IsGroup: 0
     Count: 0
     Interval: 0

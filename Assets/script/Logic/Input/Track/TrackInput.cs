@@ -6,13 +6,13 @@ namespace GoFire
     {
         private IMovable _bindTarget;
         private ITrack _track;
-        private float _duration;
+        private Vector3 _offset;
         private float _time;
         
-        public void Init(ITrack track, float duration)
+        public void Init(ITrack track, Vector3 offset)
         {
             _track = track;
-            _duration = 1 / duration;
+            _offset = offset;
         }
         public bool Bind(IMovable target)
         {
@@ -20,12 +20,12 @@ namespace GoFire
             return _bindTarget != null;
         }
 
-        public void Update()
+        public void Update(float deltaTime)
         {
-            var v = _time * _duration;
-            var pos = _track.GetPosition(v);
-            _bindTarget.SetPos(pos);
-            var dir = _track.GetFront(v, Vector3.up);
+            _time += deltaTime;
+            var pos = _track.GetPosition(_time);
+            _bindTarget.SetPos(pos + _offset);
+            var dir = _track.GetFront(_time, Vector3.up);
             _bindTarget.SetDir(dir);
         }
 

@@ -168,7 +168,7 @@ Transform:
   m_GameObject: {fileID: 7380510592592359426}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.65, y: 0, z: 9.83}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -214,7 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dirDelta: 0.001
-  duration: 60
+  duration: 20
   speedRateCurve:
     serializedVersion: 2
     m_Curve:

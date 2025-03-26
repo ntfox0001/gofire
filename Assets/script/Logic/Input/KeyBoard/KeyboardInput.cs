@@ -47,39 +47,39 @@ namespace GoFire
             _backRight = Quaternion.AngleAxis(-135f, _up) * _front;
         }
 
-        private void ReadKey()
+        private void ReadKey(float deltaTime)
         {
             if (Get2Key(_player1Layout.FrontKeys, _player1Layout.LeftKeys))
             {
-                Move(_frontLeft);
+                Move(_frontLeft, deltaTime);
             }
             else if (Get2Key(_player1Layout.BackKeys, _player1Layout.LeftKeys))
             {
-                Move(_backLeft);
+                Move(_backLeft, deltaTime);
             }
             else if (Get2Key(_player1Layout.FrontKeys, _player1Layout.RightKeys))
             {
-                Move(_frontRight);
+                Move(_frontRight, deltaTime);
             }
             else if (Get2Key(_player1Layout.BackKeys, _player1Layout.RightKeys))
             {
-                Move(_backRight);
+                Move(_backRight, deltaTime);
             }
             else if (GetKey(_player1Layout.FrontKeys))
             {
-                Move(_front);
+                Move(_front, deltaTime);
             }
             else if (GetKey(_player1Layout.BackKeys))
             {
-                Move(_back);
+                Move(_back, deltaTime);
             }
             else if (GetKey(_player1Layout.LeftKeys))
             {
-                Move(_left);
+                Move(_left, deltaTime);
             }
             else if (GetKey(_player1Layout.RightKeys))
             {
-                Move(_right);
+                Move(_right, deltaTime);
             }
 
             if (GetKey(_player1Layout.FireKeys))
@@ -132,14 +132,14 @@ namespace GoFire
             return found1 && found2;
         }
 
-        void Move(Vector3 move)
+        void Move(Vector3 move, float deltaTime)
         {
             if (!IsBind())
             {
                 return;
             }
             
-            _bindTarget.SetPos(_bindTarget.GetPos() + move * Time.deltaTime);
+            _bindTarget.SetPos(_bindTarget.GetPos() + move * deltaTime);
         }
         
         void Fire()
@@ -157,9 +157,9 @@ namespace GoFire
             
         }
 
-        public void Update()
+        public void Update(float deltaTime)
         {
-            ReadKey();
+            ReadKey(deltaTime);
         }
 
         public bool IsBind()

@@ -54,6 +54,34 @@ namespace GoFire
             var front = GetFront(timeProgress, up);
             return Vector3.Cross(front, up).normalized;
         }
+
+        public Vector3 GetLocalPosition(float timeProgress)
+        {
+            var v = Mathf.Clamp01(timeProgress / duration);
+            var dis = speedRateCurve.Evaluate(v);
+            return GetBezierCurve().GetLocalPointAt(Mathf.Clamp01(dis));
+        }
+
+        public Vector3 GetLocalFront(float timeProgress, Vector3 up)
+        {
+            var v1 = timeProgress;
+            var v2 = timeProgress - dirDelta;
+            if (timeProgress < dirDelta)
+            {
+                v2 = timeProgress;
+                v1 = timeProgress + dirDelta;
+            }
+            var p1 = GetLocalPosition(v1);
+            var p2 = GetLocalPosition(v2);
+            
+            return (p1 - p2).normalized;
+        }
+
+        public Vector3 GetLocalLeft(float timeProgress, Vector3 up)
+        {
+            var front = GetLocalFront(timeProgress, up);
+            return Vector3.Cross(front, up).normalized;
+        }
         
         public float GetLength()
         {

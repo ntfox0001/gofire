@@ -14,6 +14,19 @@ namespace GoFire
         private DamageCtrl _damageCtrl;
         private IInput _input;
         
+        public void Init(cfg.Airplane config, IInput input)
+        {
+            _input = input;
+            
+            Bind();
+            
+            _lifeCtrl.life = config.Life;
+            _damageCtrl.damage = config.Damage;
+            _moveCtrl.speed = config.SpeedRate;
+            _bounceCtrl.Bounce.Dampening = config.Dampening;
+            _bounceCtrl.Bounce.Mass = config.Mass;
+        }
+        
         private void Bind()
         {
             _lifeCtrl ??= GetComponent<LifeCtrl>();
@@ -23,25 +36,12 @@ namespace GoFire
 
             _input.Bind(_moveCtrl);
         }
-
-        public void Init(cfg.Airplane config, IInput input)
-        {
-            _lifeCtrl.life = config.Life;
-            _damageCtrl.damage = config.Damage;
-            _moveCtrl.speed = config.SpeedRate;
-            _bounceCtrl.Bounce.Dampening = config.Dampening;
-            _bounceCtrl.Bounce.Mass = config.Mass;
-            
-            _input = input;
-            
-            Bind();
-        }
-
+        
         void Update()
         {
-            if (_input.IsBind())
+            if (_input != null && _input.IsBind())
             {
-                _input.Update();
+                _input.Update(Time.deltaTime);
             }
         }
     }

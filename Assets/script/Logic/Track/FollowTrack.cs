@@ -7,7 +7,7 @@ namespace GoFire
 {
     public class FollowTrack : MonoBehaviour
     {
-        public UnityEvent<float> onTimeProgressChange;
+        public UnityEvent<float> onTimeProgressChanged;
         
         public float speedRate = 1;
         [Interface(typeof(ITrack))]
@@ -93,7 +93,7 @@ namespace GoFire
                     var pos = _track.GetPosition(_timeProgress);
                     transform.position = pos;
                     
-                    onTimeProgressChange?.Invoke(_timeProgress);
+                    onTimeProgressChanged?.Invoke(_timeProgress);
                 }
             }
         }

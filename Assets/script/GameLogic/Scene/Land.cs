@@ -45,7 +45,7 @@ namespace GoFire
             }
             for (int i = 0; i < Airplanes.Length; i++)
             {
-                Airplanes[i].AdjustPos(GetCameraTrack());
+                Airplanes[i].AdjustPosByCameraTrack(GetCameraTrack());
             }
         }
         

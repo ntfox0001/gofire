@@ -80,16 +80,14 @@ namespace GoFire.UIWindow
                 Player2 = default,
                 LandName = "Land_1",
                 MainViewName = "MainView",
-                UIWindowPackageNames = new string[]
+                UIWindowPackageNames = new[]
                 {
                     "UIBattle"
                 },
-                PackageNames = new string[]
+                LandPackageName = "Land",
+                MainViewPackageName = "MainView",
+                AmmoPackageNames = new[]
                 {
-                    "Land",
-                    "Airplane",
-                    "MainView",
-                    "Track",
                     "Ammo"
                 }
             };

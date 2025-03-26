@@ -50,17 +50,21 @@ namespace GoFire
             }
         }
         
-        public IEnumerator LoadPackage(string[] packageNames)
+        public IEnumerator LoadPackage(Transform parent, params string[] packageNames)
         {
             yield return _packageGroup.LoadPackage(packageNames);
             foreach (var trackName in _packageGroup.GetAllAssetsNameList())
             {
                 var raw = _packageGroup.GetAsset<GameObject>(trackName);
-                var go = ObjectManager.Instantiate(raw, transform);
+                var go = ObjectManager.Instantiate(raw, parent);
+                
+                //只归零位置，不归零其他属性
+                go.transform.position = Vector3.zero;
+                
                 var track = go.GetComponent<ITrack>();
                 if (track != null)
                 {
-                    _tracks.Add(track.Name, track);
+                    _tracks.Add(raw.name, track);
                 }
 
                 yield return null;
