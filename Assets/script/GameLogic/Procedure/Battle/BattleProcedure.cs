@@ -9,7 +9,6 @@ namespace GoFire
     {
         private LandHandler _landHandler;
         private MainViewHandler _mainViewHandler;
-        private LandTimeProgressHandler _landTimeProgressHandler;
         
         public IEnumerator Init(params object[] args)
         {
@@ -23,10 +22,6 @@ namespace GoFire
             // land
             _landHandler = new LandHandler(battleData.LandPackageName);
             yield return _landHandler.Load(battleData.LandName, battleData.Root.transform);
-            
-            // 初始化飞行物创建流程
-            _landTimeProgressHandler = new LandTimeProgressHandler(_landHandler.Land.airPlanePackageName);
-            yield return _landTimeProgressHandler.Init(_landHandler.Land.Airplanes);
             
             // 初始化摄像机
             _mainViewHandler = new MainViewHandler(battleData.MainViewPackageName);
