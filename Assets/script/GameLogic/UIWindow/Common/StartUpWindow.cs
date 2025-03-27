@@ -75,9 +75,16 @@ namespace GoFire.UIWindow
 
             BattleStartData battleStartData = new BattleStartData
             {
-                Root = SceneRoot.GetSingleton().gameObject,
-                Player1 = default,
-                Player2 = default,
+                Root = SceneRoot.GetSingleton().CreateNode("battle scene node"),
+                PlayerSettings = new[]
+                {
+                    new PlayerSetting
+                    {
+                        AirplaneName = "plane1",
+                        PackageName = "Airplane",
+                        Input = InputManager.GetSingleton().GetPlayer1Input()
+                    }
+                },
                 LandName = "Land_1",
                 MainViewName = "MainView",
                 UIWindowPackageNames = new[]

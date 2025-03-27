@@ -33,8 +33,22 @@ namespace GoFire
                 yield return null;
             }
         }
-        
+
         void CreatePlane(AirplaneMarker marker)
+        {
+            Land.StartCoroutine(CreatePlaneGroup(marker));
+        }
+
+        IEnumerator CreatePlaneGroup(AirplaneMarker marker)
+        {
+            for (int i = 0; i < marker.Count; i++)
+            {
+                CreateOnePlane(marker);
+                yield return new WaitForTime(marker.Interval);
+            }
+        }
+        
+        void CreateOnePlane(AirplaneMarker marker)
         {
             var cacheObj = Pool.GetSingleton().Get(marker.AirplaneName);
             var airplane = cacheObj.GetComponent<Airplane>();
@@ -51,7 +65,6 @@ namespace GoFire
             
             airplane.Init(ConfigManager.GetSingleton().Tables.TbAirplane.Get(marker.AirplaneName), trackInput);
         }
-
 
         void RegisterAirplaneToPool(AirplaneMarker marker, Dictionary<string, cfg.Airplane> airplaneConfig)
         {

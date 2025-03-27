@@ -204,8 +204,8 @@ namespace GoFire
                 elem.FindPropertyRelative("DistanceToMid").floatValue = _addNewAirplaneParams.DistanceToMid;
                 elem.FindPropertyRelative("TrackName").stringValue = _trackNames[_addNewAirplaneParams.TrackNameSelect];
                 elem.FindPropertyRelative("IsGroup").boolValue = false;
-                elem.FindPropertyRelative("Count").intValue = 0;
-                elem.FindPropertyRelative("Interval").floatValue = 0;
+                elem.FindPropertyRelative("Count").intValue = 1;
+                elem.FindPropertyRelative("Interval").floatValue = 0.5f;
                 
                 delayAction += () =>
                 {

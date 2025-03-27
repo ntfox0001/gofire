@@ -9,11 +9,13 @@ namespace GoFire
     {
         private LandHandler _landHandler;
         private MainViewHandler _mainViewHandler;
+        private GameObject _rootNode;
         
         public IEnumerator Init(params object[] args)
         {
             Log.Info("BattleProcedure Init....");
             var battleData = ParamUtils.Params<BattleStartData>(args);
+            _rootNode = battleData.Root;
             // 这里应该先进入loading window
             // 先读取窗口资源
             yield return WindowManager.GetSingleton().LoadPackage(battleData.UIWindowPackageNames);
@@ -21,7 +23,7 @@ namespace GoFire
             
             // land
             _landHandler = new LandHandler(battleData.LandPackageName);
-            yield return _landHandler.Load(battleData.LandName, battleData.Root.transform);
+            yield return _landHandler.Load(battleData.LandName, battleData.Root);
             
             // 初始化摄像机
             _mainViewHandler = new MainViewHandler(battleData.MainViewPackageName);
@@ -41,6 +43,8 @@ namespace GoFire
             
             HitManager.GetSingleton().Clear();
             yield return Pool.GetSingleton().Clear();
+            
+            Object.Destroy(_rootNode);
         }
 
 

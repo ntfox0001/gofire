@@ -104,7 +104,10 @@ namespace GoFire
             {
                 if (Airplanes[i].TimeProgress < timeProgress)
                 {
-                    _onAirplaneShow(Airplanes[i]);
+                    if (Airplanes[i].Count > 0)
+                    {
+                        _onAirplaneShow(Airplanes[i]);    
+                    }
                     _idx = i + 1;
                 }
                 else
