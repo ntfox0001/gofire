@@ -5,37 +5,35 @@ using UnityEngine;
 
 namespace GoFire
 {
-    public class LandTimeProgressHandler
+    public partial class LandHandler
     {
-        private readonly string _airplanePackageName;
-        private readonly PackageGroup _airplanePackageGroup;
+        private string _airplanePackageName;
+        private PackageGroup _airplanePackageGroup;
         
         private Transform _parent;
-        private AirplaneMarker[] _airplanes;
-        private int _idx;
         
-        public LandTimeProgressHandler(string airplanePackageName)
+        public IEnumerator InitAirplane(string airplanePackageName)
         {
             _airplanePackageName = airplanePackageName;
             _airplanePackageGroup = new PackageGroup();
-        }
-        
-        public void OnTimeProgress(float timeProgress)
-        {
-            for (int i = _idx; i < _airplanes.Length; i++)
+            
+            yield return _airplanePackageGroup.LoadPackage(_airplanePackageName);
+            
+            var airplanesConfig = ConfigManager.GetSingleton().Tables.TbAirplane.DataMap;
+            HashSet<string> airplaneNames = new();
+            
+            foreach (var marker in Land.Airplanes)
             {
-                if (_airplanes[i].TimeProgress < timeProgress)
+                if (!airplaneNames.Contains(marker.AirplaneName))
                 {
-                    CreatePlane(_airplanes[i]);
-                    _idx = i + 1;
+                    RegisterAirplaneToPool(marker, airplanesConfig);
+                    airplaneNames.Add(marker.AirplaneName);
                 }
-                else
-                {
-                    return;
-                }
+                
+                yield return null;
             }
         }
-
+        
         void CreatePlane(AirplaneMarker marker)
         {
             var cacheObj = Pool.GetSingleton().Get(marker.AirplaneName);
@@ -53,26 +51,7 @@ namespace GoFire
             
             airplane.Init(ConfigManager.GetSingleton().Tables.TbAirplane.Get(marker.AirplaneName), trackInput);
         }
-        
-        public IEnumerator Init(AirplaneMarker[] airplaneMarkers)
-        {
-            yield return _airplanePackageGroup.LoadPackage(_airplanePackageName);
-            
-            _airplanes = airplaneMarkers;
-            var airplanesConfig = ConfigManager.GetSingleton().Tables.TbAirplane.DataMap;
-            HashSet<string> airplaneNames = new();
-            
-            foreach (var marker in airplaneMarkers)
-            {
-                if (!airplaneNames.Contains(marker.AirplaneName))
-                {
-                    RegisterAirplaneToPool(marker, airplanesConfig);
-                    airplaneNames.Add(marker.AirplaneName);
-                }
-                
-                yield return null;
-            }
-        }
+
 
         void RegisterAirplaneToPool(AirplaneMarker marker, Dictionary<string, cfg.Airplane> airplaneConfig)
         {

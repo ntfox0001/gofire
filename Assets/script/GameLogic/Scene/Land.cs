@@ -19,7 +19,9 @@ namespace GoFire
         public string airPlanePackageName; // 地图使用飞行物包名
         public string tracksPackageName; // 地图使用轨道包名
         public AirplaneMarker[] Airplanes; // 这个地图上所有对象
-
+        
+        private int _idx;
+        private Action<AirplaneMarker> _onAirplaneShow;
         public bool Running
         {
             get => _clip.Running;
@@ -29,8 +31,10 @@ namespace GoFire
         private Clip _clip;
         private ITrack _track;
 
-        public void Init()
+        public void Init(Action<AirplaneMarker> onAirplaneShow)
         {
+            _onAirplaneShow = onAirplaneShow;
+            SortAirplaneMarkers();
             _clip = new Clip(GetCameraTrack().GetDuration(), OnClipUpdate, OnClipEnd);
         }
         
@@ -65,7 +69,7 @@ namespace GoFire
             }
         }
 
-        void OnClipUpdate(float deltaTime)
+        void OnClipUpdate(float timeProgress)
         {
             var track = GetCameraTrack();
             if (track == null)
@@ -73,20 +77,43 @@ namespace GoFire
                 return;
             }
             
-            var pos = track.GetPosition(deltaTime);
-            groundInsideNode.transform.localPosition =  - new Vector3(pos.x / groundOutsideNode.transform.localScale.x,
-                pos.y / groundOutsideNode.transform.localScale.y,
-                pos.z / groundOutsideNode.transform.localScale.z);
-            
-            var dir = track.GetFront(deltaTime, Vector3.up);
-            dir.x = -dir.x;
-            groundOutsideNode.transform.forward = dir;
+            CalculateGroundNode(track, timeProgress);
+            CalculateAirplaneMarkers(timeProgress);
         }
 
         void OnClipEnd()
         {
             
         }
+
+        void CalculateGroundNode(ITrack track, float timeProgress)
+        {
+            var pos = track.GetPosition(timeProgress);
+            groundInsideNode.transform.localPosition =  - new Vector3(pos.x / groundOutsideNode.transform.localScale.x,
+                pos.y / groundOutsideNode.transform.localScale.y,
+                pos.z / groundOutsideNode.transform.localScale.z);
+            
+            var dir = track.GetFront(timeProgress, Vector3.up);
+            dir.x = -dir.x;
+            groundOutsideNode.transform.forward = dir;
+        }
+
+        void CalculateAirplaneMarkers(float timeProgress)
+        {
+            for (int i = _idx; i < Airplanes.Length; i++)
+            {
+                if (Airplanes[i].TimeProgress < timeProgress)
+                {
+                    _onAirplaneShow(Airplanes[i]);
+                    _idx = i + 1;
+                }
+                else
+                {
+                    return;
+                }
+            }
+        }
+        
         
         private void OnDrawGizmos()
         {

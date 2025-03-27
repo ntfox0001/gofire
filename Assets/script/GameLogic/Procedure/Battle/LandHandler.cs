@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace GoFire
 {
-    public class LandHandler
+    public partial class LandHandler
     {
         public Land Land { get; private set; }
         
@@ -22,7 +22,9 @@ namespace GoFire
             var landRaw = _packageGroup.GetComponent<Land>(landName);
             // 创建场景
             Land = ObjectManager.Instantiate(landRaw, parent);
-            Land.Init();
+            Land.Init(CreatePlane);
+
+            yield return InitAirplane(Land.airPlanePackageName);
         }
 
         public IEnumerator Release()
