@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace GoFire
 {
@@ -8,40 +9,40 @@ namespace GoFire
     [RequireComponent(typeof(DamageCtrl))]
     public class Airplane : MonoBehaviour
     {
-        private LifeCtrl _lifeCtrl;
-        private MoveCtrl _moveCtrl;
-        private BounceCtrl _bounceCtrl;
-        private DamageCtrl _damageCtrl;
-        private IInput _input;
+        public LifeCtrl LifeCtrl { get; private set; }
+        public MoveCtrl MoveCtrl { get; private set; }
+        public BounceCtrl BounceCtrl { get; private set; }
+        public DamageCtrl DamageCtrl { get; private set; }
+        public IInput Input { get; private set; }
         
         public void Init(cfg.Airplane config, IInput input)
         {
-            _input = input;
+            Input = input;
             
             Bind();
             
-            _lifeCtrl.life = config.Life;
-            _damageCtrl.damage = config.Damage;
-            _moveCtrl.speed = config.SpeedRate;
-            _bounceCtrl.Bounce.Dampening = config.Dampening;
-            _bounceCtrl.Bounce.Mass = config.Mass;
+            LifeCtrl.life = config.Life;
+            DamageCtrl.damage = config.Damage;
+            MoveCtrl.speed = config.SpeedRate;
+            BounceCtrl.Bounce.Dampening = config.Dampening;
+            BounceCtrl.Bounce.Mass = config.Mass;
         }
         
         private void Bind()
         {
-            _lifeCtrl ??= GetComponent<LifeCtrl>();
-            _moveCtrl ??= GetComponent<MoveCtrl>();
-            _bounceCtrl ??= GetComponent<BounceCtrl>();
-            _damageCtrl ??= GetComponent<DamageCtrl>();
+            LifeCtrl ??= GetComponent<LifeCtrl>();
+            MoveCtrl ??= GetComponent<MoveCtrl>();
+            BounceCtrl ??= GetComponent<BounceCtrl>();
+            DamageCtrl ??= GetComponent<DamageCtrl>();
 
-            _input.Bind(_moveCtrl);
+            Input.Bind(MoveCtrl);
         }
         
         void Update()
         {
-            if (_input != null && _input.IsBind())
+            if (Input != null && Input.IsBind())
             {
-                _input.Update(Time.deltaTime);
+                Input.Update(Time.deltaTime);
             }
         }
     }

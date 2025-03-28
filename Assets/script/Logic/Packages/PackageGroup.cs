@@ -80,6 +80,7 @@ namespace GoFire
             if (_needReGenAllAssetsList)
             {
                 _allAssetsNameList = _packageInfos.Keys.ToArray();
+                _needReGenAllAssetsList = false;
             }
             return _allAssetsNameList;
         }
@@ -89,15 +90,8 @@ namespace GoFire
             foreach (var pair in _packageInfos)
             {
                 pair.Value.Release();
+                yield return null;
             }
-            
-            IEnumerator[] enumerators = new IEnumerator[_packages.Length];
-            for (int i = 0; i < _packages.Length; i++)
-            {
-                enumerators[i] = PackageManager.GetSingleton().PackageLoader.Unload(_packages[i].PackageName);    
-            }
-
-            yield return new WaitForObjectsEx(enumerators);
 
             _packageInfos.Clear();
             _packages = null;

@@ -8,6 +8,6 @@ namespace GoFire
     {
         IEnumerator Init(string packageName);
         ResourcePackage Get(string packageName);
-        IEnumerator Unload(string packageName);
+        IEnumerator Release(string packageName);
     }
 }

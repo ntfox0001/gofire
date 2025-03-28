@@ -7,6 +7,7 @@ namespace GoFire
         public string AirplaneName;
         public string PackageName;
         public IInput Input;
+        public float Speed;
     }
     public struct BattleStartData
     {

@@ -20,7 +20,7 @@ namespace GoFire
             IEnumerator[] enumerators = new IEnumerator[GameConfig.PackageList.Length];
             for (int i = 0; i < GameConfig.PackageList.Length; i++)
             {
-                enumerators[i] = PackageLoader.Init(GameConfig.PackageList[i]);    
+                enumerators[i] = PackageLoader.Init(GameConfig.PackageList[i]);
             }
             
             yield return new WaitForObjectsEx(enumerators);
@@ -33,7 +33,11 @@ namespace GoFire
 
         public void Release()
         {
-            
+            IEnumerator[] enumerators = new IEnumerator[GameConfig.PackageList.Length];
+            for (int i = 0; i < GameConfig.PackageList.Length; i++)
+            {
+                enumerators[i] = PackageLoader.Release(GameConfig.PackageList[i]);
+            }
         }
 
         public IPackageLoader PackageLoader

@@ -49,7 +49,7 @@ namespace GoFire
             return YooAssets.GetPackage(packageName);
         }
 
-        public IEnumerator Unload(string packageName)
+        public IEnumerator Release(string packageName)
         {
             var package = Get(packageName);
             yield return package.DestroyAsync();

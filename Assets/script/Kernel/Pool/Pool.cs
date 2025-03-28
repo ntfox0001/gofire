@@ -35,7 +35,7 @@ namespace GoFire.Kernel
 
         public void Release()
         {
-            
+            Destroy(_cacheRoot);
         }
         
         public void Register(string goName, Func<GameObject> creator)

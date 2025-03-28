@@ -9,6 +9,7 @@ namespace GoFire
     {
         private LandHandler _landHandler;
         private MainViewHandler _mainViewHandler;
+        private PlayerHandler _playerHandler;
         private GameObject _rootNode;
         
         public IEnumerator Init(params object[] args)
@@ -32,7 +33,11 @@ namespace GoFire
             // track
             yield return TrackManager.GetSingleton().LoadPackage(_mainViewHandler.MainView.trackParent, _landHandler.Land.tracksPackageName);
             TrackManager.GetSingleton().LoadTrackByNode(_landHandler.Land.groundTracksNode);
-
+            
+            // player
+            _playerHandler = new PlayerHandler();
+            yield return _playerHandler.Init(battleData.PlayerSettings, null);
+            
             _landHandler.Land.Running = true;
         }
 

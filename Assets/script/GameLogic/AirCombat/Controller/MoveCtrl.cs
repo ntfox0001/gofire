@@ -13,7 +13,7 @@ namespace GoFire
 
         public void SetPos(Vector3 pos)
         {
-            ObjectUtils.SetPosition(gameObject, pos);
+            ObjectUtils.SetPosition(gameObject, pos * speed);
         }
 
         //目前dir就是前进方向并且也是面朝方向

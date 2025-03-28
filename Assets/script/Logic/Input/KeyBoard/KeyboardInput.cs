@@ -4,7 +4,7 @@ namespace GoFire
 {
     public class KeyboardInput : IInput
     {
-        private Player1Layout _player1Layout;
+        private Player1Layout _player1Layout = new();
 
         private Vector3 _up;
         
@@ -38,13 +38,13 @@ namespace GoFire
 
         void InitDirection()
         {
-            _back = _front;
-            _left = Quaternion.AngleAxis(90f, _up) * _front;
-            _right = Quaternion.AngleAxis(-90f, _up) * _front;
-            _frontLeft = Quaternion.AngleAxis(45f, _up) * _front;
-            _frontRight = Quaternion.AngleAxis(-45f, _up) * _front;
-            _backLeft = Quaternion.AngleAxis(135f, _up) * _front;
-            _backRight = Quaternion.AngleAxis(-135f, _up) * _front;
+            _back = -_front;
+            _left = Quaternion.AngleAxis(-90f, _up) * _front;
+            _right = Quaternion.AngleAxis(90f, _up) * _front;
+            _frontLeft = Quaternion.AngleAxis(-45f, _up) * _front;
+            _frontRight = Quaternion.AngleAxis(45f, _up) * _front;
+            _backLeft = Quaternion.AngleAxis(-135f, _up) * _front;
+            _backRight = Quaternion.AngleAxis(135f, _up) * _front;
         }
 
         private void ReadKey(float deltaTime)

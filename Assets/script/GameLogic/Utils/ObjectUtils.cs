@@ -30,5 +30,12 @@ namespace GoFire
             go.transform.localRotation = Quaternion.identity;
             go.transform.localScale = Vector3.one;
         }
+
+        public static void ResetTransform(GameObject go, Vector3 front)
+        {
+            go.transform.localPosition = Vector3.zero;
+            go.transform.localRotation = Quaternion.LookRotation(front, Vector3.up);
+            go.transform.localScale = Vector3.one;
+        }
     }
 }

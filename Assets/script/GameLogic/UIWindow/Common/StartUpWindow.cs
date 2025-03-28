@@ -82,7 +82,8 @@ namespace GoFire.UIWindow
                     {
                         AirplaneName = "plane1",
                         PackageName = "Airplane",
-                        Input = InputManager.GetSingleton().GetPlayer1Input()
+                        Input = InputManager.GetSingleton().GetPlayer1Input(),
+                        Speed = 10
                     }
                 },
                 LandName = "Land_1",
