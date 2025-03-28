@@ -763,14 +763,14 @@ MonoBehaviour:
   Airplanes:
   - AirplaneName: plane1
     TrackName: Track_1
-    TimeProgress: 4.99
+    TimeProgress: 2
     DistanceToMid: 6.99
     IsGroup: 1
     Count: 3
     Interval: 1
   - AirplaneName: plane1
     TrackName: Track_1
-    TimeProgress: 8
+    TimeProgress: 20
     DistanceToMid: -4.79
     IsGroup: 1
     Count: 2

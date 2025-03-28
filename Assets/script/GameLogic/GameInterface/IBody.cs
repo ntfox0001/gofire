@@ -12,11 +12,7 @@
         public Speed Speed;
         public BounceData Bounce;
     }
-    public struct BounceData
-    {
-        public float Dampening; // 反弹衰减
-        public float Mass; // 质量
-    }
+
     public interface IBody : IMovable
     {
         float GetLife();

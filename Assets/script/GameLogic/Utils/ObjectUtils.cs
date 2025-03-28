@@ -23,5 +23,12 @@ namespace GoFire
         {
             go.transform.localRotation = Quaternion.LookRotation(dir, up);
         }
+
+        public static void ResetTransform(GameObject go)
+        {
+            go.transform.localPosition = Vector3.zero;
+            go.transform.localRotation = Quaternion.identity;
+            go.transform.localScale = Vector3.one;
+        }
     }
 }

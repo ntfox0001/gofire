@@ -9,19 +9,34 @@ namespace GoFire.Kernel
     /// <summary>
     /// 对象池，目前不是线程安全的
     /// </summary>
-    public class Pool : Singleton<Pool>
+    public class Pool : Singleton<Pool>, IManager
     {
         private readonly Dictionary<string, List<GameObject>> _pool = new();
         private readonly Dictionary<string, Func<GameObject>> _creators = new();
         private readonly HashSet<GameObject> _inPool = new();
 
+        private GameObject _cacheRoot;
+        
         public enum ReturnCode
         {
             Success,
             NotPoolObject,
             AlreadyReturn,
             
-        } 
+        }
+        
+        public IEnumerator Init()
+        {
+            _cacheRoot = new GameObject("PoolCache");
+            _cacheRoot.transform.SetParent(transform);
+            _cacheRoot.SetActive(false);
+            yield return null;
+        }
+
+        public void Release()
+        {
+            
+        }
         
         public void Register(string goName, Func<GameObject> creator)
         {
@@ -115,7 +130,7 @@ namespace GoFire.Kernel
             list.Add(go);
             _inPool.Add(go);
             
-            go.transform.SetParent(transform);
+            go.transform.SetParent(_cacheRoot.transform);
             
             return ReturnCode.Success;
         }

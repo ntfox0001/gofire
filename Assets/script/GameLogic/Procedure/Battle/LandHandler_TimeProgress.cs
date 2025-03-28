@@ -50,7 +50,8 @@ namespace GoFire
         
         void CreateOnePlane(AirplaneMarker marker)
         {
-            var cacheObj = Pool.GetSingleton().Get(marker.AirplaneName);
+            var cacheObj = Pool.GetSingleton().Get(marker.AirplaneName, Land.airplanesNode.transform);
+            ObjectUtils.ResetTransform(cacheObj);
             var airplane = cacheObj.GetComponent<Airplane>();
             
             var track = TrackManager.GetSingleton().GetTrack(marker.TrackName);
@@ -61,7 +62,10 @@ namespace GoFire
             }
             
             var trackInput = new TrackInput();
-            trackInput.Init(track, marker.GetRelativePosByScreen());
+            trackInput.Init(track, marker.GetRelativePosByScreen(), () =>
+            {
+                ObjectManager.Destroy(cacheObj);
+            });
             
             airplane.Init(ConfigManager.GetSingleton().Tables.TbAirplane.Get(marker.AirplaneName), trackInput);
         }

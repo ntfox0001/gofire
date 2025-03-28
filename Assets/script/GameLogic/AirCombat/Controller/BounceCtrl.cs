@@ -2,6 +2,12 @@
 
 namespace GoFire
 {
+    public struct BounceData
+    {
+        public float Dampening; // 反弹衰减
+        public float Mass; // 质量
+    }
+    
     public class BounceCtrl : MonoBehaviour
     {
         public BounceData Bounce;
