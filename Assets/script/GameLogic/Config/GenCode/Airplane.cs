@@ -26,6 +26,7 @@ public sealed partial class Airplane : Luban.BeanBase
         { if(!_buf["speed_rate"].IsNumber) { throw new SerializationException(); }  SpeedRate = _buf["speed_rate"]; }
         { if(!_buf["Mass"].IsNumber) { throw new SerializationException(); }  Mass = _buf["Mass"]; }
         { if(!_buf["dampening"].IsNumber) { throw new SerializationException(); }  Dampening = _buf["dampening"]; }
+        { if(!_buf["player_speed_rate"].IsNumber) { throw new SerializationException(); }  PlayerSpeedRate = _buf["player_speed_rate"]; }
     }
 
     public static Airplane DeserializeAirplane(JSONNode _buf)
@@ -51,6 +52,7 @@ public sealed partial class Airplane : Luban.BeanBase
     /// 反弹衰减
     /// </summary>
     public readonly float Dampening;
+    public readonly float PlayerSpeedRate;
    
     public const int __ID__ = -612367502;
     public override int GetTypeId() => __ID__;
@@ -71,6 +73,7 @@ public sealed partial class Airplane : Luban.BeanBase
         + "speedRate:" + SpeedRate + ","
         + "Mass:" + Mass + ","
         + "dampening:" + Dampening + ","
+        + "playerSpeedRate:" + PlayerSpeedRate + ","
         + "}";
     }
 }

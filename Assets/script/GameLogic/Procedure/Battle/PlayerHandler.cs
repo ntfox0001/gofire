@@ -13,7 +13,7 @@ namespace GoFire
 
         private Vector3[] _bornPos;
 
-        public IEnumerator Init(PlayerSetting[] playerSettings, Vector3[] bornPos)
+        public IEnumerator Init(PlayerSetting[] playerSettings, Vector3[] bornPos, MainView mainView)
         {
             _bornPos = bornPos;
             
@@ -31,11 +31,11 @@ namespace GoFire
             
             for (int i = 0; i < playerSettings.Length; i++)
             {
-                yield return LoadPlayer(playerSettings[i]);
+                yield return LoadPlayer(playerSettings[i], mainView);
             }
         }
 
-        public IEnumerator LoadPlayer(PlayerSetting playerSetting)
+        public IEnumerator LoadPlayer(PlayerSetting playerSetting, MainView mainView)
         {
             var config = ConfigManager.GetSingleton().Tables.TbAirplane[playerSetting.AirplaneName];
             if (config == null)
@@ -48,8 +48,9 @@ namespace GoFire
             
             ObjectUtils.ResetTransform(airplane.gameObject, GameConfig.Front);
             
-            airplane.Init(config, playerSetting.Input);
+            airplane.Init(config, playerSetting.Input, true);
             airplane.MoveCtrl.SetSpeed(playerSetting.Speed);
+            airplane.MoveCtrl.MoveRange = new MoveRangeCtrl(mainView.GetScreenRange(), 1);
             
             yield return null;
         }

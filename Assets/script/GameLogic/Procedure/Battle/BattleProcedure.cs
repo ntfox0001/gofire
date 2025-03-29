@@ -36,7 +36,7 @@ namespace GoFire
             
             // player
             _playerHandler = new PlayerHandler();
-            yield return _playerHandler.Init(battleData.PlayerSettings, null);
+            yield return _playerHandler.Init(battleData.PlayerSettings, null, _mainViewHandler.MainView);
             
             _landHandler.Land.Running = true;
         }

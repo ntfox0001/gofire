@@ -3,9 +3,14 @@ using UnityEngine.Serialization;
 
 namespace GoFire
 {
+    public interface IMoveRange
+    {
+        Vector3 AdjustPos(Vector3 pos);
+    }
     public class MoveCtrl : MonoBehaviour, IMovable
     {
-        public float speed;
+        private float _speed;
+        public IMoveRange MoveRange;
         public Vector3 GetPos()
         {
             return ObjectUtils.GetPosition(gameObject);
@@ -13,7 +18,12 @@ namespace GoFire
 
         public void SetPos(Vector3 pos)
         {
-            ObjectUtils.SetPosition(gameObject, pos * speed);
+            if (MoveRange != null)
+            {
+                pos = MoveRange.AdjustPos(pos);
+            }
+            
+            ObjectUtils.SetPosition(gameObject, pos);
         }
 
         //目前dir就是前进方向并且也是面朝方向
@@ -29,12 +39,12 @@ namespace GoFire
 
         public float GetSpeed()
         {
-            return speed;
+            return _speed;
         }
 
         public void SetSpeed(float s)
         {
-            speed = s;
+            _speed = s;
         }
     }
 }

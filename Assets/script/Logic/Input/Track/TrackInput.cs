@@ -22,6 +22,10 @@ namespace GoFire
         public bool Bind(IMovable target)
         {
             _bindTarget = target;
+            
+            // 不支持中途变速
+            
+            
             return _bindTarget != null;
         }
 
@@ -38,7 +42,7 @@ namespace GoFire
                 _onEnd?.Invoke();
                 return;
             }
-            _time += deltaTime;
+            _time += deltaTime * _bindTarget.GetSpeed();
             var pos = _track.GetPosition(_time);
             _bindTarget.SetPos(pos + _offset);
             var dir = _track.GetFront(_time, Vector3.up);

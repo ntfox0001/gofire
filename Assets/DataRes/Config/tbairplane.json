@@ -8,6 +8,7 @@
     "damage": 100,
     "speed_rate": 1,
     "Mass": 1,
-    "dampening": 0.6
+    "dampening": 0.6,
+    "player_speed_rate": 4
   }
 ]

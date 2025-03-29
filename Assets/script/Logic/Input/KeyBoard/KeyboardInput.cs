@@ -139,7 +139,7 @@ namespace GoFire
                 return;
             }
             
-            _bindTarget.SetPos(_bindTarget.GetPos() + move * deltaTime);
+            _bindTarget.SetPos(_bindTarget.GetPos() + move * (deltaTime * _bindTarget.GetSpeed()));
         }
         
         void Fire()

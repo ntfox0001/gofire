@@ -15,7 +15,7 @@ namespace GoFire
         public DamageCtrl DamageCtrl { get; private set; }
         public IInput Input { get; private set; }
         
-        public void Init(cfg.Airplane config, IInput input)
+        public void Init(cfg.Airplane config, IInput input, bool isPlayer)
         {
             Input = input;
             
@@ -23,9 +23,17 @@ namespace GoFire
             
             LifeCtrl.life = config.Life;
             DamageCtrl.damage = config.Damage;
-            MoveCtrl.speed = config.SpeedRate;
             BounceCtrl.Bounce.Dampening = config.Dampening;
             BounceCtrl.Bounce.Mass = config.Mass;
+            
+            if (isPlayer)
+            {
+                MoveCtrl.SetSpeed(config.PlayerSpeedRate);
+            }
+            else
+            {
+                MoveCtrl.SetSpeed(config.SpeedRate);
+            }
         }
         
         private void Bind()

@@ -16,12 +16,19 @@ namespace GoFire
         
         private Vector3[] _screenRangeLineRaw;
         private Vector3[] _screenRangeLineRender;
-        private UnityAction<float> _onTimeProgressChanged;
-        public void Init(ITrack track, UnityAction<float> onTimeProgressChanged)
+
+        private void Awake()
         {
-            _onTimeProgressChanged = onTimeProgressChanged;
-            // viewPoint.Init(track, true, true, true);
-            // viewPoint.onTimeProgressChanged.AddListener(onTimeProgressChanged);
+            mainVirtualCamera.m_Lens.Orthographic = true;
+            mainVirtualCamera.m_Lens.OrthographicSize = GameConfig.CameraSize;
+        }
+        
+        public Bounds GetScreenRange()
+        {
+            var height = mainVirtualCamera.m_Lens.OrthographicSize;
+            var rate = (float)optimumWidth / optimumHeight;
+            var width = height * rate;
+            return new Bounds(Vector3.zero, new Vector3(width * 2, 0, height * 2));
         }
         
         private void OnDrawGizmos()

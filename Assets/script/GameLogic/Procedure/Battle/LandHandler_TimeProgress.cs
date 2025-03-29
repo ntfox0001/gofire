@@ -67,7 +67,7 @@ namespace GoFire
                 ObjectManager.Destroy(cacheObj);
             });
             
-            airplane.Init(ConfigManager.GetSingleton().Tables.TbAirplane.Get(marker.AirplaneName), trackInput);
+            airplane.Init(ConfigManager.GetSingleton().Tables.TbAirplane.Get(marker.AirplaneName), trackInput, false);
         }
 
         void RegisterAirplaneToPool(AirplaneMarker marker, Dictionary<string, cfg.Airplane> airplaneConfig)
