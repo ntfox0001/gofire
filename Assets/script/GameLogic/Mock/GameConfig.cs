@@ -28,5 +28,17 @@ namespace GoFire
         public const float CameraSize = 20;
         
         public const float PreLoadDistance = 1;
+        
+        // *** BulletTag ***
+        // 需要跟Bullet的tag保持一致
+        public enum BulletTag
+        {
+            Player = 1,
+            Enemy = 2,
+            Wall = 4,
+            Item = 8,
+            Obstacle = 16,
+            Helper = 32,
+        }
     }
 }
