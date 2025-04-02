@@ -32,7 +32,7 @@ MonoBehaviour:
   foldoutExport: 1
   foldoutEmptyBin: 1
   foldoutCompactMode: 1
-  currentParamsSelected: {fileID: 6163438285032386650}
+  currentParamsSelected: {fileID: 114201774248674550}
   numberOfSubAssets: 0
 --- !u!114 &114027673760526898
 MonoBehaviour:
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: Bullet
   m_EditorClassIdentifier: 
   parameterType: 0
-  uniqueIndex: 8630134
+  uniqueIndex: 1066538
   profile: {fileID: 11400000}
   parent: {fileID: 0}
   children: []
@@ -7541,7 +7541,7 @@ MonoBehaviour:
   m_Name: Shot
   m_EditorClassIdentifier: 
   parameterType: 1
-  uniqueIndex: 11779383
+  uniqueIndex: 440603
   profile: {fileID: 11400000}
   parent: {fileID: 114917193883442684}
   children:
@@ -7763,12 +7763,12 @@ MonoBehaviour:
         indexOfTo: 0
         indexOfBlendedChildren: 
         weight: 0
-        headerTitle: 
+        headerTitle: Simultaneous Bullets Per Frame
         blendColor: {r: 0, g: 0, b: 0, a: 0}
         parameterType: 0
         relativeTo: 0
         parameterName: 
-      defaultValue: 3
+      defaultValue: 4
     useSlider: 0
     sliderMin: 0
     sliderMax: 0
@@ -7783,6 +7783,10 @@ MonoBehaviour:
     useDifferentBullet: 0
     bulletParams: {fileID: 0}
   - index: 2
+    bulletOrigin: {x: 0, y: 0, z: 0}
+    useDifferentBullet: 0
+    bulletParams: {fileID: 0}
+  - index: 3
     bulletOrigin: {x: 0, y: 0, z: 0}
     useDifferentBullet: 0
     bulletParams: {fileID: 0}
@@ -7898,7 +7902,2149 @@ MonoBehaviour:
           parameterType: 0
           relativeTo: 0
           parameterName: 
-        defaultValue: {x: -0.1, y: -0.32}
+        defaultValue: {x: -2.1, y: -0.32}
+    localMovement:
+      valueTree:
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 0
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: {x: 0, y: 0}
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 0
+                inSlope: 0
+                outSlope: 1
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              - serializedVersion: 3
+                time: 1
+                value: 1
+                inSlope: 1
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 1
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: {x: -0.97, y: 0}
+    pointToLookAt:
+      valueTree:
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 0
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: {x: 0, y: 0}
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 0
+                inSlope: 0
+                outSlope: 1
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              - serializedVersion: 3
+                time: 1
+                value: 1
+                inSlope: 1
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 1
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: {x: 0, y: 0}
+    pointToFleeFrom:
+      valueTree:
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 0
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: {x: 0, y: 0}
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 0
+                inSlope: 0
+                outSlope: 1
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              - serializedVersion: 3
+                time: 1
+                value: 1
+                inSlope: 1
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 1
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: {x: 0, y: 0}
+    pivot:
+      valueTree:
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 0
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: {x: 0, y: 0}
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 0
+                inSlope: 0
+                outSlope: 1
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              - serializedVersion: 3
+                time: 1
+                value: 1
+                inSlope: 1
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 1
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: {x: 0, y: 0}
+    scale:
+      valueTree:
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 0
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: {x: 0, y: 0}
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 0
+                inSlope: 0
+                outSlope: 1
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              - serializedVersion: 3
+                time: 1
+                value: 1
+                inSlope: 1
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 1
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: {x: 1, y: 1}
+    resetX:
+      valueTree:
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 0
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: 0
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 0
+                inSlope: 0
+                outSlope: 1
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              - serializedVersion: 3
+                time: 1
+                value: 1
+                inSlope: 1
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 1
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: 0
+    resetY:
+      valueTree:
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 0
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: 0
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 0
+                inSlope: 0
+                outSlope: 1
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              - serializedVersion: 3
+                time: 1
+                value: 1
+                inSlope: 1
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 1
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: 0
+    resetZ:
+      valueTree:
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 0
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: 0
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 0
+                inSlope: 0
+                outSlope: 1
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              - serializedVersion: 3
+                time: 1
+                value: 1
+                inSlope: 1
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 1
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: 0
+    flipX:
+      valueTree:
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 0
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: 0
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 0
+                inSlope: 0
+                outSlope: 1
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              - serializedVersion: 3
+                time: 1
+                value: 1
+                inSlope: 1
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 1
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: 0
+    flipY:
+      valueTree:
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 0
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: 0
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 0
+                inSlope: 0
+                outSlope: 1
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              - serializedVersion: 3
+                time: 1
+                value: 1
+                inSlope: 1
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 1
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: 0
+    degrees:
+      valueTree:
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 0
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: 0
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 0
+                inSlope: 0
+                outSlope: 1
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              - serializedVersion: 3
+                time: 1
+                value: 1
+                inSlope: 1
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 1
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: Degrees
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: 10
+      useSlider: 0
+      sliderMin: 0
+      sliderMax: 0
+    degreesTotal:
+      valueTree:
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 0
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: 0
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 0
+                inSlope: 0
+                outSlope: 1
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              - serializedVersion: 3
+                time: 1
+                value: 1
+                inSlope: 1
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 1
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: 58.9
+      useSlider: 0
+      sliderMin: 0
+      sliderMax: 0
+    rotationDegrees:
+      valueTree:
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 0
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: 0
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 0
+                inSlope: 0
+                outSlope: 1
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              - serializedVersion: 3
+                time: 1
+                value: 1
+                inSlope: 1
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 1
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: 18.36
+      useSlider: 0
+      sliderMin: 0
+      sliderMax: 0
+    horizontalSpacing:
+      valueTree:
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 0
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: 0
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 0
+                inSlope: 0
+                outSlope: 1
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              - serializedVersion: 3
+                time: 1
+                value: 1
+                inSlope: 1
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 1
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: 0
+      useSlider: 0
+      sliderMin: 0
+      sliderMax: 0
+    xSpacingTotal:
+      valueTree:
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 0
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: 0
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 0
+                inSlope: 0
+                outSlope: 1
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              - serializedVersion: 3
+                time: 1
+                value: 1
+                inSlope: 1
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 1
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: 0
+      useSlider: 0
+      sliderMin: 0
+      sliderMax: 0
+    verticalSpacing:
+      valueTree:
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 0
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: 0
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 0
+                inSlope: 0
+                outSlope: 1
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              - serializedVersion: 3
+                time: 1
+                value: 1
+                inSlope: 1
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 1
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: 0
+      useSlider: 0
+      sliderMin: 0
+      sliderMax: 0
+    ySpacingTotal:
+      valueTree:
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 0
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: 0
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 0
+                inSlope: 0
+                outSlope: 1
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              - serializedVersion: 3
+                time: 1
+                value: 1
+                inSlope: 1
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 1
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: 0
+      useSlider: 0
+      sliderMin: 0
+      sliderMax: 0
+    layoutDegrees:
+      valueTree: []
+      useSlider: 0
+      sliderMin: 0
+      sliderMax: 0
+    bulletParams:
+      valueTree:
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 0
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: {fileID: 0}
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 0
+                inSlope: 0
+                outSlope: 1
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              - serializedVersion: 3
+                time: 1
+                value: 1
+                inSlope: 1
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 1
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: {fileID: 0}
+    numberOfModifiersAffected: 0
+    selectionRects: []
+    indexesOfBulletsAffected: 
+    selectionColor: {r: 0, g: 0, b: 0, a: 0}
+    pivotColor: {r: 0, g: 0, b: 1, a: 1}
+    isEditingSelection: 0
+    selectionRectsVisible: 0
+    postEffectBulletSpawns:
+    - index: 0
+      bulletOrigin: {x: 0, y: 0, z: 15}
+      useDifferentBullet: 0
+      bulletParams: {fileID: 0}
+    - index: 1
+      bulletOrigin: {x: 0, y: 0, z: 5}
+      useDifferentBullet: 0
+      bulletParams: {fileID: 0}
+    - index: 2
+      bulletOrigin: {x: 0, y: 0, z: -5}
+      useDifferentBullet: 0
+      bulletParams: {fileID: 0}
+    - index: 3
+      bulletOrigin: {x: 0, y: 0, z: -15}
+      useDifferentBullet: 0
+      bulletParams: {fileID: 0}
+    enabled: 1
+  - modifierType: 9
+    globalMovement:
+      valueTree:
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve: []
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 0
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: {x: 0, y: 0}
+      - settings:
+          valueType: 0
+          interpolationValue:
+            interpolationFactor: 0
+            repartitionCurve:
+              serializedVersion: 2
+              m_Curve:
+              - serializedVersion: 3
+                time: 0
+                value: 0
+                inSlope: 0
+                outSlope: 1
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              - serializedVersion: 3
+                time: 1
+                value: 1
+                inSlope: 1
+                outSlope: 0
+                tangentMode: 0
+                weightedMode: 0
+                inWeight: 0.33333334
+                outWeight: 0.33333334
+              m_PreInfinity: 2
+              m_PostInfinity: 2
+              m_RotationOrder: 4
+            shareValueBetweenInstances: 0
+            rerollFrequency: 0
+            interpolationFactorFromShot: 0
+            interpolationFactorFromPattern: 0
+            interpolationFactorFromBullet: 0
+            relativeTo: 0
+            parameterName: 
+            loopDepth: 0
+            useComplexRerollSequence: 0
+            checkEveryNLoops: 0
+            loopSequence: 0
+            period: 0
+            wrapMode: 0
+            sortMode: 0
+            sortDirection: 0
+            repartitionTexture: {fileID: 0}
+            centerX: 0
+            centerY: 0
+            radius: 0
+            wrapPoint: 0
+            countClockwise: 0
+            differentValuesPerShot: 0
+          combinedInterpolationFactors: 0
+          index: 1
+          indexOfParent: 0
+          indexOfFrom: 0
+          indexOfTo: 0
+          indexOfBlendedChildren: 
+          weight: 0
+          headerTitle: 
+          blendColor: {r: 0, g: 0, b: 0, a: 0}
+          parameterType: 0
+          relativeTo: 0
+          parameterName: 
+        defaultValue: {x: 0, y: 0}
     localMovement:
       valueTree:
       - settings:
@@ -9103,12 +11249,12 @@ MonoBehaviour:
           indexOfTo: 0
           indexOfBlendedChildren: 
           weight: 0
-          headerTitle: 
+          headerTitle: Degrees
           blendColor: {r: 0, g: 0, b: 0, a: 0}
           parameterType: 0
           relativeTo: 0
           parameterName: 
-        defaultValue: 30
+        defaultValue: 0
       useSlider: 0
       sliderMin: 0
       sliderMax: 0
@@ -9221,7 +11367,7 @@ MonoBehaviour:
           parameterType: 0
           relativeTo: 0
           parameterName: 
-        defaultValue: 62.54
+        defaultValue: 0
       useSlider: 0
       sliderMin: 0
       sliderMax: 0
@@ -9334,7 +11480,7 @@ MonoBehaviour:
           parameterType: 0
           relativeTo: 0
           parameterName: 
-        defaultValue: 18.36
+        defaultValue: 0
       useSlider: 0
       sliderMin: 0
       sliderMax: 0
@@ -9447,7 +11593,7 @@ MonoBehaviour:
           parameterType: 0
           relativeTo: 0
           parameterName: 
-        defaultValue: 0
+        defaultValue: -1
       useSlider: 0
       sliderMin: 0
       sliderMax: 0
@@ -9856,8 +12002,8 @@ MonoBehaviour:
                 outSlope: 1
                 tangentMode: 0
                 weightedMode: 0
-                inWeight: 0.33333334
-                outWeight: 0.33333334
+                inWeight: 0
+                outWeight: 0
               - serializedVersion: 3
                 time: 1
                 value: 1
@@ -9865,8 +12011,8 @@ MonoBehaviour:
                 outSlope: 0
                 tangentMode: 0
                 weightedMode: 0
-                inWeight: 0.33333334
-                outWeight: 0.33333334
+                inWeight: 0
+                outWeight: 0
               m_PreInfinity: 2
               m_PostInfinity: 2
               m_RotationOrder: 4
@@ -9908,29 +12054,33 @@ MonoBehaviour:
     numberOfModifiersAffected: 0
     selectionRects: []
     indexesOfBulletsAffected: 
-    selectionColor: {r: 0, g: 0, b: 0, a: 0}
+    selectionColor: {r: 0.74589884, g: 0.44379142, b: 0.080895886, a: 0.3}
     pivotColor: {r: 0, g: 0, b: 1, a: 1}
     isEditingSelection: 0
-    selectionRectsVisible: 0
+    selectionRectsVisible: 1
     postEffectBulletSpawns:
     - index: 0
-      bulletOrigin: {x: 0, y: 0, z: 30}
+      bulletOrigin: {x: -1.5, y: 0, z: 15}
       useDifferentBullet: 0
       bulletParams: {fileID: 0}
     - index: 1
-      bulletOrigin: {x: 0, y: 0, z: 0}
+      bulletOrigin: {x: -0.5, y: 0, z: 5}
       useDifferentBullet: 0
       bulletParams: {fileID: 0}
     - index: 2
-      bulletOrigin: {x: 0, y: 0, z: -30}
+      bulletOrigin: {x: 0.5, y: 0, z: -5}
+      useDifferentBullet: 0
+      bulletParams: {fileID: 0}
+    - index: 3
+      bulletOrigin: {x: 1.5, y: 0, z: -15}
       useDifferentBullet: 0
       bulletParams: {fileID: 0}
     enabled: 1
   bulletParamsRandom: 0
   listOfPossibleBulletParams: []
   possibleBulletParams: 0
-  highestValues: {x: 0, y: 0, z: 30}
-  lowestValues: {x: 0, y: 0, z: -30}
+  highestValues: {x: 1.5, y: 0, z: 15}
+  lowestValues: {x: -1.5, y: 0, z: -15}
   hasBeenSerializedOnce: 1
   fakeBulletAmount: 0
   foldout0: 1
@@ -9940,14 +12090,14 @@ MonoBehaviour:
   foldout4: 0
   foldout5: 0
   foldout6: 1
-  foldout7: 1
+  foldout7: 0
   foldout8: 0
-  textureSliceRate: 29
+  textureSliceRate: 1
   ingameSizeOfTexture: {x: 1, y: 1}
   inputTexture: {fileID: 0}
   outputTexture:
     tex: {fileID: 0}
-    widthInWindow: 0.845
+    widthInWindow: 1
     ingameDistance: 5
     orientation: 0
     justChangedOrientation: 0
@@ -9958,15 +12108,15 @@ MonoBehaviour:
     isDoneWithSelection: 0
     selectionRects:
     - serializedVersion: 2
-      x: 0.35548297
-      y: 0.40668124
+      x: 0.49952787
+      y: 0.3286119
       width: 0
       height: 0
     selectionRectsFromExistingMods: []
-    mouseStartPoint: {x: 0.35548297, y: 0.40668124}
-    mouseEndPoint: {x: 0.35548297, y: 0.40668124}
-    currentColor: {r: 0.88448846, g: 0.01485776, b: 0.7172018, a: 0.4}
-    indexOfFirstUndo: 865
+    mouseStartPoint: {x: 0.49952787, y: 0.3286119}
+    mouseEndPoint: {x: 0.49952787, y: 0.3286119}
+    currentColor: {r: 0.39409322, g: 0.83325464, b: 0.75779325, a: 0.4}
+    indexOfFirstUndo: 2513
 --- !u!114 &114671512830859702
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9980,7 +12130,7 @@ MonoBehaviour:
   m_Name: Root Emitter
   m_EditorClassIdentifier: 
   parameterType: 0
-  uniqueIndex: 16619691
+  uniqueIndex: 9966524
   profile: {fileID: 11400000}
   parent: {fileID: 0}
   children:
@@ -17096,7 +19246,7 @@ MonoBehaviour:
   m_Name: Pattern
   m_EditorClassIdentifier: 
   parameterType: 2
-  uniqueIndex: 10732252
+  uniqueIndex: 15548408
   profile: {fileID: 11400000}
   parent: {fileID: 114671512830859702}
   children:
@@ -31813,7 +33963,7 @@ MonoBehaviour:
             parameterType: 0
             relativeTo: 0
             parameterName: 
-          defaultValue: 1
+          defaultValue: 0.1
         useSlider: 0
         sliderMin: 0
         sliderMax: 0
@@ -41357,7 +43507,7 @@ MonoBehaviour:
   advancedFoldout: 1
   hasBeenSerializedOnce: 1
   focusedInstruction: -1
-  safetyForPlaymode: 1
+  safetyForPlaymode: 9
 --- !u!114 &1269967905479373259
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -41371,7 +43521,7 @@ MonoBehaviour:
   m_Name: New BulletParams 2
   m_EditorClassIdentifier: 
   parameterType: 0
-  uniqueIndex: 7992573
+  uniqueIndex: 11425544
   profile: {fileID: 11400000}
   parent: {fileID: 0}
   children: []
@@ -48531,7 +50681,7 @@ MonoBehaviour:
   m_Name: Bullet
   m_EditorClassIdentifier: 
   parameterType: 0
-  uniqueIndex: 3035498
+  uniqueIndex: 13016831
   profile: {fileID: 11400000}
   parent: {fileID: 114201774248674550}
   children: []
@@ -49104,7 +51254,7 @@ MonoBehaviour:
         parameterType: 0
         relativeTo: 0
         parameterName: 
-      defaultValue: 12
+      defaultValue: 0
     useSlider: 0
     sliderMin: 0
     sliderMax: 0
@@ -49877,8 +52027,8 @@ MonoBehaviour:
         parameterName: 
       defaultValue:
         serializedVersion: 2
-        key0: {r: 0, g: 0, b: 0, a: 1}
-        key1: {r: 0, g: 0, b: 0, a: 1}
+        key0: {r: 1, g: 1, b: 1, a: 0.8627451}
+        key1: {r: 1, g: 0.7505156, b: 0.71383643, a: 0.8627451}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -49893,7 +52043,7 @@ MonoBehaviour:
         ctime5: 0
         ctime6: 0
         ctime7: 0
-        atime0: 0
+        atime0: 257
         atime1: 65535
         atime2: 0
         atime3: 0
@@ -49902,7 +52052,7 @@ MonoBehaviour:
         atime6: 0
         atime7: 0
         m_Mode: 0
-        m_ColorSpace: -1
+        m_ColorSpace: 0
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
   vfxParams:
@@ -50969,7 +53119,7 @@ MonoBehaviour:
         parameterType: 0
         relativeTo: 0
         parameterName: 
-      defaultValue: 5
+      defaultValue: 60
     useSlider: 0
     sliderMin: 0
     sliderMax: 0
@@ -51195,7 +53345,7 @@ MonoBehaviour:
         parameterType: 0
         relativeTo: 0
         parameterName: 
-      defaultValue: 3.31
+      defaultValue: 5
     useSlider: 0
     sliderMin: 0
     sliderMax: 0
@@ -53688,7 +55838,7 @@ MonoBehaviour:
           m_RotationOrder: 4
       forceZeroToOne: 1
   colorOverLifetime:
-    enabled: 0
+    enabled: 1
     wrapMode:
       valueTree:
       - settings:
@@ -54170,7 +56320,7 @@ MonoBehaviour:
           m_RotationOrder: 4
       forceZeroToOne: 1
   alphaOverLifetime:
-    enabled: 0
+    enabled: 1
     wrapMode:
       valueTree:
       - settings:
@@ -54280,7 +56430,7 @@ MonoBehaviour:
           parameterType: 0
           relativeTo: 0
           parameterName: 
-        defaultValue: 0
+        defaultValue: 1
       enumTypeName: UnityEngine.WrapMode, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       enumOptions:
@@ -54508,7 +56658,7 @@ MonoBehaviour:
           parameterType: 0
           relativeTo: 0
           parameterName: 
-        defaultValue: 1
+        defaultValue: 0.02
       useSlider: 0
       sliderMin: 0
       sliderMax: 0
@@ -54632,21 +56782,21 @@ MonoBehaviour:
           - serializedVersion: 3
             time: 0
             value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
+            inSlope: 1
+            outSlope: 1
+            tangentMode: 34
             weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0.33333334
+            inWeight: 0
+            outWeight: 0
           - serializedVersion: 3
             time: 1
             value: 1
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
+            inSlope: 1
+            outSlope: 1
+            tangentMode: 34
             weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0.33333334
+            inWeight: 0
+            outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
@@ -56025,7 +58175,7 @@ MonoBehaviour:
   m_Name: New BulletParams 1
   m_EditorClassIdentifier: 
   parameterType: 0
-  uniqueIndex: 15564670
+  uniqueIndex: 4635655
   profile: {fileID: 11400000}
   parent: {fileID: 0}
   children: []
