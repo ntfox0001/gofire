@@ -20165,7 +20165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a676b285f069c3c4884c27e78d0fc696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emitterProfile: {fileID: 11400000, guid: 7c2310bd683f5b64ead96e1afd6c411b, type: 2}
+  emitterProfile: {fileID: 0}
   patternOrigin: {fileID: 5542006820043162098}
   playAtStart: 1
   useDefaultGizmoColor: 1

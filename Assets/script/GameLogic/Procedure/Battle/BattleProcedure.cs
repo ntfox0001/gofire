@@ -34,6 +34,9 @@ namespace GoFire
             yield return TrackManager.GetSingleton().LoadPackage(_mainViewHandler.MainView.trackParent, _landHandler.Land.tracksPackageName);
             TrackManager.GetSingleton().LoadTrackByNode(_landHandler.Land.groundTracksNode);
             
+            // ammo
+            yield return AmmoManager.GetSingleton().LoadPackage(battleData.AmmoPackageNames);
+            
             // player
             _playerHandler = new PlayerHandler();
             yield return _playerHandler.Init(battleData.PlayerSettings, null, _mainViewHandler.MainView);

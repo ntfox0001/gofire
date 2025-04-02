@@ -81,8 +81,10 @@ namespace GoFire.UIWindow
                     new PlayerSetting
                     {
                         AirplaneName = "plane1",
-                        PackageName = "Airplane",
-                        Input = InputManager.GetSingleton().GetPlayer1Input(),
+                        AirplanePackageName = "Airplane",
+                        AmmoName = "player_ammo",
+                        Input = InputManager.GetSingleton()
+                            .GetPlayer1Input(),
                         Speed = 10
                     }
                 },

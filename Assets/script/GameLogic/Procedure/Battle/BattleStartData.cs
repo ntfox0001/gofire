@@ -5,7 +5,9 @@ namespace GoFire
     public struct PlayerSetting
     {
         public string AirplaneName;
-        public string PackageName;
+        public string AirplanePackageName;
+        public string AmmoName;
+        public string AmmoPackageName;
         public IInput Input;
         public float Speed;
     }

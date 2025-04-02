@@ -1,4 +1,6 @@
-﻿using BulletPro;
+﻿using System.Collections;
+using BulletPro;
+using GoFire.Kernel;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -10,7 +12,7 @@ namespace GoFire
     [RequireComponent(typeof(DamageCtrl))]
     [RequireComponent(typeof(BulletReceiver))]
     [RequireComponent(typeof(BulletEmitter))]
-    public class Airplane : BaseBulletBehaviour
+    public class Airplane : MonoBehaviour
     {
         public LifeCtrl LifeCtrl { get; private set; }
         public MoveCtrl MoveCtrl { get; private set; }
@@ -20,7 +22,8 @@ namespace GoFire
         public BulletReceiver BulletReceiver { get; private set; }
         public BulletEmitter BulletEmitter { get; private set; }
         
-        public void Init(cfg.Airplane config, IInput input, bool isPlayer)
+        private Ammo _ammo;
+        void Init(cfg.Airplane config, IInput input)
         {
             Input = input;
             
@@ -30,52 +33,54 @@ namespace GoFire
             DamageCtrl.damage = config.Damage;
             BounceCtrl.Bounce.Dampening = config.Dampening;
             BounceCtrl.Bounce.Mass = config.Mass;
-            
-            if (isPlayer)
-            {
-                InitPlayer(config);
-            }
-            else
-            {
-                InitEnemy(config);
-            }
         }
 
-        private void InitPlayer(cfg.Airplane config)
+        public void InitPlayer(cfg.Airplane config, IInput input, string ammoName)
         {
+            Init(config, input);
             MoveCtrl.SetSpeed(config.PlayerSpeedRate);
             BulletReceiver.collisionTags.tagList = (uint)GameConfig.BulletTag.Player;
-
-            // var old = BulletEmitter.emitterProfile;
-            // var cloneObj = ScriptableObjectClone.CloneEmitterProfile(old);
-            // BulletEmitter.emitterProfile = cloneObj;
-            //
-            // foreach (var ep in BulletEmitter.emitterProfile.subAssets)
-            // {
-            //     if (ep is BulletParams bp)
-            //     {
-            //         bp.color = new DynamicColor(Color.red);
-            //         bp.collisionTags.tagList = (uint)GameConfig.BulletTag.Enemy;
-            //     }
-            // }
+            var ammo = AmmoManager.GetSingleton().GetEmitterProfile(ammoName);
+            if (ammo == null)
+            {
+                Log.Error("ammo not found {0}", ammoName);
+                return;
+            }
+            _ammo = ((Ammo)ammo).Clone();
+            BulletEmitter.emitterProfile = _ammo.EmitterProfile;
+            
+            foreach (var ep in BulletEmitter.emitterProfile.subAssets)
+            {
+                if (ep is BulletParams bp)
+                {
+                    bp.color = new DynamicColor(Color.red);
+                    bp.collisionTags.tagList = (uint)GameConfig.BulletTag.Enemy;
+                }
+            }
         }
 
-        private void InitEnemy(cfg.Airplane config)
+        public void InitEnemy(cfg.Airplane config, IInput input)
         {
+            Init(config, input);
             MoveCtrl.SetSpeed(config.SpeedRate);
             BulletReceiver.collisionTags.tagList = (uint)GameConfig.BulletTag.Enemy;
+            var ammo = AmmoManager.GetSingleton().GetEmitterProfile(config.Ammo);
+            if (ammo == null)
+            {
+                Log.Error("ammo not found {0}", config.Ammo);
+                return;
+            }
+            _ammo = (Ammo)ammo;
+            BulletEmitter.emitterProfile = _ammo.EmitterProfile;
             
-            // var cloneObj = ScriptableObjectClone.CloneEmitterProfile(BulletEmitter.emitterProfile);
-            // BulletEmitter.emitterProfile = cloneObj;
-            //
-            // foreach (var ep in BulletEmitter.emitterProfile.subAssets)
-            // {
-            //     if (ep is BulletParams bp)
-            //     {
-            //         bp.color = new DynamicColor(Color.green);
-            //         bp.collisionTags.tagList = (uint)GameConfig.BulletTag.Player;
-            //     }
-            // }
+            foreach (var ep in BulletEmitter.emitterProfile.subAssets)
+            {
+                if (ep is BulletParams bp)
+                {
+                    bp.color = new DynamicColor(Color.green);
+                    bp.collisionTags.tagList = (uint)GameConfig.BulletTag.Player;
+                }
+            }
         }
         
         private void Bind()

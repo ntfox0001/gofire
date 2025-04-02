@@ -11,31 +11,17 @@ namespace GoFire
         void OnArrive(); // 到达目的地
     }
 
-    public class TrackManager : Singleton<TrackManager>, IManager
+    public class TrackManager : Singleton<TrackManager>
     {
-        private Dictionary<string, ITrack> _tracks = new();
+        private readonly Dictionary<string, ITrack> _tracks = new();
 
         private struct NodeTrack
         {
             public GameObject Node;
             public ITrack Track;
         }
-        private Dictionary<string, NodeTrack> _localTracks = new();
+        private readonly Dictionary<string, NodeTrack> _localTracks = new();
         private readonly PackageGroup _packageGroup = new();
-        
-        public IEnumerator Init()
-        {
-            yield return null;
-        }
-        public void Update()
-        {
-            
-        }
-
-        public void Release()
-        {
-            
-        }
 
         public void LoadTrackByNode(GameObject node)
         {

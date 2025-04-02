@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da8a7c80eab4c474da1e90eb12356b89, type: 3}
-  m_Name: TestEmitter_1
+  m_Name: player_ammo_1
   m_EditorClassIdentifier: 
   rootBullet: {fileID: 114671512830859702}
   subAssets:
@@ -32,7 +32,7 @@ MonoBehaviour:
   foldoutExport: 1
   foldoutEmptyBin: 1
   foldoutCompactMode: 1
-  currentParamsSelected: {fileID: 114671512830859702}
+  currentParamsSelected: {fileID: 6163438285032386650}
   numberOfSubAssets: 0
 --- !u!114 &114027673760526898
 MonoBehaviour:
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: Bullet
   m_EditorClassIdentifier: 
   parameterType: 0
-  uniqueIndex: 11799465
+  uniqueIndex: 8630134
   profile: {fileID: 11400000}
   parent: {fileID: 0}
   children: []
@@ -1104,7 +1104,7 @@ MonoBehaviour:
         parameterType: 0
         relativeTo: 0
         parameterName: 
-      defaultValue: {r: 1, g: 0, b: 0, a: 1}
+      defaultValue: {r: 0, g: 1, b: 0, a: 1}
       gradientValue:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -2830,7 +2830,7 @@ MonoBehaviour:
   animationMovementSpace: 0
   animationTexture: {fileID: 0}
   collisionTags:
-    tagList: 2
+    tagList: 1
   colliders:
   - colliderType: 0
     size: 1.71
@@ -7541,7 +7541,7 @@ MonoBehaviour:
   m_Name: Shot
   m_EditorClassIdentifier: 
   parameterType: 1
-  uniqueIndex: 3683237
+  uniqueIndex: 11779383
   profile: {fileID: 11400000}
   parent: {fileID: 114917193883442684}
   children:
@@ -9933,21 +9933,21 @@ MonoBehaviour:
   lowestValues: {x: 0, y: 0, z: -30}
   hasBeenSerializedOnce: 1
   fakeBulletAmount: 0
-  foldout0: 0
+  foldout0: 1
   foldout1: 0
   foldout2: 0
   foldout3: 0
   foldout4: 0
   foldout5: 0
-  foldout6: 0
-  foldout7: 0
+  foldout6: 1
+  foldout7: 1
   foldout8: 0
-  textureSliceRate: 20
+  textureSliceRate: 29
   ingameSizeOfTexture: {x: 1, y: 1}
   inputTexture: {fileID: 0}
   outputTexture:
     tex: {fileID: 0}
-    widthInWindow: 0.5
+    widthInWindow: 0.845
     ingameDistance: 5
     orientation: 0
     justChangedOrientation: 0
@@ -9956,12 +9956,17 @@ MonoBehaviour:
     holdsMultiSelect: 0
     isEditingSelection: 0
     isDoneWithSelection: 0
-    selectionRects: []
+    selectionRects:
+    - serializedVersion: 2
+      x: 0.35548297
+      y: 0.40668124
+      width: 0
+      height: 0
     selectionRectsFromExistingMods: []
-    mouseStartPoint: {x: 0, y: 0}
-    mouseEndPoint: {x: 0, y: 0}
-    currentColor: {r: 0, g: 0, b: 0, a: 0}
-    indexOfFirstUndo: 0
+    mouseStartPoint: {x: 0.35548297, y: 0.40668124}
+    mouseEndPoint: {x: 0.35548297, y: 0.40668124}
+    currentColor: {r: 0.88448846, g: 0.01485776, b: 0.7172018, a: 0.4}
+    indexOfFirstUndo: 865
 --- !u!114 &114671512830859702
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9975,7 +9980,7 @@ MonoBehaviour:
   m_Name: Root Emitter
   m_EditorClassIdentifier: 
   parameterType: 0
-  uniqueIndex: 313745
+  uniqueIndex: 16619691
   profile: {fileID: 11400000}
   parent: {fileID: 0}
   children:
@@ -11033,7 +11038,7 @@ MonoBehaviour:
         parameterType: 0
         relativeTo: 0
         parameterName: 
-      defaultValue: {r: 1, g: 0, b: 0, a: 1}
+      defaultValue: {r: 0, g: 1, b: 0, a: 1}
       gradientValue:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -12759,7 +12764,7 @@ MonoBehaviour:
   animationMovementSpace: 0
   animationTexture: {fileID: 0}
   collisionTags:
-    tagList: 2
+    tagList: 1
   colliders:
   - colliderType: 0
     size: 0.1
@@ -17091,7 +17096,7 @@ MonoBehaviour:
   m_Name: Pattern
   m_EditorClassIdentifier: 
   parameterType: 2
-  uniqueIndex: 12070388
+  uniqueIndex: 10732252
   profile: {fileID: 11400000}
   parent: {fileID: 114671512830859702}
   children:
@@ -41366,7 +41371,7 @@ MonoBehaviour:
   m_Name: New BulletParams 2
   m_EditorClassIdentifier: 
   parameterType: 0
-  uniqueIndex: 13821588
+  uniqueIndex: 7992573
   profile: {fileID: 11400000}
   parent: {fileID: 0}
   children: []
@@ -42423,7 +42428,7 @@ MonoBehaviour:
         parameterType: 0
         relativeTo: 0
         parameterName: 
-      defaultValue: {r: 1, g: 0, b: 0, a: 1}
+      defaultValue: {r: 0, g: 1, b: 0, a: 1}
       gradientValue:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -44149,7 +44154,7 @@ MonoBehaviour:
   animationMovementSpace: 0
   animationTexture: {fileID: 0}
   collisionTags:
-    tagList: 2
+    tagList: 1
   colliders:
   - colliderType: 0
     size: 0.1
@@ -48526,7 +48531,7 @@ MonoBehaviour:
   m_Name: Bullet
   m_EditorClassIdentifier: 
   parameterType: 0
-  uniqueIndex: 3563944
+  uniqueIndex: 3035498
   profile: {fileID: 11400000}
   parent: {fileID: 114201774248674550}
   children: []
@@ -48638,12 +48643,12 @@ MonoBehaviour:
         indexOfTo: 0
         indexOfBlendedChildren: 
         weight: 0
-        headerTitle: 
+        headerTitle: Sprite
         blendColor: {r: 0, g: 0, b: 0, a: 0}
         parameterType: 0
         relativeTo: 0
         parameterName: 
-      defaultValue: {fileID: 21300000, guid: 06e5d8f7ba9c17144b1ace83b073da17, type: 3}
+      defaultValue: {fileID: 21300000, guid: c274c15586aa11a42ada4426a1541b86, type: 3}
     narrowType: 1
     requireComponent: 0
     typeName: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
@@ -48869,7 +48874,7 @@ MonoBehaviour:
         indexOfTo: 0
         indexOfBlendedChildren: 
         weight: 0
-        headerTitle: 
+        headerTitle: Animated
         blendColor: {r: 0, g: 0, b: 0, a: 0}
         parameterType: 0
         relativeTo: 0
@@ -49213,7 +49218,7 @@ MonoBehaviour:
         parameterType: 0
         relativeTo: 0
         parameterName: 
-      defaultValue: {fileID: 21300000, guid: 963a799468bc9f94ba06627a3fe70fb9, type: 3}
+      defaultValue: {fileID: 0}
     narrowType: 1
     requireComponent: 0
     typeName: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
@@ -49583,7 +49588,7 @@ MonoBehaviour:
         parameterType: 0
         relativeTo: 0
         parameterName: 
-      defaultValue: {r: 1, g: 0, b: 0, a: 1}
+      defaultValue: {r: 1, g: 1, b: 1, a: 1}
       gradientValue:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -51185,12 +51190,12 @@ MonoBehaviour:
         indexOfTo: 0
         indexOfBlendedChildren: 
         weight: 0
-        headerTitle: 
+        headerTitle: Start Scale
         blendColor: {r: 0, g: 0, b: 0, a: 0}
         parameterType: 0
         relativeTo: 0
         parameterName: 
-      defaultValue: 0.5
+      defaultValue: 3.31
     useSlider: 0
     sliderMin: 0
     sliderMax: 0
@@ -51309,10 +51314,10 @@ MonoBehaviour:
   animationMovementSpace: 0
   animationTexture: {fileID: 0}
   collisionTags:
-    tagList: 2
+    tagList: 1
   colliders:
   - colliderType: 0
-    size: 1.71
+    size: 0.1
     offset: {x: 0, y: 0, z: 0}
     lineStart: {x: 0, y: 0}
     lineEnd: {x: 0, y: 0}
@@ -56005,7 +56010,7 @@ MonoBehaviour:
       requiredComponentName: 
   preview:
     collidersTex: {fileID: 0}
-    sprite: {fileID: 21300000, guid: 06e5d8f7ba9c17144b1ace83b073da17, type: 3}
+    sprite: {fileID: 21300000, guid: c274c15586aa11a42ada4426a1541b86, type: 3}
     gizmoColor: {r: 0, g: 0, b: 0.5, a: 1}
 --- !u!114 &6783053887686059947
 MonoBehaviour:
@@ -56020,7 +56025,7 @@ MonoBehaviour:
   m_Name: New BulletParams 1
   m_EditorClassIdentifier: 
   parameterType: 0
-  uniqueIndex: 11549744
+  uniqueIndex: 15564670
   profile: {fileID: 11400000}
   parent: {fileID: 0}
   children: []
@@ -57077,7 +57082,7 @@ MonoBehaviour:
         parameterType: 0
         relativeTo: 0
         parameterName: 
-      defaultValue: {r: 1, g: 0, b: 0, a: 1}
+      defaultValue: {r: 0, g: 1, b: 0, a: 1}
       gradientValue:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -58803,7 +58808,7 @@ MonoBehaviour:
   animationMovementSpace: 0
   animationTexture: {fileID: 0}
   collisionTags:
-    tagList: 2
+    tagList: 1
   colliders:
   - colliderType: 0
     size: 0.1

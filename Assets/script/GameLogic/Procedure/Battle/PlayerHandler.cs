@@ -20,7 +20,7 @@ namespace GoFire
             HashSet<string> packageNames = new();
             for (int i = 0; i < playerSettings.Length; i++)
             {
-                packageNames.Add(playerSettings[i].PackageName);
+                packageNames.Add(playerSettings[i].AirplanePackageName);
             }
             
             _packageNames = packageNames.Select(x => x).ToArray();
@@ -48,7 +48,7 @@ namespace GoFire
             
             ObjectUtils.ResetTransform(airplane.gameObject, GameConfig.Front);
             
-            airplane.Init(config, playerSetting.Input, true);
+            airplane.InitPlayer(config, playerSetting.Input, playerSetting.AmmoName);
             airplane.MoveCtrl.SetSpeed(playerSetting.Speed);
             airplane.MoveCtrl.MoveRange = new MoveRangeCtrl(mainView.GetScreenRange(), 1);
             
