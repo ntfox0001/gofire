@@ -16,11 +16,13 @@ public partial class Tables
 {
     public TbAirplane TbAirplane {get; }
     public TbAmmo TbAmmo {get; }
+    public TbEvent TbEvent {get; }
 
     public Tables(System.Func<string, JSONNode> loader)
     {
         TbAirplane = new TbAirplane(loader("tbairplane"));
         TbAmmo = new TbAmmo(loader("tbammo"));
+        TbEvent = new TbEvent(loader("tbevent"));
         ResolveRef();
     }
     
@@ -28,6 +30,7 @@ public partial class Tables
     {
         TbAirplane.ResolveRef(this);
         TbAmmo.ResolveRef(this);
+        TbEvent.ResolveRef(this);
     }
 }
 

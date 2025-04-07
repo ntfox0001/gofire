@@ -1,21 +1,17 @@
 ﻿using System.Collections.Generic;
 using GoFire.Kernel;
+using UnityEngine;
 
 namespace GoFire
 {
     public class HitManager : Singleton<HitManager>
     {
-        private Dictionary<ulong, IHitHandler> _hitActions = new();
+        private readonly Dictionary<ulong, IHitHandler> _hitActions = new();
         private IHitHandler _defaultHitAction;
 
         public void RegisterDefault(IHitHandler defaultAction)
         {
             _defaultHitAction = defaultAction;
-        }
-        
-        public void RegisterHit(ulong hitObj1,ulong hitObj2, IHitHandler handler)
-        {
-            _hitActions.Add(GetKey(hitObj1, hitObj2), handler);
         }
 
         public void Clear()
@@ -24,22 +20,14 @@ namespace GoFire
             _defaultHitAction = null;
         }
 
-        ulong GetKey(ulong hit, ulong beHit)
+        public void Hit(GameObject hit, GameObject beHit, Vector3 hitPoint)
         {
-            return (ulong)hit << 32 | (ulong)beHit;
-        } 
-
-        public void Hit(IHit hit, IHit beHit, HitData hitData)
-        {
-            var key = GetKey(hit.HitMask(), beHit.HitMask());
-            if (_hitActions.TryGetValue(key, out var action))
+            _defaultHitAction?.OnHit(new HitData
             {
-                action.OnHit(hitData);
-            }
-            else
-            {
-                _defaultHitAction?.OnHit(hitData);
-            }
+                Point = hitPoint,
+                Hit = hit,
+                BeHit = beHit
+            });
         }
     }
 }

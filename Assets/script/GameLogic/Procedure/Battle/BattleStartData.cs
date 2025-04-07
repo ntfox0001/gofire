@@ -21,5 +21,6 @@ namespace GoFire
         public string LandPackageName;
         public string MainViewPackageName;
         public string[] AmmoPackageNames;
+        public string[] EventPackageNames;
     }
 }

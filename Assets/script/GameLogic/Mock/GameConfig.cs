@@ -17,6 +17,7 @@ namespace GoFire
             "Airplane",
             "MainView",
             "Land",
+            "Event"
         };
         
         public static readonly Vector3 Front = Vector3.forward;

@@ -14,18 +14,18 @@ namespace GoFire
         
         public void OnHit(Collision collision)
         {
-            if (collision.contactCount == 0) return;
-            
-            var otherHit = collision.gameObject.GetComponent<IHit>();
-
-            var hitData = new HitData()
-            {
-                Point = collision.contacts[0].point,
-                Hit = collision,
-                BeHit = gameObject,
-            };
-        
-            HitManager.GetSingleton().Hit(otherHit, _hit, hitData);
+            // if (collision.contactCount == 0) return;
+            //
+            // var otherHit = collision.gameObject.GetComponent<IHit>();
+            //
+            // var hitData = new HitData()
+            // {
+            //     Point = collision.contacts[0].point,
+            //     Hit = collision,
+            //     BeHit = gameObject,
+            // };
+            //
+            // HitManager.GetSingleton().Hit(otherHit, _hit, hitData);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace GoFire
 {
     public class PackageGroup : IGetAsset
     {
-        private Dictionary<string, AssetInfo> _packageInfos = new();
+        private readonly Dictionary<string, AssetInfo> _packageInfos = new();
         private bool _needReGenAllAssetsList = true;
         private string[] _allAssetsNameList = Array.Empty<string>();
         private ResourcePackage[] _packages = null;

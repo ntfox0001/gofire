@@ -37,6 +37,9 @@ namespace GoFire
             // ammo
             yield return AmmoManager.GetSingleton().LoadPackage(battleData.AmmoPackageNames);
             
+            // event
+            yield return EventManager.GetSingleton().LoadPackage(battleData.EventPackageNames);
+            
             // player
             _playerHandler = new PlayerHandler();
             yield return _playerHandler.Init(battleData.PlayerSettings, null, _mainViewHandler.MainView);
@@ -51,6 +54,8 @@ namespace GoFire
             
             HitManager.GetSingleton().Clear();
             yield return Pool.GetSingleton().Clear();
+            
+            yield return EventManager.GetSingleton().Unload();
             
             Object.Destroy(_rootNode);
         }

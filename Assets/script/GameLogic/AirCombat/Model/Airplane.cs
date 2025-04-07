@@ -12,6 +12,7 @@ namespace GoFire
     [RequireComponent(typeof(DamageCtrl))]
     [RequireComponent(typeof(BulletReceiver))]
     [RequireComponent(typeof(BulletEmitter))]
+    [RequireComponent(typeof(BulletPatternOrigin))]
     public class Airplane : MonoBehaviour
     {
         public LifeCtrl LifeCtrl { get; private set; }
@@ -33,6 +34,8 @@ namespace GoFire
             DamageCtrl.damage = config.Damage;
             BounceCtrl.Bounce.Dampening = config.Dampening;
             BounceCtrl.Bounce.Mass = config.Mass;
+
+            BulletReceiver.OnHitByBullet.AddListener(OnHitByBullet);
         }
 
         public void InitPlayer(cfg.Airplane config, IInput input, string ammoName)
@@ -46,17 +49,17 @@ namespace GoFire
                 Log.Error("ammo not found {0}", ammoName);
                 return;
             }
-            _ammo = ((Ammo)ammo).Clone();
+            _ammo = (Ammo)ammo;
             BulletEmitter.emitterProfile = _ammo.EmitterProfile;
             
-            foreach (var ep in BulletEmitter.emitterProfile.subAssets)
-            {
-                if (ep is BulletParams bp)
-                {
-                    bp.color = new DynamicColor(Color.red);
-                    bp.collisionTags.tagList = (uint)GameConfig.BulletTag.Enemy;
-                }
-            }
+            // foreach (var ep in BulletEmitter.emitterProfile.subAssets)
+            // {
+            //     if (ep is BulletParams bp)
+            //     {
+            //         bp.color = new DynamicColor(Color.red);
+            //         bp.collisionTags.tagList = (uint)GameConfig.BulletTag.Enemy;
+            //     }
+            // }
         }
 
         public void InitEnemy(cfg.Airplane config, IInput input)
@@ -73,14 +76,14 @@ namespace GoFire
             _ammo = (Ammo)ammo;
             BulletEmitter.emitterProfile = _ammo.EmitterProfile;
             
-            foreach (var ep in BulletEmitter.emitterProfile.subAssets)
-            {
-                if (ep is BulletParams bp)
-                {
-                    bp.color = new DynamicColor(Color.green);
-                    bp.collisionTags.tagList = (uint)GameConfig.BulletTag.Player;
-                }
-            }
+            // foreach (var ep in BulletEmitter.emitterProfile.subAssets)
+            // {
+            //     if (ep is BulletParams bp)
+            //     {
+            //         // bp.color = new DynamicColor(Color.green);
+            //         bp.collisionTags.tagList = (uint)GameConfig.BulletTag.Player;
+            //     }
+            // }
         }
         
         private void Bind()
@@ -93,6 +96,11 @@ namespace GoFire
             BulletEmitter ??= GetComponent<BulletEmitter>();
 
             Input.Bind(MoveCtrl);
+        }
+
+        void OnHitByBullet(Bullet bullet, Vector3 pos)
+        {
+            HitManager.GetSingleton().Hit(gameObject, bullet.emitter.gameObject, pos);
         }
         
         void Update()

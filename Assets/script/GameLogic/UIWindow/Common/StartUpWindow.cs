@@ -99,6 +99,10 @@ namespace GoFire.UIWindow
                 AmmoPackageNames = new[]
                 {
                     "Ammo"
+                },
+                EventPackageNames = new[]
+                {
+                    "Event"
                 }
             };
             LoadingWindow.Loading(ProcedureManager.GetSingleton().Switch(new BattleProcedure(), battleStartData));

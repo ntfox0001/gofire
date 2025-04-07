@@ -73,6 +73,7 @@ namespace GoFire.Kernel
             var newObj = _creators[goName]();
             var pd = newObj.AddComponent<PoolData>();
             pd.cacheName = goName;
+            
             if (parent != null)
             {
                 newObj.transform.SetParent(parent);
