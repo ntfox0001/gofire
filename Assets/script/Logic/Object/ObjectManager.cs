@@ -4,18 +4,8 @@ using UnityEngine;
 
 namespace GoFire
 {
-    public class ObjectManager : Singleton<ObjectManager>, IManager
+    public class ObjectManager : Singleton<ObjectManager>
     {
-        public IEnumerator Init()
-        {
-            yield return null;
-        }
-
-        public void Release()
-        {
-            
-        }
-
         public new static T Instantiate<T>(T obj) where T : Object
         {
             return UnityEngine.Object.Instantiate<T>(obj);

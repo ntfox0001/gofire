@@ -21,7 +21,7 @@ namespace GoFire
             }
             
             life += l;
-            if (!OnInjury(life, l))
+            if (OnInjury != null && !OnInjury(life, l))
             {
                 life -= l;
             }
@@ -30,6 +30,11 @@ namespace GoFire
         public float GetLife()
         {
             return life;
+        }
+
+        public bool IsDead()
+        {
+            return life <= 0;
         }
     }
 }

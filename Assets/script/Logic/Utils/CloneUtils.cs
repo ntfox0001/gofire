@@ -5,25 +5,25 @@ using UnityEngine;
 
 namespace GoFire
 {
-    public static class ScriptableObjectClone
+    public static class CloneUtils
     {
-        public static T Clone<T>(T original) where T : ScriptableObject
+        public static T CloneScriptableObject<T>(T original) where T : ScriptableObject
         {
             var js = JsonUtility.ToJson(original);
-            var clone = ScriptableObject.CreateInstance<T>();
-            JsonUtility.FromJsonOverwrite(js, clone);
-            return clone;
+            var clone = ScriptableObject.CreateInstance(original.GetType());
+            JsonUtility.FromJsonOverwrite(js, (T)clone);
+            return (T)clone;
         }
         
         public static EmitterProfile CloneEmitterProfile(EmitterProfile original)
         {
             Dictionary<Object, Object> cloneMap = new();
-            var clone = Clone(original);
+            var clone = CloneScriptableObject(original);
             cloneMap.Add(original, clone);
             clone.subAssets = new EmissionParams[original.subAssets.Length];
             for (int i = 0; i < original.subAssets.Length; i++)
             {
-                clone.subAssets[i] = Clone(original.subAssets[i]);
+                clone.subAssets[i] = CloneScriptableObject(original.subAssets[i]);
                 cloneMap.Add(original.subAssets[i], clone.subAssets[i]);
             }
 
@@ -39,6 +39,8 @@ namespace GoFire
                     ep.children[j] = (EmissionParams)cloneMap[ep.children[j]];
                 }
             }
+            
+            clone.rootBullet = (BulletParams)cloneMap[clone.rootBullet];
             
             return clone;
         }

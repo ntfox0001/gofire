@@ -2,7 +2,7 @@
 using GoFire.Kernel;
 using UnityEngine;
 
-namespace Script.Logic.ShadeUtil
+namespace GoFire
 {
     public class FadeUtil : Singleton<FadeUtil>
     {

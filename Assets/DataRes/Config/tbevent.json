@@ -1,9 +1,14 @@
 [
   {
     "id": "event_enemy_death_1",
-    "asset_name": "",
+    "asset_name": "event_enemy_death_1",
     "args": [
       "0"
     ]
+  },
+  {
+    "id": "player_dead_1",
+    "asset_name": "player_dead_1",
+    "args": []
   }
 ]

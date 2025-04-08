@@ -5,14 +5,17 @@ namespace GoFire
     public struct Ammo
     {
         public EmitterProfile EmitterProfile;
-        public float Damage;
-
+        public cfg.Ammo Config;
+        
+        public float Damage => Config.Damage;
+        public float Life => Config.Life;
+        
         public Ammo Clone()
         {
             return new Ammo
             {
-                EmitterProfile = ScriptableObjectClone.CloneEmitterProfile(EmitterProfile),
-                Damage = Damage
+                EmitterProfile = CloneUtils.CloneEmitterProfile(EmitterProfile),
+                Config = Config,
             };
         }
     }

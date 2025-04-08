@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 160675409732734863}
   - component: {fileID: 2028625251031183049}
   - component: {fileID: 4205464611021324795}
-  - component: {fileID: 7144905786385589758}
+  - component: {fileID: 9173331007510095769}
   m_Layer: 0
-  m_Name: player_dead
+  m_Name: player_dead_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4831,7 +4831,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &7144905786385589758
+--- !u!114 &9173331007510095769
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4840,12 +4840,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4898159613729105417}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 438745f55b0099d4b93eeb46965cfc0e, type: 3}
+  m_Script: {fileID: 11500000, guid: a18629ea8a574c729074b0af4c28cef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 2
-  Acc: 0
-  Duration: 2
-  HitToDestroy: 0
-  BounceAttenuation: 0.7
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  particle: {fileID: 2028625251031183049}

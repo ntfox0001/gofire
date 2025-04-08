@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using Script.Logic.SceneRoot;
-using Script.Logic.ShadeUtil;
 using UnityEngine;
 using UnityEngine.UI;
 

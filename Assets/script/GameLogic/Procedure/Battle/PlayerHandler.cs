@@ -12,10 +12,12 @@ namespace GoFire
         private PackageGroup _packageGroup;
 
         private Vector3[] _bornPos;
+        private Transform _airplanesNode;
 
-        public IEnumerator Init(PlayerSetting[] playerSettings, Vector3[] bornPos, MainView mainView)
+        public IEnumerator Init(PlayerSetting[] playerSettings, Vector3[] bornPos, MainView mainView, Transform airplanesNode)
         {
             _bornPos = bornPos;
+            _airplanesNode = airplanesNode;
             
             HashSet<string> packageNames = new();
             for (int i = 0; i < playerSettings.Length; i++)
@@ -44,7 +46,7 @@ namespace GoFire
                 yield break;
             }
             var raw = _packageGroup.GetComponent<Airplane>(config.AssetName);
-            var airplane = ObjectManager.Instantiate(raw);
+            var airplane = ObjectManager.Instantiate(raw, _airplanesNode);
             
             ObjectUtils.ResetTransform(airplane.gameObject, GameConfig.Front);
             

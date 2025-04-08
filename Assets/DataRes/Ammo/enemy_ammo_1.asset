@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: Bullet
   m_EditorClassIdentifier: 
   parameterType: 0
-  uniqueIndex: 13387216
+  uniqueIndex: 15451707
   profile: {fileID: 11400000}
   parent: {fileID: 0}
   children: []
@@ -7541,7 +7541,7 @@ MonoBehaviour:
   m_Name: Shot
   m_EditorClassIdentifier: 
   parameterType: 1
-  uniqueIndex: 7671801
+  uniqueIndex: 8501600
   profile: {fileID: 11400000}
   parent: {fileID: 114917193883442684}
   children:
@@ -9975,7 +9975,7 @@ MonoBehaviour:
   m_Name: Root Emitter
   m_EditorClassIdentifier: 
   parameterType: 0
-  uniqueIndex: 16239400
+  uniqueIndex: 6457379
   profile: {fileID: 11400000}
   parent: {fileID: 0}
   children:
@@ -17091,7 +17091,7 @@ MonoBehaviour:
   m_Name: Pattern
   m_EditorClassIdentifier: 
   parameterType: 2
-  uniqueIndex: 4446101
+  uniqueIndex: 1196121
   profile: {fileID: 11400000}
   parent: {fileID: 114671512830859702}
   children:
@@ -41366,7 +41366,7 @@ MonoBehaviour:
   m_Name: New BulletParams 2
   m_EditorClassIdentifier: 
   parameterType: 0
-  uniqueIndex: 14543398
+  uniqueIndex: 60701
   profile: {fileID: 11400000}
   parent: {fileID: 0}
   children: []
@@ -48526,7 +48526,7 @@ MonoBehaviour:
   m_Name: Bullet
   m_EditorClassIdentifier: 
   parameterType: 0
-  uniqueIndex: 6754147
+  uniqueIndex: 974127
   profile: {fileID: 11400000}
   parent: {fileID: 114201774248674550}
   children: []
@@ -50849,7 +50849,7 @@ MonoBehaviour:
   foldoutVFX: 1
   hideSpriteList: 0
   vfxOpened: 0
-  currentlyDisplayedModule: 8
+  currentlyDisplayedModule: 3
   canMove: 1
   canCollide: 1
   isVisible: 1
@@ -51309,7 +51309,7 @@ MonoBehaviour:
   animationMovementSpace: 0
   animationTexture: {fileID: 0}
   collisionTags:
-    tagList: 2
+    tagList: 1
   colliders:
   - colliderType: 0
     size: 1.71
@@ -56020,7 +56020,7 @@ MonoBehaviour:
   m_Name: New BulletParams 1
   m_EditorClassIdentifier: 
   parameterType: 0
-  uniqueIndex: 3631370
+  uniqueIndex: 13265493
   profile: {fileID: 11400000}
   parent: {fileID: 0}
   children: []

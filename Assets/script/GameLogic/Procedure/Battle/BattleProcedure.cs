@@ -20,7 +20,9 @@ namespace GoFire
             // 这里应该先进入loading window
             // 先读取窗口资源
             yield return WindowManager.GetSingleton().LoadPackage(battleData.UIWindowPackageNames);
-            HitManager.GetSingleton().RegisterDefault(new GeneralHitHandler());
+            
+            // register hit
+            HitManager.GetSingleton().Register<Missile, Airplane>(MissileHitAirplaneHandler.OnHit);
             
             // land
             _landHandler = new LandHandler(battleData.LandPackageName);
@@ -42,7 +44,7 @@ namespace GoFire
             
             // player
             _playerHandler = new PlayerHandler();
-            yield return _playerHandler.Init(battleData.PlayerSettings, null, _mainViewHandler.MainView);
+            yield return _playerHandler.Init(battleData.PlayerSettings, null, _mainViewHandler.MainView, _landHandler.Land.airplanesNode.transform);
             
             _landHandler.Land.Running = true;
         }

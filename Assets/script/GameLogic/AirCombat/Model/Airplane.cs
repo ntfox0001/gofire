@@ -10,20 +10,22 @@ namespace GoFire
     [RequireComponent(typeof(LifeCtrl))]
     [RequireComponent(typeof(BounceCtrl))]
     [RequireComponent(typeof(DamageCtrl))]
+    [RequireComponent(typeof(DeathCtrl))]
     [RequireComponent(typeof(BulletReceiver))]
     [RequireComponent(typeof(BulletEmitter))]
     [RequireComponent(typeof(BulletPatternOrigin))]
-    public class Airplane : MonoBehaviour
+    public class Airplane : MonoBehaviour, IHit
     {
         public LifeCtrl LifeCtrl { get; private set; }
         public MoveCtrl MoveCtrl { get; private set; }
         public BounceCtrl BounceCtrl { get; private set; }
         public DamageCtrl DamageCtrl { get; private set; }
+        public DeathCtrl DeathCtrl { get; private set; }
         public IInput Input { get; private set; }
         public BulletReceiver BulletReceiver { get; private set; }
         public BulletEmitter BulletEmitter { get; private set; }
         
-        private Ammo _ammo;
+        public Ammo Ammo { get; private set; }
         void Init(cfg.Airplane config, IInput input)
         {
             Input = input;
@@ -43,14 +45,16 @@ namespace GoFire
             Init(config, input);
             MoveCtrl.SetSpeed(config.PlayerSpeedRate);
             BulletReceiver.collisionTags.tagList = (uint)GameConfig.BulletTag.Player;
-            var ammo = AmmoManager.GetSingleton().GetEmitterProfile(ammoName);
+            var ammo = AmmoManager.GetSingleton().Get(ammoName);
             if (ammo == null)
             {
                 Log.Error("ammo not found {0}", ammoName);
                 return;
             }
-            _ammo = (Ammo)ammo;
-            BulletEmitter.emitterProfile = _ammo.EmitterProfile;
+            Ammo = (Ammo)ammo;
+            BulletEmitter.emitterProfile = Ammo.EmitterProfile;
+            
+            BulletReceiver.SyncCollisionTags();
             
             // foreach (var ep in BulletEmitter.emitterProfile.subAssets)
             // {
@@ -67,14 +71,16 @@ namespace GoFire
             Init(config, input);
             MoveCtrl.SetSpeed(config.SpeedRate);
             BulletReceiver.collisionTags.tagList = (uint)GameConfig.BulletTag.Enemy;
-            var ammo = AmmoManager.GetSingleton().GetEmitterProfile(config.Ammo);
+            var ammo = AmmoManager.GetSingleton().Get(config.Ammo);
             if (ammo == null)
             {
                 Log.Error("ammo not found {0}", config.Ammo);
                 return;
             }
-            _ammo = (Ammo)ammo;
-            BulletEmitter.emitterProfile = _ammo.EmitterProfile;
+            Ammo = (Ammo)ammo;
+            BulletEmitter.emitterProfile = Ammo.EmitterProfile;
+            
+            BulletReceiver.SyncCollisionTags();
             
             // foreach (var ep in BulletEmitter.emitterProfile.subAssets)
             // {
@@ -92,6 +98,7 @@ namespace GoFire
             MoveCtrl ??= GetComponent<MoveCtrl>();
             BounceCtrl ??= GetComponent<BounceCtrl>();
             DamageCtrl ??= GetComponent<DamageCtrl>();
+            DeathCtrl??= GetComponent<DeathCtrl>();
             BulletReceiver ??= GetComponent<BulletReceiver>();
             BulletEmitter ??= GetComponent<BulletEmitter>();
 
@@ -100,7 +107,16 @@ namespace GoFire
 
         void OnHitByBullet(Bullet bullet, Vector3 pos)
         {
-            HitManager.GetSingleton().Hit(gameObject, bullet.emitter.gameObject, pos);
+            foreach (var script in bullet.additionalBehaviourScripts)
+            {
+                if (script is IHit hit)
+                {
+                    HitManager.GetSingleton().Hit(hit, this, pos);
+                    break;
+                }
+            }
+            
+            // HitManager.GetSingleton().Hit(bullet.GetComponent<Missile>(), this, pos);
         }
         
         void Update()
@@ -109,6 +125,11 @@ namespace GoFire
             {
                 Input.Update(Time.deltaTime);
             }
+        }
+
+        public uint HitMask()
+        {
+            return ModelConstHitConst.AirplaneMask;
         }
     }
 }

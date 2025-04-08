@@ -32,7 +32,7 @@ MonoBehaviour:
   foldoutExport: 1
   foldoutEmptyBin: 1
   foldoutCompactMode: 1
-  currentParamsSelected: {fileID: 6163438285032386650}
+  currentParamsSelected: {fileID: 114671512830859702}
   numberOfSubAssets: 0
 --- !u!114 &114027673760526898
 MonoBehaviour:
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: Bullet
   m_EditorClassIdentifier: 
   parameterType: 0
-  uniqueIndex: 2197624
+  uniqueIndex: 13112644
   profile: {fileID: 11400000}
   parent: {fileID: 0}
   children: []
@@ -1104,7 +1104,7 @@ MonoBehaviour:
         parameterType: 0
         relativeTo: 0
         parameterName: 
-      defaultValue: {r: 0, g: 1, b: 0, a: 1}
+      defaultValue: {r: 1, g: 0, b: 0, a: 1}
       gradientValue:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -2830,7 +2830,7 @@ MonoBehaviour:
   animationMovementSpace: 0
   animationTexture: {fileID: 0}
   collisionTags:
-    tagList: 1
+    tagList: 2
   colliders:
   - colliderType: 0
     size: 1.71
@@ -7541,7 +7541,7 @@ MonoBehaviour:
   m_Name: Shot
   m_EditorClassIdentifier: 
   parameterType: 1
-  uniqueIndex: 9599230
+  uniqueIndex: 12223248
   profile: {fileID: 11400000}
   parent: {fileID: 114917193883442684}
   children:
@@ -12130,7 +12130,7 @@ MonoBehaviour:
   m_Name: Root Emitter
   m_EditorClassIdentifier: 
   parameterType: 0
-  uniqueIndex: 4654002
+  uniqueIndex: 6896105
   profile: {fileID: 11400000}
   parent: {fileID: 0}
   children:
@@ -13188,7 +13188,7 @@ MonoBehaviour:
         parameterType: 0
         relativeTo: 0
         parameterName: 
-      defaultValue: {r: 0, g: 1, b: 0, a: 1}
+      defaultValue: {r: 1, g: 0, b: 0, a: 1}
       gradientValue:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -14914,7 +14914,7 @@ MonoBehaviour:
   animationMovementSpace: 0
   animationTexture: {fileID: 0}
   collisionTags:
-    tagList: 1
+    tagList: 2
   colliders:
   - colliderType: 0
     size: 0.1
@@ -19246,7 +19246,7 @@ MonoBehaviour:
   m_Name: Pattern
   m_EditorClassIdentifier: 
   parameterType: 2
-  uniqueIndex: 6565563
+  uniqueIndex: 2159243
   profile: {fileID: 11400000}
   parent: {fileID: 114671512830859702}
   children:
@@ -43507,7 +43507,7 @@ MonoBehaviour:
   advancedFoldout: 1
   hasBeenSerializedOnce: 1
   focusedInstruction: -1
-  safetyForPlaymode: 9
+  safetyForPlaymode: 10
 --- !u!114 &1269967905479373259
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -43521,7 +43521,7 @@ MonoBehaviour:
   m_Name: New BulletParams 2
   m_EditorClassIdentifier: 
   parameterType: 0
-  uniqueIndex: 761913
+  uniqueIndex: 11019898
   profile: {fileID: 11400000}
   parent: {fileID: 0}
   children: []
@@ -44578,7 +44578,7 @@ MonoBehaviour:
         parameterType: 0
         relativeTo: 0
         parameterName: 
-      defaultValue: {r: 0, g: 1, b: 0, a: 1}
+      defaultValue: {r: 1, g: 0, b: 0, a: 1}
       gradientValue:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -46304,7 +46304,7 @@ MonoBehaviour:
   animationMovementSpace: 0
   animationTexture: {fileID: 0}
   collisionTags:
-    tagList: 1
+    tagList: 2
   colliders:
   - colliderType: 0
     size: 0.1
@@ -50681,7 +50681,7 @@ MonoBehaviour:
   m_Name: Bullet
   m_EditorClassIdentifier: 
   parameterType: 0
-  uniqueIndex: 4080806
+  uniqueIndex: 2027537
   profile: {fileID: 11400000}
   parent: {fileID: 114201774248674550}
   children: []
@@ -51738,7 +51738,7 @@ MonoBehaviour:
         parameterType: 0
         relativeTo: 0
         parameterName: 
-      defaultValue: {r: 1, g: 1, b: 1, a: 1}
+      defaultValue: {r: 1, g: 0, b: 0, a: 1}
       gradientValue:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -53009,7 +53009,7 @@ MonoBehaviour:
   canCollide: 1
   isVisible: 1
   hasLifespan: 1
-  hasLimitedRange: 0
+  hasLimitedRange: 1
   forwardSpeed:
     valueTree:
     - settings:
@@ -53464,7 +53464,7 @@ MonoBehaviour:
   animationMovementSpace: 0
   animationTexture: {fileID: 0}
   collisionTags:
-    tagList: 1
+    tagList: 2
   colliders:
   - colliderType: 0
     size: 0.1
@@ -54387,7 +54387,7 @@ MonoBehaviour:
         parameterType: 0
         relativeTo: 0
         parameterName: 
-      defaultValue: 5
+      defaultValue: 20
     useSlider: 0
     sliderMin: 0
     sliderMax: 0
@@ -58175,7 +58175,7 @@ MonoBehaviour:
   m_Name: New BulletParams 1
   m_EditorClassIdentifier: 
   parameterType: 0
-  uniqueIndex: 4871005
+  uniqueIndex: 4466404
   profile: {fileID: 11400000}
   parent: {fileID: 0}
   children: []
@@ -59232,7 +59232,7 @@ MonoBehaviour:
         parameterType: 0
         relativeTo: 0
         parameterName: 
-      defaultValue: {r: 0, g: 1, b: 0, a: 1}
+      defaultValue: {r: 1, g: 0, b: 0, a: 1}
       gradientValue:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -60958,7 +60958,7 @@ MonoBehaviour:
   animationMovementSpace: 0
   animationTexture: {fileID: 0}
   collisionTags:
-    tagList: 1
+    tagList: 2
   colliders:
   - colliderType: 0
     size: 0.1

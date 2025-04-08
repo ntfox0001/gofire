@@ -9,4 +9,9 @@
     {
         void OnWillDestroy(DestroyStyle style);
     }
+
+    public interface IReset
+    {
+        void OnWillReset();
+    }
 }
