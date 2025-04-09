@@ -10,6 +10,9 @@
     "Mass": 1,
     "dampening": 0.6,
     "player_speed_rate": 4,
-    "ammo": "enemy_ammo"
+    "ammo": "enemy_ammo",
+    "dead_events": [
+      "event_enemy_death_1"
+    ]
   }
 ]

@@ -24,6 +24,7 @@ public sealed partial class Ammo : Luban.BeanBase
         { if(!_buf["velocity"].IsNumber) { throw new SerializationException(); }  Velocity = _buf["velocity"]; }
         { if(!_buf["Mass"].IsNumber) { throw new SerializationException(); }  Mass = _buf["Mass"]; }
         { if(!_buf["dampening"].IsNumber) { throw new SerializationException(); }  Dampening = _buf["dampening"]; }
+        { var __json0 = _buf["dead_events"]; if(!__json0.IsArray) { throw new SerializationException(); } int _n0 = __json0.Count; DeadEvents = new string[_n0]; int __index0=0; foreach(JSONNode __e0 in __json0.Children) { string __v0;  { if(!__e0.IsString) { throw new SerializationException(); }  __v0 = __e0; }  DeadEvents[__index0++] = __v0; }   }
     }
 
     public static Ammo DeserializeAmmo(JSONNode _buf)
@@ -47,6 +48,7 @@ public sealed partial class Ammo : Luban.BeanBase
     /// 反弹衰减
     /// </summary>
     public readonly float Dampening;
+    public readonly string[] DeadEvents;
    
     public const int __ID__ = 2044654;
     public override int GetTypeId() => __ID__;
@@ -65,6 +67,7 @@ public sealed partial class Ammo : Luban.BeanBase
         + "velocity:" + Velocity + ","
         + "Mass:" + Mass + ","
         + "dampening:" + Dampening + ","
+        + "deadEvents:" + Luban.StringUtil.CollectionToString(DeadEvents) + ","
         + "}";
     }
 }

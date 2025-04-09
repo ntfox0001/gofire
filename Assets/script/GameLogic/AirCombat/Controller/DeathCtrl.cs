@@ -26,6 +26,8 @@ namespace GoFire
             {
                 ev.Play(transform.position);
             }
+            
+            ObjectManager.Destroy(gameObject);
         }
 
         public void OnWillDestroy(DestroyStyle style)

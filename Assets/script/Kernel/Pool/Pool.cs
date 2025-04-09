@@ -30,6 +30,7 @@ namespace GoFire.Kernel
             _cacheRoot = new GameObject("PoolCache");
             _cacheRoot.transform.SetParent(transform);
             _cacheRoot.SetActive(false);
+            _cacheRoot.transform.position = new Vector3(0, -1000, 0);
             yield return null;
         }
 
@@ -62,7 +63,7 @@ namespace GoFire.Kernel
                 }
                 
                 _inPool.Remove(obj);
-                if (parent != null)
+                if (parent)
                 {
                     obj.transform.SetParent(parent);
                 }
@@ -74,7 +75,7 @@ namespace GoFire.Kernel
             var pd = newObj.AddComponent<PoolData>();
             pd.cacheName = goName;
             
-            if (parent != null)
+            if (parent)
             {
                 newObj.transform.SetParent(parent);
             }
@@ -85,7 +86,7 @@ namespace GoFire.Kernel
         public ReturnCode CanReturn(GameObject go)
         {
             var pd = go.GetComponent<PoolData>();
-            if (pd == null)
+            if (!pd)
             {
                 return ReturnCode.NotPoolObject;
             }
@@ -105,7 +106,7 @@ namespace GoFire.Kernel
         public ReturnCode Return(GameObject go)
         {
             var pd = go.GetComponent<PoolData>();
-            if (pd == null)
+            if (!pd)
             {
                 return ReturnCode.NotPoolObject;
             }
@@ -132,6 +133,7 @@ namespace GoFire.Kernel
             _inPool.Add(go);
             
             go.transform.SetParent(_cacheRoot.transform);
+            go.transform.localPosition = Vector3.zero;
             
             return ReturnCode.Success;
         }

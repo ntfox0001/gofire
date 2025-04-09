@@ -4,8 +4,9 @@ using UnityEngine;
 
 namespace GoFire
 {
-    public class EventManager : Singleton<EventManager>
+    public class EventManager : Singleton<EventManager>, IManager
     {
+        private GameObject _eventRoot;
         private readonly PackageGroup _packageGroup = new();
         public IEnumerator LoadPackage(params string[] packageNames)
         {
@@ -15,7 +16,8 @@ namespace GoFire
             {
                 Pool.GetSingleton().Register(config.Id, () =>
                 {
-                    var g = _packageGroup.GetComponent<EventBase>(config.AssetName);
+                    var raw = _packageGroup.GetComponent<EventBase>(config.AssetName);
+                    var g = ObjectManager.Instantiate(raw);
                     g.Init(config);
                     return g.gameObject;
                 });
@@ -30,6 +32,18 @@ namespace GoFire
         {
             var go = Pool.GetSingleton().Get(eventName);
             go.GetComponent<EventBase>().Play(pos, args);
+        }
+
+        public IEnumerator Init()
+        {
+            _eventRoot = new GameObject("EventRoot");
+            ObjectUtils.ResetTransform(_eventRoot);
+            yield return null;
+        }
+
+        public void Release()
+        {
+            
         }
     }
 }
