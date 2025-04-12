@@ -9,7 +9,7 @@ namespace GoFire
         public Vector3 defaultUp = Vector3.up;
         public Vector3 defaultFront = Vector3.forward;
 
-        public Player1Layout Player1Layout;
+        public PlayerLayout Player1Layout;
         
         private IInput _player1Input;
         public IEnumerator Init()
