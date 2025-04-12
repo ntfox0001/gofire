@@ -19,7 +19,7 @@ namespace GoFire
             _time = 0;
             _onEnd = onEnd;
         }
-        public bool Bind(IMovable target)
+        public bool Bind(IMovable target, Action fire)
         {
             _bindTarget = target;
             

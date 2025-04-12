@@ -41,7 +41,14 @@ namespace GoFire
 
         IEnumerator CreatePlaneGroup(AirplaneMarker marker)
         {
-            for (int i = 0; i < marker.Count; i++)
+            if (marker.Count <= 0)
+            {
+                yield break;
+            }
+            
+            var count = marker.IsGroup ? marker.Count : 1;
+            
+            for (int i = 0; i < count; i++)
             {
                 CreateOnePlane(marker);
                 yield return new WaitForTime(marker.Interval);
@@ -51,7 +58,7 @@ namespace GoFire
         void CreateOnePlane(AirplaneMarker marker)
         {
             var cacheObj = Pool.GetSingleton().Get(marker.AirplaneName, Land.airplanesNode.transform);
-            ObjectUtils.ResetTransform(cacheObj);
+            
             var airplane = cacheObj.GetComponent<Airplane>();
             
             var track = TrackManager.GetSingleton().GetTrack(marker.TrackName);
@@ -60,7 +67,8 @@ namespace GoFire
                 Log.Error("Track: " + marker.TrackName + " is not found");
                 return;
             }
-            
+
+            ObjectUtils.ResetTransform(cacheObj, track.GetPosition(0));
             var trackInput = new TrackInput();
             trackInput.Init(track, marker.GetRelativePosByScreen(), () =>
             {

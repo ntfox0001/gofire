@@ -2,14 +2,14 @@
 
 namespace GoFire
 {
-    public class Player1Layout
+    public struct PlayerLayout
     {
-        public KeyCode[] FrontKeys = { KeyCode.W, KeyCode.UpArrow };
-        public KeyCode[] BackKeys = { KeyCode.S, KeyCode.DownArrow };
-        public KeyCode[] LeftKeys = { KeyCode.A, KeyCode.LeftArrow };
-        public KeyCode[] RightKeys = { KeyCode.D, KeyCode.RightArrow };
-        public KeyCode[] FireKeys = { KeyCode.RightMeta };
-        public KeyCode[] Action1Keys = { KeyCode.RightShift };
-        public KeyCode[] Action2Keys = { KeyCode.KeypadEnter };
+        public KeyCode[] FrontKeys;
+        public KeyCode[] BackKeys;
+        public KeyCode[] LeftKeys;
+        public KeyCode[] RightKeys;
+        public KeyCode[] FireKeys;
+        public KeyCode[] Action1Keys;
+        public KeyCode[] Action2Keys;
     }
 }

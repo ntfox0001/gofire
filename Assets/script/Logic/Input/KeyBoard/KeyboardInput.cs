@@ -1,13 +1,29 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace GoFire
 {
     public class KeyboardInput : IInput
     {
-        private Player1Layout _player1Layout = new();
+        public float ClickDuration = 0.1f;
+
+        private PlayerLayout _player1Layout = new()
+        {
+            FrontKeys = new[] { KeyCode.W, KeyCode.UpArrow },
+            BackKeys = new[] { KeyCode.S, KeyCode.DownArrow },
+            LeftKeys = new[] { KeyCode.A, KeyCode.LeftArrow },
+            RightKeys = new[] { KeyCode.D, KeyCode.RightArrow },
+            FireKeys = new[] { KeyCode.RightControl },
+            Action1Keys = new[] { KeyCode.RightShift },
+            Action2Keys = new[] { KeyCode.KeypadEnter },
+        };
+
+        private KeyBoardBind[] _keyBoardBinds;
+        private bool _isBind;
 
         private Vector3 _up;
-        
+
         private Vector3 _front;
         private Vector3 _back;
         private Vector3 _left;
@@ -18,6 +34,8 @@ namespace GoFire
         private Vector3 _backRight;
 
         private IMovable _bindTarget;
+        private Action _onFire;
+
         public KeyboardInput(Vector3 front, Vector3 up)
         {
             ReInit(front, up);
@@ -28,11 +46,13 @@ namespace GoFire
             _front = front;
             _up = up;
             InitDirection();
+            InitKeys(_player1Layout);
         }
 
-        public bool Bind(IMovable target)
+        public bool Bind(IMovable target, Action fire)
         {
             _bindTarget = target;
+            _onFire = fire;
             return _bindTarget != null;
         }
 
@@ -47,89 +67,46 @@ namespace GoFire
             _backRight = Quaternion.AngleAxis(135f, _up) * _front;
         }
 
-        private void ReadKey(float deltaTime)
+        void InitKeys(PlayerLayout p1Layout)
         {
-            if (Get2Key(_player1Layout.FrontKeys, _player1Layout.LeftKeys))
+            List<KeyBoardBind> keyBoardBinds = new()
             {
-                Move(_frontLeft, deltaTime);
-            }
-            else if (Get2Key(_player1Layout.BackKeys, _player1Layout.LeftKeys))
-            {
-                Move(_backLeft, deltaTime);
-            }
-            else if (Get2Key(_player1Layout.FrontKeys, _player1Layout.RightKeys))
-            {
-                Move(_frontRight, deltaTime);
-            }
-            else if (Get2Key(_player1Layout.BackKeys, _player1Layout.RightKeys))
-            {
-                Move(_backRight, deltaTime);
-            }
-            else if (GetKey(_player1Layout.FrontKeys))
-            {
-                Move(_front, deltaTime);
-            }
-            else if (GetKey(_player1Layout.BackKeys))
-            {
-                Move(_back, deltaTime);
-            }
-            else if (GetKey(_player1Layout.LeftKeys))
-            {
-                Move(_left, deltaTime);
-            }
-            else if (GetKey(_player1Layout.RightKeys))
-            {
-                Move(_right, deltaTime);
-            }
+                NewBoardBindForMove(_left, p1Layout.LeftKeys),
+                NewBoardBindForMove(_frontLeft, p1Layout.LeftKeys, p1Layout.FrontKeys),
+                NewBoardBindForMove(_backLeft, p1Layout.LeftKeys, p1Layout.BackKeys),
+                NewBoardBindForMove(_front, p1Layout.FrontKeys),
+                NewBoardBindForMove(_back, p1Layout.BackKeys),
+                NewBoardBindForMove(_right, p1Layout.RightKeys),
+                NewBoardBindForMove(_frontRight, p1Layout.RightKeys, p1Layout.FrontKeys),
+                NewBoardBindForMove(_backRight, p1Layout.RightKeys, p1Layout.BackKeys),
+                NewBoardBind(null, null, Fire, p1Layout.FireKeys)
+            };
 
-            if (GetKey(_player1Layout.FireKeys))
-            {
-                Fire();
-            }
-
-            if (GetKey(_player1Layout.Action1Keys))
-            {
-                Action1();
-            }
-            
-            if (GetKey(_player1Layout.Action2Keys))
-            {
-                Action2();
-            }
-        }
-        
-        private static bool GetKey(KeyCode[] keys)
-        {
-            for (int i = 0; i < keys.Length; i++)
-            {
-                if (Input.GetKey(keys[i]))
-                {
-                    return true;
-                }
-            }
-            return false;
+            _keyBoardBinds = keyBoardBinds.ToArray();
         }
 
-        private static bool Get2Key(KeyCode[] keys1, KeyCode[] keys2)
+        KeyBoardBind NewBoardBindForMove(Vector3 move, KeyCode[] keys1, KeyCode[] keys2 = null)
         {
-            var found1 = false;
-            var found2 = false;
-            foreach (var t in keys1)
+            return NewBoardBind(null, (deltaTime) => Move(move, deltaTime), null, keys1, keys2);
+        }
+
+        KeyBoardBind NewBoardBind(Action<float> click, Action<float> press, Action<float> down, KeyCode[] keys1,
+            KeyCode[] keys2 = null)
+        {
+            var keys = new KeyCode[keys1.Length + (keys2?.Length ?? 0)];
+            Array.Copy(keys1, keys, keys1.Length);
+
+            if (keys2 != null)
             {
-                if (Input.GetKey(t))
-                {
-                    found1 = true;
-                }
+                Array.Copy(keys2, 0, keys, keys1.Length, keys2.Length);
             }
 
-            foreach (var t in keys2)
-            {
-                if (Input.GetKey(t))
-                {
-                    found2 = true;
-                }
-            }
-            return found1 && found2;
+            KeyBoardBind keyBind = new(ClickDuration, keys);
+            keyBind.Click = click;
+            keyBind.Press = press;
+            keyBind.Down = down;
+
+            return keyBind;
         }
 
         void Move(Vector3 move, float deltaTime)
@@ -138,28 +115,29 @@ namespace GoFire
             {
                 return;
             }
-            
+
             _bindTarget.SetPos(_bindTarget.GetPos() + move * (deltaTime * _bindTarget.GetSpeed()));
         }
-        
-        void Fire()
+
+        void Fire(float deltaTime)
         {
-            
+            _onFire?.Invoke();
         }
 
         void Action1()
         {
-            
         }
 
         void Action2()
         {
-            
         }
 
         public void Update(float deltaTime)
         {
-            ReadKey(deltaTime);
+            for (int i = 0; i < _keyBoardBinds.Length; i++)
+            {
+                _keyBoardBinds[i].Update(deltaTime);
+            }
         }
 
         public bool IsBind()

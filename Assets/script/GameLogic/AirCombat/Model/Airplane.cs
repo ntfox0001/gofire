@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.IO;
 using BulletPro;
 using GoFire.Kernel;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace GoFire
     [RequireComponent(typeof(DeathCtrl))]
     [RequireComponent(typeof(BulletReceiver))]
     [RequireComponent(typeof(BulletEmitter))]
+    [RequireComponent(typeof(FireCtrl))]
     [RequireComponent(typeof(BulletPatternOrigin))]
     public class Airplane : MonoBehaviour, IHit
     {
@@ -21,13 +23,18 @@ namespace GoFire
         public BounceCtrl BounceCtrl { get; private set; }
         public DamageCtrl DamageCtrl { get; private set; }
         public DeathCtrl DeathCtrl { get; private set; }
+        public FireCtrl FireCtrl { get; private set; }
         public IInput Input { get; private set; }
         public BulletReceiver BulletReceiver { get; private set; }
         public BulletEmitter BulletEmitter { get; private set; }
         
         public Ammo Ammo { get; private set; }
+
+        private static int _idx = 0;
         void Init(cfg.Airplane config, IInput input)
         {
+            _idx++;
+            
             Input = input;
             
             Bind();
@@ -44,6 +51,7 @@ namespace GoFire
         public void InitPlayer(cfg.Airplane config, IInput input, string ammoName)
         {
             Init(config, input);
+            SetName(config.Id, "player");
             MoveCtrl.SetSpeed(config.PlayerSpeedRate);
             BulletReceiver.collisionTags.tagList = (uint)GameConfig.BulletTag.Player;
             var ammo = AmmoManager.GetSingleton().Get(ammoName);
@@ -57,19 +65,13 @@ namespace GoFire
             
             BulletReceiver.SyncCollisionTags();
             
-            // foreach (var ep in BulletEmitter.emitterProfile.subAssets)
-            // {
-            //     if (ep is BulletParams bp)
-            //     {
-            //         bp.color = new DynamicColor(Color.red);
-            //         bp.collisionTags.tagList = (uint)GameConfig.BulletTag.Enemy;
-            //     }
-            // }
+            // BulletEmitter.Play();
         }
 
         public void InitEnemy(cfg.Airplane config, IInput input)
         {
             Init(config, input);
+            SetName(config.Id, "enemy");
             MoveCtrl.SetSpeed(config.SpeedRate);
             BulletReceiver.collisionTags.tagList = (uint)GameConfig.BulletTag.Enemy;
             var ammo = AmmoManager.GetSingleton().Get(config.Ammo);
@@ -83,14 +85,12 @@ namespace GoFire
             
             BulletReceiver.SyncCollisionTags();
             
-            // foreach (var ep in BulletEmitter.emitterProfile.subAssets)
-            // {
-            //     if (ep is BulletParams bp)
-            //     {
-            //         // bp.color = new DynamicColor(Color.green);
-            //         bp.collisionTags.tagList = (uint)GameConfig.BulletTag.Player;
-            //     }
-            // }
+            BulletEmitter.Play();
+        }
+
+        void SetName(string configName, string roleName)
+        {
+            name = $"{configName}_{roleName}_{_idx}";
         }
         
         private void Bind()
@@ -100,10 +100,13 @@ namespace GoFire
             BounceCtrl ??= GetComponent<BounceCtrl>();
             DamageCtrl ??= GetComponent<DamageCtrl>();
             DeathCtrl??= GetComponent<DeathCtrl>();
+            FireCtrl??= GetComponent<FireCtrl>();
             BulletReceiver ??= GetComponent<BulletReceiver>();
             BulletEmitter ??= GetComponent<BulletEmitter>();
 
-            Input.Bind(MoveCtrl);
+            Input.Bind(MoveCtrl, DoFire);
+            
+            FireCtrl.Init(BulletEmitter);
         }
 
         void OnHitByBullet(Bullet bullet, Vector3 pos)
@@ -131,6 +134,11 @@ namespace GoFire
         public uint HitMask()
         {
             return ModelConstHitConst.AirplaneMask;
+        }
+
+        public void DoFire()
+        {
+            FireCtrl.Fire();
         }
     }
 }

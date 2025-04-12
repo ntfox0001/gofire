@@ -30,7 +30,7 @@ namespace GoFire
         }
         public void Play(string eventName, Vector3 pos, params object[] args)
         {
-            var go = Pool.GetSingleton().Get(eventName);
+            var go = Pool.GetSingleton().Get(eventName, null);
             go.GetComponent<EventBase>().Play(pos, args);
         }
 

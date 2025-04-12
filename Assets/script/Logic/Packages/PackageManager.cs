@@ -6,11 +6,19 @@ namespace GoFire
 {
     public class PackageManager : Singleton<PackageManager>, IManager
     {
+        public bool useEditorPackage = true;
         public IEnumerator Init()
         {
             YooAssets.Initialize(new PackageLogger());
             #if UNITY_EDITOR
-            PackageLoader = new EditorPackages();
+            if (useEditorPackage)
+            {
+                PackageLoader = new EditorPackages();    
+            }
+            else
+            {
+                PackageLoader = new OfflinePackages();
+            }
             #else
             PackageLoader = new OfflinePackages();
             #endif

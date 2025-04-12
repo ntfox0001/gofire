@@ -41,10 +41,14 @@ namespace GoFire.Kernel
         
         public void Register(string goName, Func<GameObject> creator)
         {
-            _creators.Add(goName, creator);
+            _creators.Add(goName, () =>
+            {
+                var ret = creator();
+                return ret;
+            });
         }
         
-        public GameObject Get(string goName, Transform parent = null)
+        public GameObject Get(string goName, Transform parent)
         {
             if (!_pool.TryGetValue(goName, out var list))
             {

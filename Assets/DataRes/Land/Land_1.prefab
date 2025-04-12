@@ -765,15 +765,8 @@ MonoBehaviour:
     TrackName: Track_1
     TimeProgress: 2
     DistanceToMid: 6.99
-    IsGroup: 1
+    IsGroup: 0
     Count: 3
-    Interval: 1
-  - AirplaneName: plane1
-    TrackName: Track_1
-    TimeProgress: 20
-    DistanceToMid: -4.79
-    IsGroup: 1
-    Count: 2
     Interval: 1
 --- !u!1 &3740472657166886854
 GameObject:

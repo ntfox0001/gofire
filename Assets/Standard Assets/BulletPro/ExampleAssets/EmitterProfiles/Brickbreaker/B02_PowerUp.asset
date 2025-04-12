@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: Bullet
   m_EditorClassIdentifier: 
   parameterType: 0
-  uniqueIndex: 15745831
+  uniqueIndex: 3575348
   profile: {fileID: 11400000}
   parent: {fileID: 114630862730644202}
   children: []
@@ -737,6 +737,7 @@ MonoBehaviour:
     typeName: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
     requiredComponentName: 
+  layer: 0
   sortingOrder:
     valueTree:
     - settings:
@@ -1035,6 +1036,7 @@ MonoBehaviour:
         atime6: 0
         atime7: 0
         m_Mode: 0
+        m_ColorSpace: -1
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
     - settings:
@@ -1127,6 +1129,7 @@ MonoBehaviour:
         atime6: 0
         atime7: 0
         m_Mode: 0
+        m_ColorSpace: -1
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
   evolutionBlendWithBaseColor:
@@ -1320,6 +1323,7 @@ MonoBehaviour:
         atime6: 0
         atime7: 0
         m_Mode: 0
+        m_ColorSpace: -1
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
     - settings:
@@ -1411,6 +1415,7 @@ MonoBehaviour:
         atime6: 0
         atime7: 0
         m_Mode: 0
+        m_ColorSpace: -1
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
   vfxParams:
@@ -7240,6 +7245,7 @@ MonoBehaviour:
           atime6: 0
           atime7: 0
           m_Mode: 0
+          m_ColorSpace: -1
           m_NumColorKeys: 2
           m_NumAlphaKeys: 2
       - settings:
@@ -7332,6 +7338,7 @@ MonoBehaviour:
           atime6: 0
           atime7: 0
           m_Mode: 0
+          m_ColorSpace: -1
           m_NumColorKeys: 2
           m_NumAlphaKeys: 2
     gradientValue:
@@ -7407,6 +7414,7 @@ MonoBehaviour:
           atime6: 0
           atime7: 0
           m_Mode: 0
+          m_ColorSpace: -1
           m_NumColorKeys: 2
           m_NumAlphaKeys: 2
       - settings:
@@ -7498,6 +7506,7 @@ MonoBehaviour:
           atime6: 0
           atime7: 0
           m_Mode: 0
+          m_ColorSpace: -1
           m_NumColorKeys: 2
           m_NumAlphaKeys: 2
     animationCurveValue:
@@ -7538,7 +7547,7 @@ MonoBehaviour:
   m_Name: Root Emitter
   m_EditorClassIdentifier: 
   parameterType: 0
-  uniqueIndex: 15774328
+  uniqueIndex: 7197022
   profile: {fileID: 11400000}
   parent: {fileID: 0}
   children:
@@ -8232,6 +8241,7 @@ MonoBehaviour:
     typeName: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
     requiredComponentName: 
+  layer: 0
   sortingOrder:
     valueTree:
     - settings:
@@ -8530,6 +8540,7 @@ MonoBehaviour:
         atime6: 0
         atime7: 0
         m_Mode: 0
+        m_ColorSpace: -1
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
     - settings:
@@ -8622,6 +8633,7 @@ MonoBehaviour:
         atime6: 0
         atime7: 0
         m_Mode: 0
+        m_ColorSpace: -1
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
   evolutionBlendWithBaseColor:
@@ -8815,6 +8827,7 @@ MonoBehaviour:
         atime6: 0
         atime7: 0
         m_Mode: 0
+        m_ColorSpace: -1
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
     - settings:
@@ -8906,6 +8919,7 @@ MonoBehaviour:
         atime6: 0
         atime7: 0
         m_Mode: 0
+        m_ColorSpace: -1
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
   vfxParams:
@@ -14649,7 +14663,7 @@ MonoBehaviour:
   m_Name: Shot
   m_EditorClassIdentifier: 
   parameterType: 1
-  uniqueIndex: 3406616
+  uniqueIndex: 12433680
   profile: {fileID: 11400000}
   parent: {fileID: 114697344616406384}
   children:
@@ -14886,6 +14900,7 @@ MonoBehaviour:
     bulletOrigin: {x: 0, y: 0, z: 0}
     useDifferentBullet: 0
     bulletParams: {fileID: 0}
+  hasUnknownBulletAmount: 0
   modifiers: []
   bulletParamsRandom: 0
   listOfPossibleBulletParams: []
@@ -14893,6 +14908,7 @@ MonoBehaviour:
   highestValues: {x: 0, y: 0, z: 0}
   lowestValues: {x: 0, y: 0, z: 0}
   hasBeenSerializedOnce: 1
+  fakeBulletAmount: 0
   foldout0: 0
   foldout1: 0
   foldout2: 0
@@ -14935,7 +14951,7 @@ MonoBehaviour:
   m_Name: Pattern
   m_EditorClassIdentifier: 
   parameterType: 2
-  uniqueIndex: 8412992
+  uniqueIndex: 6885509
   profile: {fileID: 11400000}
   parent: {fileID: 114494325993625066}
   children:
@@ -17654,6 +17670,7 @@ MonoBehaviour:
             atime6: 0
             atime7: 0
             m_Mode: 0
+            m_ColorSpace: -1
             m_NumColorKeys: 2
             m_NumAlphaKeys: 2
         - settings:
@@ -17746,6 +17763,7 @@ MonoBehaviour:
             atime6: 0
             atime7: 0
             m_Mode: 0
+            m_ColorSpace: -1
             m_NumColorKeys: 2
             m_NumAlphaKeys: 2
       alpha:
@@ -17931,6 +17949,7 @@ MonoBehaviour:
             atime6: 0
             atime7: 0
             m_Mode: 0
+            m_ColorSpace: -1
             m_NumColorKeys: 2
             m_NumAlphaKeys: 2
         - settings:
@@ -18022,6 +18041,7 @@ MonoBehaviour:
             atime6: 0
             atime7: 0
             m_Mode: 0
+            m_ColorSpace: -1
             m_NumColorKeys: 2
             m_NumAlphaKeys: 2
       curveAffected: 0
@@ -19023,6 +19043,7 @@ MonoBehaviour:
             atime6: 0
             atime7: 0
             m_Mode: 0
+            m_ColorSpace: -1
             m_NumColorKeys: 2
             m_NumAlphaKeys: 2
         - settings:
@@ -19115,6 +19136,7 @@ MonoBehaviour:
             atime6: 0
             atime7: 0
             m_Mode: 0
+            m_ColorSpace: -1
             m_NumColorKeys: 2
             m_NumAlphaKeys: 2
       customGradient:
@@ -19190,6 +19212,7 @@ MonoBehaviour:
             atime6: 0
             atime7: 0
             m_Mode: 0
+            m_ColorSpace: -1
             m_NumColorKeys: 2
             m_NumAlphaKeys: 2
         - settings:
@@ -19281,6 +19304,7 @@ MonoBehaviour:
             atime6: 0
             atime7: 0
             m_Mode: 0
+            m_ColorSpace: -1
             m_NumColorKeys: 2
             m_NumAlphaKeys: 2
       customBool:
