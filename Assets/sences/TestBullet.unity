@@ -37671,7 +37671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a676b285f069c3c4884c27e78d0fc696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emitterProfile: {fileID: 11400000, guid: 16fcb49262e108d4a94b735f7834e325, type: 2}
+  emitterProfile: {fileID: 11400000, guid: 5a0f71e04f1d7454887461aa30472486, type: 2}
   patternOrigin: {fileID: 0}
   playAtStart: 1
   useDefaultGizmoColor: 1

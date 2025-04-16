@@ -23,7 +23,7 @@ namespace GoFire
             DamageCtrl.damage = config.Damage;
             BounceCtrl.Bounce.Dampening = config.Dampening;
             BounceCtrl.Bounce.Mass = config.Mass;
-            DeathCtrl.eventName = config.DeadEvents;
+            DeathCtrl.triggerNames = config.DeadEvents;
         }
         
         private void Bind()

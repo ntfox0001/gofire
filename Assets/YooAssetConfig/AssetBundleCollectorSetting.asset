@@ -247,7 +247,7 @@ MonoBehaviour:
         FilterRuleName: CollectAll
         AssetTags: 
         UserData: 
-  - PackageName: Event
+  - PackageName: Effect
     PackageDesc: 
     EnableAddressable: 1
     LocationToLower: 0
@@ -255,13 +255,34 @@ MonoBehaviour:
     AutoCollectShaders: 1
     IgnoreRuleName: NormalIgnoreRule
     Groups:
-    - GroupName: Event
+    - GroupName: Effect
       GroupDesc: 
       AssetTags: 
       ActiveRuleName: EnableGroup
       Collectors:
-      - CollectPath: Assets/DataRes/Event
-        CollectorGUID: afe1d3f4cea8f3e4795f2ed07c111687
+      - CollectPath: Assets/DataRes/Effect
+        CollectorGUID: ec74795bbebabc242a9784b6c80c85e8
+        CollectorType: 0
+        AddressRuleName: AddressByFileName
+        PackRuleName: PackDirectory
+        FilterRuleName: CollectAll
+        AssetTags: 
+        UserData: 
+  - PackageName: Reward
+    PackageDesc: 
+    EnableAddressable: 1
+    LocationToLower: 0
+    IncludeAssetGUID: 1
+    AutoCollectShaders: 1
+    IgnoreRuleName: NormalIgnoreRule
+    Groups:
+    - GroupName: Rewrad
+      GroupDesc: 
+      AssetTags: 
+      ActiveRuleName: EnableGroup
+      Collectors:
+      - CollectPath: Assets/DataRes/Reward
+        CollectorGUID: 24ee42d9c64399b4c8bd8addda48669b
         CollectorType: 0
         AddressRuleName: AddressByFileName
         PackRuleName: PackDirectory

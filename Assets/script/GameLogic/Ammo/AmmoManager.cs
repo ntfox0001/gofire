@@ -9,7 +9,6 @@ namespace GoFire
 {
     public class AmmoManager : Singleton<AmmoManager>
     {
-        public GameObject ammoBaseBehaviour;
         private readonly PackageGroup _packageGroup = new();
         private readonly Dictionary<string, EmitterProfile> _emitterProfileCache = new ();
 

@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace GoFire
 {
-    public partial class LandHandler
+    public class LandHandler
     {
         public Land Land { get; private set; }
         
@@ -16,15 +17,13 @@ namespace GoFire
             _packageName = packageName;
         }
 
-        public IEnumerator Load(string landName, GameObject rootNode)
+        public IEnumerator Init(string landName, GameObject rootNode, Func<AirplaneMarker, IEnumerator> onAirplaneLaunch)
         {
             yield return _packageGroup.LoadPackage(_packageName);
             var landRaw = _packageGroup.GetComponent<Land>(landName);
             // 创建场景
             Land = ObjectManager.Instantiate(landRaw, rootNode.transform);
-            Land.Init(CreatePlane);
-
-            yield return InitAirplane(Land.airPlanePackageName);
+            Land.Init(onAirplaneLaunch);
         }
 
         public IEnumerator Release()

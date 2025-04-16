@@ -28,7 +28,7 @@ public sealed partial class Airplane : Luban.BeanBase
         { if(!_buf["dampening"].IsNumber) { throw new SerializationException(); }  Dampening = _buf["dampening"]; }
         { if(!_buf["player_speed_rate"].IsNumber) { throw new SerializationException(); }  PlayerSpeedRate = _buf["player_speed_rate"]; }
         { if(!_buf["ammo"].IsString) { throw new SerializationException(); }  Ammo = _buf["ammo"]; }
-        { var __json0 = _buf["dead_events"]; if(!__json0.IsArray) { throw new SerializationException(); } int _n0 = __json0.Count; DeadEvents = new string[_n0]; int __index0=0; foreach(JSONNode __e0 in __json0.Children) { string __v0;  { if(!__e0.IsString) { throw new SerializationException(); }  __v0 = __e0; }  DeadEvents[__index0++] = __v0; }   }
+        { var __json0 = _buf["dead_triggers"]; if(!__json0.IsArray) { throw new SerializationException(); } int _n0 = __json0.Count; DeadTriggers = new string[_n0]; int __index0=0; foreach(JSONNode __e0 in __json0.Children) { string __v0;  { if(!__e0.IsString) { throw new SerializationException(); }  __v0 = __e0; }  DeadTriggers[__index0++] = __v0; }   }
     }
 
     public static Airplane DeserializeAirplane(JSONNode _buf)
@@ -56,7 +56,7 @@ public sealed partial class Airplane : Luban.BeanBase
     public readonly float Dampening;
     public readonly float PlayerSpeedRate;
     public readonly string Ammo;
-    public readonly string[] DeadEvents;
+    public readonly string[] DeadTriggers;
    
     public const int __ID__ = -612367502;
     public override int GetTypeId() => __ID__;
@@ -79,7 +79,7 @@ public sealed partial class Airplane : Luban.BeanBase
         + "dampening:" + Dampening + ","
         + "playerSpeedRate:" + PlayerSpeedRate + ","
         + "ammo:" + Ammo + ","
-        + "deadEvents:" + Luban.StringUtil.CollectionToString(DeadEvents) + ","
+        + "deadTriggers:" + Luban.StringUtil.CollectionToString(DeadTriggers) + ","
         + "}";
     }
 }

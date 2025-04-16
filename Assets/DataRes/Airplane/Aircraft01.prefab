@@ -20219,7 +20219,7 @@ MonoBehaviour:
       m_Calls: []
   parentSyncFoldout: 1
   collisionTagsFoldout: 1
-  advancedEventsFoldout: 1
+  advancedEventsFoldout: 0
   useDefaultGizmoColor: 1
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   gizmoZOffset: 0

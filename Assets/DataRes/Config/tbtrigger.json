@@ -1,0 +1,12 @@
+[
+  {
+    "id": "event_enemy_death_1",
+    "type": "effect",
+    "name": "event_enemy_death_1"
+  },
+  {
+    "id": "player_dead_1",
+    "type": "effect",
+    "name": "player_dead_1"
+  }
+]

@@ -22,5 +22,7 @@ namespace GoFire
         public string MainViewPackageName;
         public string[] AmmoPackageNames;
         public string[] EventPackageNames;
+        public string[] RewardPackageNames;
+        public string[] EffectPackageNames;
     }
 }

@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace GoFire
 {
     public class DeathCtrl : MonoBehaviour, IDestroy
     {
-        public string[] eventName;
-        public EventBase[] eventList;
+        public string[] triggerNames;
+        public TriggerBase[] triggerList;
         
         private bool _isDead;
         
@@ -17,12 +18,12 @@ namespace GoFire
             }
 
             _isDead = true;
-            foreach (var evName in eventName)
+            foreach (var evName in triggerNames)
             {
-                EventManager.GetSingleton().Play(evName, transform.position);
+                TriggerManager.GetSingleton().Play(evName, transform.position);
             }
 
-            foreach (var ev in eventList)
+            foreach (var ev in triggerList)
             {
                 ev.Play(transform.position);
             }

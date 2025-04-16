@@ -1,6 +1,4 @@
-﻿using System;
-using BulletPro;
-using Script.GameLogic.BulletPatternOrigin;
+﻿using BulletPro;
 using UnityEngine;
 
 namespace GoFire
@@ -12,10 +10,7 @@ namespace GoFire
         {
             if (patternOrigin == null)
             {
-                patternOrigin = new GameObject("PatternOrigin").transform;
-                patternOrigin.SetParent(transform);
-                patternOrigin.localPosition = Vector3.zero;
-                patternOrigin.localRotation = Quaternion.AngleAxis(Mathf.PI, Vector3.right);
+                patternOrigin = BulletPatternOriginNode.GetSingleton().Get(transform).transform;
             }
             
             GetComponent<BulletEmitter>().patternOrigin = patternOrigin;

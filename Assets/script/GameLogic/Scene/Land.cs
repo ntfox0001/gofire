@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using GoFire.Kernel;
 using Unity.Mathematics;
@@ -21,7 +22,7 @@ namespace GoFire
         public AirplaneMarker[] Airplanes; // 这个地图上所有对象
         
         private int _idx;
-        private Action<AirplaneMarker> _onAirplaneShow;
+        private Func<AirplaneMarker, IEnumerator> _onAirplaneShow;
         public bool Running
         {
             get => _clip.Running;
@@ -31,7 +32,7 @@ namespace GoFire
         private Clip _clip;
         private ITrack _track;
 
-        public void Init(Action<AirplaneMarker> onAirplaneShow)
+        public void Init(Func<AirplaneMarker, IEnumerator> onAirplaneShow)
         {
             _onAirplaneShow = onAirplaneShow;
             SortAirplaneMarkers();
@@ -106,7 +107,7 @@ namespace GoFire
                 {
                     if (Airplanes[i].Count > 0)
                     {
-                        _onAirplaneShow(Airplanes[i]);    
+                        StartCoroutine(_onAirplaneShow(Airplanes[i]));    
                     }
                     _idx = i + 1;
                 }

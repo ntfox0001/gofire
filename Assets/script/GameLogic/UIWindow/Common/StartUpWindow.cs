@@ -101,6 +101,14 @@ namespace GoFire.UIWindow
                 EventPackageNames = new[]
                 {
                     "Event"
+                },
+                RewardPackageNames = new[]
+                {
+                    "Reward"
+                },
+                EffectPackageNames = new[]
+                {
+                    "Effect"
                 }
             };
             LoadingWindow.Loading(ProcedureManager.GetSingleton().Switch(new BattleProcedure(), battleStartData));

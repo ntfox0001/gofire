@@ -1,0 +1,20 @@
+[
+  {
+    "id": "reward_gun_1",
+    "asset_name": "rw_gun_1",
+    "life": 0.5,
+    "ammo_level": 1,
+    "speed_level": 1,
+    "ammo_style": "",
+    "duration": 10
+  },
+  {
+    "id": "reward_gun_2",
+    "asset_name": "rw_gun_2",
+    "life": 0.5,
+    "ammo_level": 1,
+    "speed_level": 1,
+    "ammo_style": "",
+    "duration": 10
+  }
+]

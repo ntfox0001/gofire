@@ -36,13 +36,13 @@ namespace GoFire
             }
         }
         
-        public IEnumerator LoadPackage(Transform parent, params string[] packageNames)
+        public IEnumerator LoadPackage(SceneParent parent, params string[] packageNames)
         {
             yield return _packageGroup.LoadPackage(packageNames);
             foreach (var trackName in _packageGroup.GetAllAssetsNameList())
             {
                 var raw = _packageGroup.GetAsset<GameObject>(trackName);
-                var go = ObjectManager.Instantiate(raw, parent);
+                var go = ObjectManager.Instantiate(raw, parent.Screen.transform);
                 
                 //只归零位置，不归零其他属性
                 go.transform.position = Vector3.zero;

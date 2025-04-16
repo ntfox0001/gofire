@@ -9,6 +9,7 @@ namespace GoFire
     {
         private LandHandler _landHandler;
         private MainViewHandler _mainViewHandler;
+        private EnemyHandler _enemyHandler;
         private PlayerHandler _playerHandler;
         private GameObject _rootNode;
         
@@ -23,28 +24,42 @@ namespace GoFire
             
             // register hit
             HitManager.GetSingleton().Register<Missile, Airplane>(MissileHitAirplaneHandler.OnHit);
+            HitManager.GetSingleton().Register<Sleigh, Airplane>(SleighHitAirplaneHandler.OnHit);
             
             // land
             _landHandler = new LandHandler(battleData.LandPackageName);
-            yield return _landHandler.Load(battleData.LandName, battleData.Root);
+            _enemyHandler = new EnemyHandler();
+            
+            yield return _landHandler.Init(battleData.LandName, battleData.Root, _enemyHandler.CreatePlaneGroup);
             
             // 初始化摄像机
             _mainViewHandler = new MainViewHandler(battleData.MainViewPackageName);
             yield return _mainViewHandler.Load(battleData.MainViewName, battleData.Root.transform);
+
+            var sceneParent = new SceneParent
+            {
+                Land = _landHandler.Land.gameObject,
+                Screen = _mainViewHandler.MainView.trackParent.gameObject
+            };
+            
+            yield return _enemyHandler.Init(sceneParent, _landHandler.Land.airPlanePackageName, _landHandler.Land.Airplanes);
             
             // track
-            yield return TrackManager.GetSingleton().LoadPackage(_mainViewHandler.MainView.trackParent, _landHandler.Land.tracksPackageName);
+            yield return TrackManager.GetSingleton().LoadPackage(sceneParent, _landHandler.Land.tracksPackageName);
             TrackManager.GetSingleton().LoadTrackByNode(_landHandler.Land.groundTracksNode);
             
             // ammo
             yield return AmmoManager.GetSingleton().LoadPackage(battleData.AmmoPackageNames);
             
-            // event
-            yield return EventManager.GetSingleton().LoadPackage(battleData.EventPackageNames);
+            // reward
+            yield return RewardManager.GetSingleton().LoadPackage(sceneParent, battleData.RewardPackageNames);
+            
+            // effect
+            yield return EffectManager.GetSingleton().LoadPackage(sceneParent, battleData.EffectPackageNames);
             
             // player
             _playerHandler = new PlayerHandler();
-            yield return _playerHandler.Init(battleData.PlayerSettings, null, _mainViewHandler.MainView, _landHandler.Land.airplanesNode.transform);
+            yield return _playerHandler.Init(battleData.PlayerSettings, null, _mainViewHandler.MainView, sceneParent);
             
             _landHandler.Land.Running = true;
         }
@@ -57,7 +72,7 @@ namespace GoFire
             HitManager.GetSingleton().Clear();
             yield return Pool.GetSingleton().Clear();
             
-            yield return EventManager.GetSingleton().Unload();
+            yield return TriggerManager.GetSingleton().Unload();
             
             Object.Destroy(_rootNode);
         }

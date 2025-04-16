@@ -11,7 +11,7 @@
     "dampening": 0.6,
     "player_speed_rate": 4,
     "ammo": "enemy_ammo",
-    "dead_events": [
+    "dead_triggers": [
       "event_enemy_death_1"
     ]
   }
