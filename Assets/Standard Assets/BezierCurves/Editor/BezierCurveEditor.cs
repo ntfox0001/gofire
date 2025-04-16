@@ -5,6 +5,7 @@ using System.Collections;
 [CustomEditor(typeof(BezierCurve))]
 public class BezierCurveEditor : Editor
 {
+    static bool showHandle = true;
     BezierCurve curve;
     SerializedProperty resolutionProp;
     SerializedProperty closeProp;
@@ -37,6 +38,8 @@ public class BezierCurveEditor : Editor
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
+        
+        showHandle = EditorGUILayout.Toggle("Show Handle", showHandle);
 
         showAdjustPos = EditorGUILayout.Foldout(showAdjustPos, "Adjust Pos", true);
         if (showAdjustPos)
@@ -132,6 +135,7 @@ public class BezierCurveEditor : Editor
 
     void OnSceneGUI()
     {
+        if (!showHandle) return;
         for (int i = 0; i < curve.pointCount; i++)
         {
             DrawPointSceneGUI(curve, curve[i]);

@@ -32,15 +32,16 @@ namespace GoFire
             };
             var count = 10;
 
-            var line = new Vector3[count * 2];
-            for (int i = 0; i < count; i++)
+            var line = new Vector3[(count + 1) * 2];
+            for (int i = 0; i <= count; i++)
             {
                 var pos = _track.GetPosition((float)i/count * _track.duration);
                 line[i * 2] = pos;
                 line[i * 2 + 1] = pos + HandleUtility.GetHandleSize(pos) * 0.4f * Vector3.up;
                 
-                Handles.Label(line[i * 2 + 1], (i + 1).ToString(), _customStyle);
+                Handles.Label(line[i * 2 + 1], (i).ToString(), _customStyle);
             }
+            Handles.color = Color.red;
             Handles.DrawLines(line);
         }
     }

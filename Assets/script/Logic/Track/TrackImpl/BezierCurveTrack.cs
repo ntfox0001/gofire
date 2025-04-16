@@ -9,7 +9,10 @@ namespace GoFire
         public float dirDelta = 0.001f;
         public float duration = 60;
         public AnimationCurve speedRateCurve = AnimationCurve.Linear(0,0, 1,1);
+        public AnimationCurve rotCurve = AnimationCurve.Constant(0, 1, 0);
+        
         private BezierCurve _bezierCurve;
+        
         private void Awake()
         {
             GetBezierCurve();
