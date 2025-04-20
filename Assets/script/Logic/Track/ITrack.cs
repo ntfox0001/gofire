@@ -6,7 +6,8 @@ namespace GoFire
     {
         string Name { get; }
         Vector3 GetPosition(float timeProgress);
-        Vector3 GetFront(float timeProgress, Vector3 up);
+        Quaternion GetRotation(float timeProgress);
+        Vector3 GetFront(float timeProgress);
         Vector3 GetLeft(float timeProgress, Vector3 up);
         
         Vector3 GetLocalPosition(float timeProgress);

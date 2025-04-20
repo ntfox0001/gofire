@@ -64,7 +64,7 @@ namespace GoFire
                 return;
             }
 
-            ObjectUtils.ResetTransform(cacheObj, track.GetPosition(0));
+            MovableObjUtils.ResetTransform(cacheObj, track.GetPosition(0));
             var trackInput = new TrackInput();
             trackInput.Init(track, marker.GetRelativePosByScreen(), () =>
             {

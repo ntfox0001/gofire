@@ -87,7 +87,7 @@ namespace GoFire
             }
             
             var pos = _land.GetCameraTrack().GetPosition(_fakeScreenTimeProgress);
-            var front = _land.GetCameraTrack().GetFront(_fakeScreenTimeProgress, GameConfig.Up);
+            var front = _land.GetCameraTrack().GetFront(_fakeScreenTimeProgress);
 
             var rot = Quaternion.LookRotation(front, GameConfig.Up);
             

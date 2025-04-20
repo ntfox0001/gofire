@@ -94,7 +94,7 @@ namespace GoFire
                 pos.y / groundOutsideNode.transform.localScale.y,
                 pos.z / groundOutsideNode.transform.localScale.z);
             
-            var dir = track.GetFront(timeProgress, Vector3.up);
+            var dir = track.GetFront(timeProgress);
             dir.x = -dir.x;
             groundOutsideNode.transform.forward = dir;
         }

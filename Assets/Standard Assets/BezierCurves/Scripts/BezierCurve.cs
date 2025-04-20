@@ -152,6 +152,27 @@ public class BezierCurve : MonoBehaviour {
 	
 	#region PublicFunctions
 
+	/// <summary>
+	/// 返回距离对应的百分比
+	/// </summary>
+	/// <param name="distance"></param>
+	/// <returns></returns>
+	public float GetProgressByDistance(float distance)
+	{
+		if(close)
+		{
+			if(distance < 0) while(distance < 0) { distance += length; }
+			else if(distance > length) while(distance > length) { distance -= length; }
+		}
+		else
+		{
+			if(distance <= 0) return 0;
+			else if(distance >= length) return 1;
+		}
+		
+		return distance / length;
+	}
+	
 	public void RevertPoint()
 	{
 		for (var i = 0; i < pointCount/2; i++)
@@ -641,7 +662,6 @@ public class BezierCurve : MonoBehaviour {
 			if(distance < 0) while(distance < 0) { distance += length; }
 			else if(distance > length) while(distance > length) { distance -= length; }
 		}
-		
 		else
 		{
 			if(distance <= 0) return points[0].position;

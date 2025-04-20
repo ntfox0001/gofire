@@ -6,6 +6,7 @@ namespace GoFire
     {
         Vector3 GetPos();
         void SetPos(Vector3 pos);
+        void SetRot(Quaternion rot);
         float GetSpeed();
         void SetSpeed(float s);
         Vector3 GetDir();

@@ -45,8 +45,12 @@ namespace GoFire
             _time += deltaTime * _bindTarget.GetSpeed();
             var pos = _track.GetPosition(_time);
             _bindTarget.SetPos(pos + _offset);
-            var dir = _track.GetFront(_time, Vector3.up);
-            _bindTarget.SetDir(dir);
+
+            var rot = _track.GetRotation(_time);
+            _bindTarget.SetRot(rot);
+            
+            // var dir = _track.GetFront(_time);
+            // _bindTarget.SetDir(dir);
         }
 
         public bool IsBind()

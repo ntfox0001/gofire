@@ -48,7 +48,7 @@ namespace GoFire
             var raw = _packageGroup.GetComponent<Airplane>(config.AssetName);
             var airplane = ObjectManager.Instantiate(raw, _parent.Screen.transform);
             
-            ObjectUtils.ResetTransformByFront(airplane.gameObject, GameConfig.Front);
+            MovableObjUtils.ResetTransformByFront(airplane.gameObject, GameConfig.Front);
             
             airplane.InitPlayer(config, playerSetting.Input, playerSetting.AmmoName);
             airplane.MoveCtrl.SetSpeed(playerSetting.Speed);

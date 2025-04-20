@@ -63,7 +63,7 @@ namespace GoFire
         public IEnumerator Init()
         {
             _eventRoot = new GameObject("EventRoot");
-            ObjectUtils.ResetTransform(_eventRoot);
+            MovableObjUtils.ResetTransform(_eventRoot);
             yield return null;
         }
 

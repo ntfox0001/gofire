@@ -86,7 +86,7 @@ namespace GoFire
                 {
                     if (followDir)
                     {
-                        var dir = _track.GetFront(_timeProgress, GameConfig.Up);
+                        var dir = _track.GetFront(_timeProgress);
                         transform.forward = dir;
                     }
                     

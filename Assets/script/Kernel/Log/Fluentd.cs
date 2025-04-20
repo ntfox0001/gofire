@@ -123,7 +123,7 @@ namespace GoFire.Kernel
             }
         }
 
-        public void UnpackTo(Unpacker unpacker, IDictionary<string, object> collection)
+        public new void UnpackTo(Unpacker unpacker, IDictionary<string, object> collection)
         {
             long mapLength;
             if (!unpacker.ReadMapLength(out mapLength))
@@ -145,7 +145,7 @@ namespace GoFire.Kernel
             return retval;
         }
 
-        public void UnpackTo(Unpacker unpacker, object collection)
+        public new void UnpackTo(Unpacker unpacker, object collection)
         {
             var dictionary = collection as IDictionary<string, object>;
             if (dictionary == null)

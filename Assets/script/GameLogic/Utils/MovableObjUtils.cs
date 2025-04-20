@@ -2,7 +2,7 @@
 
 namespace GoFire
 {
-    public class ObjectUtils
+    public static class MovableObjUtils
     {
         public static Vector3 GetPosition(GameObject go)
         {
@@ -12,6 +12,11 @@ namespace GoFire
         public static void SetPosition(GameObject go, Vector3 pos)
         {
             go.transform.localPosition = pos;
+        }
+        
+        public static void SetRotation(GameObject go, Quaternion rot)
+        {
+            go.transform.localRotation = rot;
         }
 
         public static Vector3 GetDir(GameObject go, Vector3 front)
