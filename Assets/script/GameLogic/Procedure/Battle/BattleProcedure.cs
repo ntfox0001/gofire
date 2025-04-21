@@ -36,6 +36,8 @@ namespace GoFire
             _mainViewHandler = new MainViewHandler(battleData.MainViewPackageName);
             yield return _mainViewHandler.Load(battleData.MainViewName, battleData.Root.transform);
 
+            BulletPatternOriginNodeManager.GetSingleton().SetWorldUp(_mainViewHandler.MainView.Up);
+
             var sceneParent = new SceneParent
             {
                 Land = _landHandler.Land.gameObject,

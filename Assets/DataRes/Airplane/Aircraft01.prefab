@@ -20066,7 +20066,6 @@ GameObject:
   - component: {fileID: 8378720110802605002}
   - component: {fileID: 940563907121983472}
   - component: {fileID: 2268539922752082673}
-  - component: {fileID: 901326524672118754}
   - component: {fileID: 9192567215553845782}
   - component: {fileID: 4167702475456325638}
   m_Layer: 0
@@ -20169,7 +20168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   emitterProfile: {fileID: 0}
-  patternOrigin: {fileID: 6775015356347737479}
+  patternOrigin: {fileID: 0}
   playAtStart: 0
   useDefaultGizmoColor: 1
   gizmoColor: {r: 0, g: 1, b: 0, a: 1}
@@ -20223,19 +20222,6 @@ MonoBehaviour:
   useDefaultGizmoColor: 1
   gizmoColor: {r: 0, g: 0, b: 0, a: 1}
   gizmoZOffset: 0
---- !u!114 &901326524672118754
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8837700276107192790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b33565a4022d404b9123e2f3beaebcf8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  patternOrigin: {fileID: 6775015356347737479}
 --- !u!114 &9192567215553845782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20248,8 +20234,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 302938205baa4680a8ffa85b4f9937ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventName: []
-  eventList: []
+  triggerNames: []
+  triggerList: []
 --- !u!114 &4167702475456325638
 MonoBehaviour:
   m_ObjectHideFlags: 0

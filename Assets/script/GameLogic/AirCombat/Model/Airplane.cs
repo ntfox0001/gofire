@@ -15,7 +15,6 @@ namespace GoFire
     [RequireComponent(typeof(BulletReceiver))]
     [RequireComponent(typeof(BulletEmitter))]
     [RequireComponent(typeof(FireCtrl))]
-    [RequireComponent(typeof(BulletPatternOrigin))]
     public class Airplane : MonoBehaviour, IHit
     {
         public LifeCtrl LifeCtrl { get; private set; }
@@ -62,7 +61,7 @@ namespace GoFire
             }
             Ammo = (Ammo)ammo;
             BulletEmitter.emitterProfile = Ammo.EmitterProfile;
-            
+            BulletEmitter.patternOrigin = BulletPatternOriginNodeManager.GetSingleton().Get(transform);
             BulletReceiver.SyncCollisionTags();
             
             // BulletEmitter.Play();
@@ -82,7 +81,7 @@ namespace GoFire
             }
             Ammo = (Ammo)ammo;
             BulletEmitter.emitterProfile = Ammo.EmitterProfile;
-            
+            BulletEmitter.patternOrigin = BulletPatternOriginNodeManager.GetSingleton().Get(transform);
             BulletReceiver.SyncCollisionTags();
             
             BulletEmitter.Play();

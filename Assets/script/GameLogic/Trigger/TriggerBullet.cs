@@ -5,7 +5,7 @@ using UnityEngine;
 namespace GoFire
 {
     [RequireComponent(typeof(BulletEmitter))]
-    [RequireComponent(typeof(BulletPatternOrigin))]
+    [RequireComponent(typeof(BulletPatternOriginNode))]
     public class TriggerBullet : TriggerBase
     {
         public BulletEmitter emitter;

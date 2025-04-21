@@ -65,7 +65,7 @@ namespace GoFire
             {
                 var go = new GameObject(RewardEmitterName);
                 var be = go.AddComponent<BulletEmitter>();
-                be.patternOrigin = BulletPatternOriginNode.GetSingleton().Get(go.transform).transform;
+                be.patternOrigin = BulletPatternOriginNodeManager.GetSingleton().Get(go.transform).transform;
                 
                 return go;
             });

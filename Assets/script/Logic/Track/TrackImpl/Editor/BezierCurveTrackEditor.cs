@@ -19,10 +19,10 @@ namespace GoFire
         private static bool _showPoints = false;
         private static int _edgeCount = 5;
         private static bool _showUpLine = true;
-        
-        List<Vector3> _scale = new();
-        List<Vector3> _edge1 = new();
-        List<Vector3> _edge2 = new();
+
+        readonly List<Vector3> _scale = new();
+        readonly List<Vector3> _edge1 = new();
+        readonly List<Vector3> _edge2 = new();
 
         void OnEnable()
         {

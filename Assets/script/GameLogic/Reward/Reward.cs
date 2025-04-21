@@ -22,6 +22,7 @@ namespace GoFire
         {
             Config = config;
             bulletEmitter.emitterProfile = ep;
+            bulletEmitter.patternOrigin = BulletPatternOriginNodeManager.GetSingleton().Get(transform);
             bulletEmitter.Play();
             StartCoroutine(DelayDestroy(config.Duration));
         }

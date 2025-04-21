@@ -1,34 +1,29 @@
-﻿using System.Collections;
-using GoFire.Kernel;
-using UnityEditorInternal.Profiling.Memory.Experimental;
+﻿using System;
+using BulletPro;
 using UnityEngine;
 
 namespace GoFire
 {
-    public class BulletPatternOriginNode : Singleton<BulletPatternOriginNode>, IManager
+    public class BulletPatternOriginNode : MonoBehaviour
     {
-        private const string BulletPatternOriginNodeName = "BulletPatternOriginNode";
-        public GameObject Get(Transform parent)
+        public Transform followParent;
+        public Quaternion rotation;
+        private void Update()
         {
-            return Pool.GetSingleton().Get(BulletPatternOriginNodeName, parent);
-        }
-
-        public IEnumerator Init()
-        {
-            Pool.GetSingleton().Register(BulletPatternOriginNodeName, () =>
+            if (!followParent)
             {
-                var patternOrigin = new GameObject("PatternOrigin");
-                patternOrigin.transform.SetParent(transform);
-                patternOrigin.transform.localPosition = Vector3.zero;
-                patternOrigin.transform.localRotation = Quaternion.AngleAxis(Mathf.PI, Vector3.right);
-                return patternOrigin;
-            });
-            yield return null;
+                return;
+            }
+
+            transform.position = followParent.position;
+            transform.eulerAngles = new Vector3(90, 0, -followParent.eulerAngles.y);
         }
 
-        public void Release()
+        public void SetFollowUp(Transform parent)
         {
-            
+            followParent = parent;
+            transform.forward = -Vector3.up;
+            Update();
         }
     }
 }
