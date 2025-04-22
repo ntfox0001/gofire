@@ -7,7 +7,7 @@
     "velocity": 10,
     "Mass": 1,
     "dampening": 0.6,
-    "dead_events": []
+    "dead_trigger": []
   },
   {
     "id": "enemy_ammo",
@@ -17,6 +17,106 @@
     "velocity": 10,
     "Mass": 1,
     "dampening": 0.6,
-    "dead_events": []
+    "dead_trigger": []
+  },
+  {
+    "id": "Plane_AimBullet01",
+    "asset_name": "Plane_AimBullet01",
+    "life": 100,
+    "damage": 100,
+    "velocity": 10,
+    "Mass": 1,
+    "dampening": 0.6,
+    "dead_trigger": []
+  },
+  {
+    "id": "Plane_AimBullet02",
+    "asset_name": "Plane_AimBullet02",
+    "life": 100,
+    "damage": 100,
+    "velocity": 10,
+    "Mass": 1,
+    "dampening": 0.6,
+    "dead_trigger": []
+  },
+  {
+    "id": "Plane_AimBullet03",
+    "asset_name": "Plane_AimBullet03",
+    "life": 100,
+    "damage": 100,
+    "velocity": 10,
+    "Mass": 1,
+    "dampening": 0.6,
+    "dead_trigger": []
+  },
+  {
+    "id": "Plane_AimBullet04",
+    "asset_name": "Plane_AimBullet04",
+    "life": 100,
+    "damage": 100,
+    "velocity": 10,
+    "Mass": 1,
+    "dampening": 0.6,
+    "dead_trigger": []
+  },
+  {
+    "id": "Plane_HomingMissiles01",
+    "asset_name": "Plane_HomingMissiles01",
+    "life": 100,
+    "damage": 100,
+    "velocity": 10,
+    "Mass": 1,
+    "dampening": 0.6,
+    "dead_trigger": []
+  },
+  {
+    "id": "Plane_HomingMissiles02",
+    "asset_name": "Plane_HomingMissiles02",
+    "life": 100,
+    "damage": 100,
+    "velocity": 10,
+    "Mass": 1,
+    "dampening": 0.6,
+    "dead_trigger": []
+  },
+  {
+    "id": "Fort_Laser01",
+    "asset_name": "Fort_Laser01",
+    "life": 100,
+    "damage": 100,
+    "velocity": 10,
+    "Mass": 1,
+    "dampening": 0.6,
+    "dead_trigger": []
+  },
+  {
+    "id": "Fort_Scatter01",
+    "asset_name": "Fort_Scatter01",
+    "life": 100,
+    "damage": 100,
+    "velocity": 10,
+    "Mass": 1,
+    "dampening": 0.6,
+    "dead_trigger": []
+  },
+  {
+    "id": "Fort_Scatter02",
+    "asset_name": "Fort_Scatter02",
+    "life": 100,
+    "damage": 100,
+    "velocity": 10,
+    "Mass": 1,
+    "dampening": 0.6,
+    "dead_trigger": []
+  },
+  {
+    "id": "Fort_Scatter03",
+    "asset_name": "Fort_Scatter03",
+    "life": 100,
+    "damage": 100,
+    "velocity": 10,
+    "Mass": 1,
+    "dampening": 0.6,
+    "dead_trigger": []
   }
 ]
