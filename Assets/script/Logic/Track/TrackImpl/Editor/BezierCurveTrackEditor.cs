@@ -128,8 +128,11 @@ namespace GoFire
                 }
                 else if (idx == _track.GetRotPoints().Length - 1)
                 {
-                    // point.distance = _track.bezierCurve.length;
-                    propDistance.floatValue = _track.bezierCurve.length;
+                    if (_track.GetRotPoints()[idx - 1].distance < v && _track.GetRotPoints()[idx + 1].distance > v)
+                    {
+                        // point.distance = _track.bezierCurve.length;
+                        propDistance.floatValue = _track.bezierCurve.length;
+                    }
                 }
                 else
                 {

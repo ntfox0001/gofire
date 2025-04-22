@@ -117,6 +117,26 @@ public class BezierCurve : MonoBehaviour {
 			return _length;
 		}
 	}
+
+	private float _localLength;
+	
+	public float localLength
+	{
+		get
+		{
+			if (!dirty) return _localLength;
+			_localLength = 0;
+			for(var i = 0; i < points.Length - 1; i++){
+				_localLength += LocalApproximateLength(points[i], points[i + 1], resolution);
+			}
+				
+			if(close) _localLength += LocalApproximateLength(points[^1], points[0], resolution);
+				
+			dirty = false;
+
+			return _localLength;
+		}
+	}
 	
 	#endregion
 	
@@ -319,7 +339,7 @@ public class BezierCurve : MonoBehaviour {
 
         for (int i = 0; i < points.Length - 1; i++)
         {
-            curvePercent = LocalApproximateLength(points[i], points[i + 1], resolution) / length;
+            curvePercent = LocalApproximateLength(points[i], points[i + 1], resolution) / localLength;
             if (totalPercent + curvePercent > t)
             {
                 p1 = points[i];

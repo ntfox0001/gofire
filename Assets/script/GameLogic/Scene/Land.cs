@@ -94,9 +94,11 @@ namespace GoFire
                 pos.y / groundOutsideNode.transform.localScale.y,
                 pos.z / groundOutsideNode.transform.localScale.z);
             
-            var dir = track.GetFront(timeProgress);
-            dir.x = -dir.x;
-            groundOutsideNode.transform.forward = dir;
+            // var dir = track.GetFront(timeProgress);
+            // dir.x = -dir.x;
+            // groundOutsideNode.transform.forward = dir;
+            var rot = track.GetRotation(timeProgress);
+            groundOutsideNode.transform.rotation = Quaternion.Inverse(rot);
         }
 
         void CalculateAirplaneMarkers(float timeProgress)

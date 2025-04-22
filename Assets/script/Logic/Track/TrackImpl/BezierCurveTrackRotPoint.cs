@@ -13,7 +13,7 @@ namespace GoFire
         {
             var t = curveTrack.bezierCurve.GetProgressByDistance(distance);
             transform.localRotation = GetRotation();
-            transform.localPosition = curveTrack.bezierCurve.GetLocalPointAt(t);
+            transform.localPosition = curveTrack.bezierCurve.GetPointAt(t);
         }
 
         public Quaternion GetRotation()
